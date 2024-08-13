@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-26j9mr4%%v#ufx1t83lytij++iy968o=%e6y54edy1#y1%wmqu
 DEBUG = True
 
 ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS=["https://vigilant-doodle-w6v9pxr747vf5999-8000.app.github.dev"]
+CSRF_TRUSTED_ORIGINS=["https://vigilant-doodle-w6v9pxr747vf5999.github.dev"]
 
 # Application definition
 
