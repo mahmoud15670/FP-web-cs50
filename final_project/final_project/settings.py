@@ -31,6 +31,7 @@ CSRF_TRUSTED_ORIGINS=["https://vigilant-doodle-w6v9pxr747vf5999.github.dev","htt
 # Application definition
 
 INSTALLED_APPS = [
+    "delivery",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
