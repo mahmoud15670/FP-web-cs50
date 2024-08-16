@@ -11,10 +11,4 @@ class Teacher_Form(ModelForm):
         widget = {
             'username':TextInput(attrs={'autocomplete': 'off', 'placeholder':'username'})
         }
-        labels = {
-            'username':'username',
-            'password':'password',
-            'email':'email address',
-            'phone':'phone number'
-        }
 
