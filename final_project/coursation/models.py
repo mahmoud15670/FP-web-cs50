@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 # Create your models here.
 def cv_upload_path(techer, file_name):
@@ -15,7 +15,7 @@ def age_choises():
     return [(i, i) for i in range(7, 81)]
 
 
-class Techer(AbstractUser):
+class Techer(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     acceptaiton = models.BooleanField(default=False)
@@ -30,7 +30,7 @@ class Techer(AbstractUser):
     lessons = models.CharField(max_length=20)
 
 
-class Student(AbstractUser):
+class Student(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
