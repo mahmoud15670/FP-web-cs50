@@ -5,5 +5,10 @@ class Teacher_Form(ModelForm):
     class Meta:
         model = Techer
         fields  = ['username', 'password', 'email','phone']
-        
+        labels = {
+            'username':'username',
+            'password':'password',
+            'email':'email address',
+            'phone':'phone number'
+        }
 

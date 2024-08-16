@@ -4,7 +4,7 @@
     <form action="{% url 'teacher_register' %}" method="post">
         {%csrf_token%}
         {% for input in form %}
-            {{input}}
+        {{input.label}}: {{input}}
         {% endfor %}
         <input type="password" placeholder="confirm password" name="confirm" autocomplete="off">
         <input type="submit" value="sign up">
