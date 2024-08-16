@@ -8,7 +8,7 @@
 <body>
     <nav>
         <a href="#">home</a>
-        {% if AnonymousUser %}
+        {% if user == AnonymousUser %}
             <a href="#">log in</a>
         {% else %}
             <a href="#">log out</a>
