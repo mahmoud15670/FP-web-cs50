@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 # Create your models here.
 def cv_upload_path(techer, file_name):
@@ -13,7 +13,7 @@ def certificate_upload_path(techer, file_name):
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
-class Techer(User):
+class Techer(AbstractUser):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     acceptaiton = models.BooleanField(default=False)
@@ -22,7 +22,7 @@ class Techer(User):
     exams = models.CharField(max_length=20)
     cv = models.FileField(upload_to=cv_upload_path)
     demo = models.FileField(upload_to=demo_upload_path)
-    group = models.CharField(max_length=20)
+    groub = models.CharField(max_length=20)
     period = models.DateField()
     reting = models.CharField(max_length=5)
     lessons = models.CharField(max_length=20)
