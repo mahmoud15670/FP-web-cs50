@@ -8,10 +8,10 @@
 <body>
     <nav>
         <a href="#">home</a>
-        {% if user == AnonymousUser %}
-            <a href="#">log in</a>
-        {% else %}
+        {% if user.is_authenticated %}
             <a href="#">log out</a>
+        {% else %}
+            <a href="#">log in</a>
         {% endif %}
     </nav>
     {{user}}
