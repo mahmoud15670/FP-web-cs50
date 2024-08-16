@@ -38,7 +38,8 @@ def teacher_register(request):
     confirm = form.cleaned_data['confirm']
     if password != confirm:
         return render(request, 'teacher_register.html', {
-            
+            'form':form,
+            'warrnin':'password didnot like the confirm'
         })
     if form.is_valid():
         user = form.save()
