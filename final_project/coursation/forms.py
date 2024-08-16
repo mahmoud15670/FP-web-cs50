@@ -9,6 +9,6 @@ class Teacher_Form(ModelForm):
         model = Techer
         fields  = ['username', 'password', 'email','phone']
         widget = {
-            'username':TextInput(attrs={'autocomplete': 'off', 'placeholder':'username'})
+            'username':TextInput(attrs={'autocomplete': 'off','placeholder': 'Enter your username'})
         }
 
