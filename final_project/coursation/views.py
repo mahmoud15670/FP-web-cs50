@@ -33,3 +33,5 @@ def teacher_register(request):
         return render(request, 'teacher_register.html', {
             'form':Teacher_Form
         })
+    form = Teacher_Form(request.POST)
+    
