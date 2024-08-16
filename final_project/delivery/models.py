@@ -56,4 +56,5 @@ class Stage(models.Model):
         }
 
     def __str__(self) -> str:
-        return super().__str__()
+        
+        return super().__str__(self.name)
