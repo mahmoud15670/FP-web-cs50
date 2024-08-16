@@ -3,7 +3,9 @@
 {% block body %}
     <form action="{% url 'teacher_register' %}" method="post">
         {%csrf_token%}
-        {{form}}
+        {% for input in form %}
+            {{input}}
+        {% endfor %}
         <input type="password" placeholder="confirm password" name="confirm" autocomplete="off">
         <input type="submit" value="sign up">
     </form>
