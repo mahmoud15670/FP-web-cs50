@@ -56,3 +56,10 @@ class Stage(models.Model):
     def __str__(self) -> str:
         
         return self.name
+class Exam(models.Model):
+    date = models.DateTimeField(auto_now_add=False, auto_created=False)
+    total = models.SmallIntegerField()
+    degree = models.SmallIntegerField()
+    duration = models.TimeField(auto_now_add=False, auto_created=False)
+    question = models.TextField()
+    answer = models.TextField()

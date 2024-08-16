@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Techer)
 admin.site.register(Student)
 admin.site.register(Stage)
+admin.site.register(Exam)
