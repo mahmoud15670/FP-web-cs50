@@ -25,3 +25,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+def teacher_register(request):
+    if request.method != 'POST':
+        return render(request, 'teacher_register.html')
