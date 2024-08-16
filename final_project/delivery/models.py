@@ -30,7 +30,7 @@ class Techer(User):
     lessons = models.CharField(max_length=20)
 
 
-class Student(user):
+class Student(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
