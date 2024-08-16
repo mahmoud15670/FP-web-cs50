@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 def index(request):
     return render(request, 'index.html')
 
-def signin(request):
+def login_view(request):
     if request.method != 'POST':
         return render(request, 'signin.html')
     username = request.POST['username']
