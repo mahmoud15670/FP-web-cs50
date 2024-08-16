@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <a href="#">home</a>
+        {% if user %}
+            <a href="#">sing out</a>
+        {% else %}
+            <a href="#">sign in</a>
+        {% endif %}
+    </nav>
     {% block body %}
     {% endblock %}
 </body>
