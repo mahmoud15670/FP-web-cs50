@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
+
+from .forms import *
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -28,4 +30,6 @@ def logout_view(request):
 
 def teacher_register(request):
     if request.method != 'POST':
-        return render(request, 'teacher_register.html')
+        return render(request, 'teacher_register.html', {
+            'form':Teacher_Form
+        })
