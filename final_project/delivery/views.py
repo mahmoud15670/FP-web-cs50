@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -15,3 +16,5 @@ def signin(request):
 
     if user:
         login(request, user)
+        return HttpResponseRedirect(reverse('index'))
+    
