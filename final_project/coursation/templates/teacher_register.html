@@ -6,10 +6,6 @@
         {% for input in form %}
         <p>{{input.label}}: {{input}}</p>
         {% endfor %}
-        <p>
-            <label for="confirm">confirm password: </label>
-            <input type="password"  name="confirm" autocomplete="off">
-        </p>
         <input type="submit" value="sign up">
     </form>
 {% endblock %}
