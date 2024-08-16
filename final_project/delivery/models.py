@@ -17,7 +17,7 @@ class Techer(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     acceptaiton = models.BooleanField(default=False)
-    favoirates = models.CharField(max_length=40)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
     section = models.CharField(max_length=20)
     exams = models.CharField(max_length=20)
     cv = models.FileField(upload_to=cv_upload_path)
@@ -31,7 +31,7 @@ class Techer(User):
 class Student(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
-    stage = models.CharField(max_length=20)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
     section = models.CharField(max_length=20)
     exams = models.CharField(max_length=20)
     group = models.CharField(max_length=20)
@@ -41,8 +41,6 @@ class Student(User):
 
 
 class Stage(models.Model):
-    techer = models.ForeignKey(to='Techer', on_delete=models.PROTECT, related_name='techers', null=True, blank=True)
-    student = models.ForeignKey(to='Student', on_delete=models.PROTECT, related_name='students', null=True, blank=True)
     age_start = models.PositiveSmallIntegerField(choices=age_choises)
     age_end = models.PositiveSmallIntegerField(choices=age_choises)
     name = models.CharField(max_length=20)
