@@ -2,7 +2,7 @@ from django.forms import ModelForm, PasswordInput, CharField
 from .models import *
 
 class Teacher_Form(ModelForm):
-    confirm_password = CharField(widget=PasswordInput())
+    confirm_password = PasswordInput(attrs={'autocomplete':'off'})
     class Meta:
         model = Techer
         fields  = ['username', 'password', 'email','phone']
