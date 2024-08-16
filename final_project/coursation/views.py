@@ -37,7 +37,7 @@ def teacher_register(request):
     password = form.cleaned_data['password']
     confirm = form.cleaned_data['confirm']
     if password != confirm:
-        return 
+        return render(request, )
     if form.is_valid():
         user = form.save()
         login(request, user)
