@@ -17,17 +17,17 @@ def age_choises():
 
 class Techer(User):
     phone = models.CharField(max_length=11)
-    age = models.PositiveSmallIntegerField()
+    age = models.PositiveSmallIntegerField(null=True)
     acceptaiton = models.BooleanField(default=False)
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
-    section = models.CharField(max_length=20)
-    exams = models.CharField(max_length=20)
-    cv = models.FileField(upload_to=cv_upload_path)
-    demo = models.FileField(upload_to=demo_upload_path)
-    groub = models.CharField(max_length=20)
-    period = models.DateField()
-    reting = models.CharField(max_length=5)
-    lessons = models.CharField(max_length=20)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
+    section = models.CharField(max_length=20, null=True)
+    exams = models.CharField(max_length=20, null=True)
+    cv = models.FileField(upload_to=cv_upload_path, null=True)
+    demo = models.FileField(upload_to=demo_upload_path, null=True)
+    groub = models.CharField(max_length=20, null=True)
+    period = models.DateField(null=True)
+    reting = models.CharField(max_length=5, null=True)
+    lessons = models.CharField(max_length=20, null=True)
 
 
 class Student(User):
