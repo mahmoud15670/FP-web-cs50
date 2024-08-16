@@ -8,12 +8,13 @@
 <body>
     <nav>
         <a href="#">home</a>
-        {% if not user %}
-            <a href="#">sign in</a>
+        {% if user %}
+            <a href="#">log out</a>
         {% else %}
-            <a href="#">sing out {{ user.id }}</a>
+            <a href="#">log in</a>
         {% endif %}
     </nav>
+    {{user}}
     {% block body %}
     {% endblock %}
 </body>
