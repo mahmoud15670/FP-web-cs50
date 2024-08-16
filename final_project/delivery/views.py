@@ -7,3 +7,5 @@ def index(request):
 def signin(request):
     if request.method != 'POST':
         return render(request, 'signin.html')
+    username = request.POST['username']
+    username = request.POST['username']
