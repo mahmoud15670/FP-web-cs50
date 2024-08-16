@@ -34,6 +34,10 @@ def teacher_register(request):
             'form':Teacher_Form
         })
     form = Teacher_Form(request.POST)
+    password = form.cleaned_data['password']
+    confirm = form.cleaned_data['confirm']
+    if password != confirm:
+        return 
     if form.is_valid():
         user = form.save()
         login(request, user)
