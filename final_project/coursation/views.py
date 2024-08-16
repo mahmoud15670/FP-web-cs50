@@ -34,4 +34,6 @@ def teacher_register(request):
             'form':Teacher_Form
         })
     form = Teacher_Form(request.POST)
-    
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('index'))
