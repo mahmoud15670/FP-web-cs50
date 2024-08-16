@@ -41,8 +41,8 @@ class Student(User):
 
 
 class Stage(models.Model):
-    techer = models.ForeignKey(to='Techer', on_delete=models.PROTECT, related_name='techers', null=True)
-    student = models.ForeignKey(to='Student', on_delete=models.PROTECT, related_name='students', null=True)
+    techer = models.ForeignKey(to='Techer', on_delete=models.PROTECT, related_name='techers', null=True, blank=True)
+    student = models.ForeignKey(to='Student', on_delete=models.PROTECT, related_name='students', null=True, blank=True)
     age_start = models.PositiveSmallIntegerField(choices=age_choises)
     age_end = models.PositiveSmallIntegerField(choices=age_choises)
     name = models.CharField(max_length=20)
