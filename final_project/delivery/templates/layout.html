@@ -9,7 +9,7 @@
     <nav>
         <a href="#">home</a>
         {% if user %}
-            <a href="#">sing out {{ user.name }}</a>
+            <a href="#">sing out {{ user.id }}</a>
         {% else %}
             <a href="#">sign in</a>
         {% endif %}
