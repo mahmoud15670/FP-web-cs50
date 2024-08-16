@@ -8,7 +8,7 @@
 <body>
     <nav>
         <a href="#">home</a>
-        {% if user %}
+        {% if not user %}
             <a href="#">sing out</a>
         {% else %}
             <a href="#">sign in</a>
