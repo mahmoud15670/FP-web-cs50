@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% if m%}
+    {% if massage %}
+        <h2>{{massage}}</h2>
+    {% endif %}
     <form action="{% url 'signin' %}" method="post">
         {% csrf_token %}
         <input type="text" name="username" placeholder="username">
