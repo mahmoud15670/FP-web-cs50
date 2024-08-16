@@ -1,4 +1,4 @@
-from django.forms import ModelForm, PasswordInput, CharField
+from django.forms import ModelForm, PasswordInput, CharField, TextInput
 from .models import *
 
 class Teacher_Form(ModelForm):
@@ -9,7 +9,7 @@ class Teacher_Form(ModelForm):
         model = Techer
         fields  = ['username', 'password', 'email','phone']
         widget = {
-            'username':CharField(attrs={'autocomplete': 'off', 'placeholder':'username'})
+            'username':TextInput(attrs={'autocomplete': 'off', 'placeholder':'username'})
         }
         labels = {
             'username':'username',
