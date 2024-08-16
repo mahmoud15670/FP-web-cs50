@@ -34,8 +34,8 @@ def teacher_register(request):
             'form':Teacher_Form
         })
     form = Teacher_Form(request.POST)
-    password = form.cleaned_data['password']
-    confirm = form.cleaned_data['confirm']
+    password = form.fields['password']
+    confirm = form.fields['confirm_password']
     if password != confirm:
         return render(request, 'teacher_register.html', {
             'form':form,
