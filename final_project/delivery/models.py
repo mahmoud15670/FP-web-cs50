@@ -13,31 +13,7 @@ def certificate_upload_path(techer, file_name):
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
-class Techer(User):
-    phone = models.CharField(max_length=11)
-    age = models.PositiveSmallIntegerField()
-    acceptaiton = models.BooleanField(default=False)
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
-    section = models.CharField(max_length=20)
-    exams = models.CharField(max_length=20)
-    cv = models.FileField(upload_to=cv_upload_path)
-    demo = models.FileField(upload_to=demo_upload_path)
-    groub = models.CharField(max_length=20)
-    period = models.DateField()
-    reting = models.CharField(max_length=5)
-    lessons = models.CharField(max_length=20)
 
-
-class Student(User):
-    phone = models.CharField(max_length=11)
-    age = models.PositiveSmallIntegerField()
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
-    section = models.CharField(max_length=20)
-    exams = models.CharField(max_length=20)
-    group = models.CharField(max_length=20)
-    progress = models.PositiveSmallIntegerField(default=0)
-    reting = models.CharField(max_length=5)
-    certification = models.FileField(upload_to=certificate_upload_path)
 
 
 class Stage(models.Model):
