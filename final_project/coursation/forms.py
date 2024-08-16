@@ -5,4 +5,5 @@ class Teacher_Form(ModelForm):
     class Meta:
         model = Techer
         fields  = ['username', 'password', 'email','phone']
+        
 
