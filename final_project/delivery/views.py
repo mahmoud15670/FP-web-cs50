@@ -5,4 +5,5 @@ def index(request):
     return render(request, 'index.html')
 
 def signin(request):
-    return render(request, 'signin.html')
+    if request.method != 'POST':
+        return render(request, 'signin.html')
