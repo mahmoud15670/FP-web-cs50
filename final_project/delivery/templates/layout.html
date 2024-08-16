@@ -8,8 +8,8 @@
 <body>
     <nav>
         <a href="#">home</a>
-        {% if not user %}
-            <a href="#">sing out</a>
+        {% if user %}
+            <a href="#">sing out {{ user.name }}</a>
         {% else %}
             <a href="#">sign in</a>
         {% endif %}
