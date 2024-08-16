@@ -3,8 +3,8 @@
 {% block body %}
     <form action="{% url 'teacher_register' %}" method="post">
         {%csrf_token%}
-        {% if warrning %}
-        <h4>{{warrning}}</h4>
+        {% if warning %}
+        <h4>{{warning}}</h4>
         {% endif %}
         {% for input in form %}
         <p>{{input}}</p>
