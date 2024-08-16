@@ -35,5 +35,6 @@ def teacher_register(request):
         })
     form = Teacher_Form(request.POST)
     if form.is_valid():
-        form.save()
+        user = form.save()
+        login(request, user)
         return HttpResponseRedirect(reverse('index'))
