@@ -8,7 +8,9 @@ class Teacher_Form(ModelForm):
     class Meta:
         model = Techer
         fields  = ['username', 'password', 'email','phone']
-        
+        widget = {
+            'username':CharField(attrs={'autocomplete': 'off', 'placeholder':'username'})
+        }
         labels = {
             'username':'username',
             'password':'password',
