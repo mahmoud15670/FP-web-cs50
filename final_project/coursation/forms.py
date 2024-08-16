@@ -4,5 +4,5 @@ from .models import *
 class Teacher_Form(ModelForm):
     class Meta:
         model = Techer
-        fields  = []
+        fields  = ['usern']
 
