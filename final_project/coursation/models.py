@@ -22,12 +22,12 @@ class Techer(User):
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True, blank=True)
     section = models.CharField(max_length=20, null=True, blank=True)
     exams = models.CharField(max_length=20, null=True, blank=True)
-    cv = models.FileField(upload_to=cv_upload_path, null=True)
-    demo = models.FileField(upload_to=demo_upload_path, null=True)
-    groub = models.CharField(max_length=20, null=True)
-    period = models.DateField(null=True)
-    reting = models.CharField(max_length=5, null=True)
-    lessons = models.CharField(max_length=20, null=True)
+    cv = models.FileField(upload_to=cv_upload_path, null=True, blank=True)
+    demo = models.FileField(upload_to=demo_upload_path, null=True, blank=True)
+    groub = models.CharField(max_length=20, null=True, blank=True)
+    period = models.DateField(null=True, blank=True)
+    reting = models.CharField(max_length=5, null=True, blank=True)
+    lessons = models.CharField(max_length=20, null=True, blank=True)
 
 
 class Student(User):
