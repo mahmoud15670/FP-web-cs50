@@ -10,4 +10,8 @@ def signin(request):
         return render(request, 'signin.html')
     username = request.POST['username']
     password = request.POST['password']
-    
+
+    user = authenticate(request, username, password)
+
+    if user:
+        login(request, user)
