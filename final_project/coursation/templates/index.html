@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>hi</h1>
-    {% if user.isauth%}
+    
+    {% if user.is_authenticated%}
+       <h1>hi {{user}}</h1> 
+    {% endif %}
 {% endblock %}
