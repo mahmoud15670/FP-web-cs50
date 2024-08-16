@@ -54,3 +54,6 @@ class Stage(models.Model):
             'start':self.age_start,
             'end':self.age_end
         }
+
+    def __str__(self) -> str:
+        return super().__str__()
