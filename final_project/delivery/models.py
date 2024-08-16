@@ -41,8 +41,8 @@ class Student(User):
 
 
 class Stage(models.Model):
-    techer = models.ManyToManyField(to='Techer', related_name='techers')
-    student = models.ManyToManyField(to='Student', related_name='students')
+    techer = models.ForeignKey(to='Techer', on_delete=models.PROTECT, related_name='techers')
+    student = models.on(to='Student', related_name='students')
     age_start = models.PositiveSmallIntegerField(choices=age_choises)
     age_end = models.PositiveSmallIntegerField(choices=age_choises)
     name = models.CharField(max_length=20)
