@@ -66,3 +66,6 @@ class Exam(models.Model):
     duration = models.TimeField(auto_now_add=False, auto_created=False)
     question = models.TextField()
     answer = models.TextField()
+
+class section(models.Model):
+    ...
