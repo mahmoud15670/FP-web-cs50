@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
@@ -54,4 +54,5 @@ def teacher_detail_entry(request):
         return render(request, 'teacher_detsil_entry.html', {
             'form':Teacher_detail_form
         })
-    user_id = request.POST['']
+    user_id = request.POST['user_id']
+    teacher = get_object_or_404(Techer, user_id)
