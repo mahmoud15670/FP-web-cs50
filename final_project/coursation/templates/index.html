@@ -5,7 +5,7 @@
     {% if user.is_authenticated%}
        <h1>hi {{user}}</h1>
        {% if not user.activation %} 
-       <a href="#">please complete your profile </a>
+       <a href="{% url 'teacher_detail_entry' %}">please complete your profile </a>
        {% endif %}
     {% endif %}
 {% endblock %}
