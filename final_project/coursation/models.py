@@ -67,5 +67,5 @@ class Exam(models.Model):
     question = models.TextField()
     answer = models.TextField()
 
-class section(models.Model):
+class Section(models.Model):
     name = models.CharField(max_length=20)
