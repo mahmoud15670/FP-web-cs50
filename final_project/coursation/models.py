@@ -20,15 +20,15 @@ class Techer(User):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField(null=True)
     acceptaiton = models.BooleanField(default=False)
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True, blank=True)
-    section = models.CharField(max_length=20, null=True, blank=True)
-    exams = models.CharField(max_length=20, null=True, blank=True)
-    cv = models.FileField(upload_to=cv_upload_path, null=True, blank=True)
-    demo = models.FileField(upload_to=demo_upload_path, null=True, blank=True)
-    groub = models.CharField(max_length=20, null=True, blank=True)
-    period = models.DateField(null=True, blank=True)
-    reting = models.CharField(max_length=5, null=True, blank=True)
-    lessons = models.CharField(max_length=20, null=True, blank=True)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
+    section = models.CharField(max_length=20, null=True)
+    exams = models.CharField(max_length=20, null=True)
+    cv = models.FileField(upload_to=cv_upload_path, null=True)
+    demo = models.FileField(upload_to=demo_upload_path, null=True)
+    groub = models.CharField(max_length=20, null=True)
+    period = models.DateField(null=True)
+    reting = models.CharField(max_length=5, null=True)
+    lessons = models.CharField(max_length=20, null=True)
 
 
 class Student(User):
@@ -57,7 +57,7 @@ class Stage(models.Model):
         }
 
     def __str__(self) -> str:
-        
+
         return self.name
 class Exam(models.Model):
     date = models.DateTimeField(auto_now_add=False, auto_created=False)
