@@ -8,14 +8,14 @@ class Teacher_Form(forms.ModelForm):
     class Meta:
         model = Techer
         fields = ['username', 'password', 'email', 'phone']
-        exclude = ['first_name', 'last_name', 'age', 'stage', 'section', 'cv', 'demo', 'activation']
-        
+        exclude = ['activation']
+
         widgets = {
             'username': forms.TextInput(attrs={'autocomplete': 'off','placeholder': 'Enter your username'}),
             'password': forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'Enter your password'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Enter your email address'}),
             'phone': forms.TextInput(attrs={'placeholder': 'Enter your phone number'}),
-            
+
         }
 
 
@@ -23,3 +23,6 @@ class Teacher_detail_form(forms.ModelForm):
     class Meta:
         model = Techer
         fields = ['first_name', 'last_name', 'age', 'stage', 'section', 'cv', 'demo']
+        widgets = {
+            'first_name':
+        }
