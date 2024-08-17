@@ -19,5 +19,6 @@ class Teacher_Form(forms.ModelForm):
 
 
 class Teacher_detail_form(forms.ModelForm):
-    model = Techer
-    fields = ['first name']
+    class Meta:
+        model = Techer
+        fields = ['first_name']
