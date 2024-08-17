@@ -16,8 +16,6 @@ def age_choises():
 
 
 class Techer(User):
-    first_name = models.CharField(max_length=20, null=True)
-    last_name = models.CharField(max_length=20, null=True)
     activation = models.BooleanField(default=False )
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField(null=True)
