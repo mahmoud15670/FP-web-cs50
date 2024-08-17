@@ -20,4 +20,4 @@ class Teacher_Form(forms.ModelForm):
 
 class Teacher_detail_form(forms.ModelForm):
     model = Techer
-    fields = []
+    fields = ['first name']
