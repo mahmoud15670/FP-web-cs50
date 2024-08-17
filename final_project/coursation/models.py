@@ -68,4 +68,4 @@ class Exam(models.Model):
     answer = models.TextField()
 
 class section(models.Model):
-    ...
+    name = models.CharField(max_length=20)
