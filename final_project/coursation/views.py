@@ -59,4 +59,4 @@ def teacher_detail_entry(request):
     form = Teacher_detail_form(request.POST)
 
     if form.is_valid():
-        form.cleaned_data
+        form
