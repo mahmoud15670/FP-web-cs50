@@ -24,6 +24,6 @@ class Teacher_detail_form(forms.ModelForm):
         model = Techer
         fields = ['first_name', 'last_name', 'age', 'stage', 'section', 'cv', 'demo']
         widgets = {
-            'first_name': forms.TextInput(required=True),
-            'last_name': forms.TextInput(required=True)
+            'first_name': forms.CharField(required=True),
+            'last_name': forms.CharField(required=True)
         }
