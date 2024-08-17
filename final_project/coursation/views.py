@@ -43,5 +43,6 @@ def teacher_register(request):
         })
     if form.is_valid():
         user = form.save()
+        user.is_active = False
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
