@@ -56,4 +56,4 @@ def teacher_detail_entry(request):
         })
     user_id = request.POST['user_id']
     teacher = get_object_or_404(Techer, pk=int(user_id))
-    
+    form = Teacher_detail_form(request.POST)
