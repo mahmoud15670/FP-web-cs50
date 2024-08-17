@@ -54,3 +54,4 @@ def teacher_detail_entry(request):
         return render(request, 'teacher_detsil_entry.html', {
             'form':Teacher_detail_form
         })
+    user_id = request.POST['']
