@@ -7,7 +7,8 @@ class Teacher_Form(forms.ModelForm):
     )
     class Meta:
         model = Techer
-        fields = ['username', 'password', 'email', 'phone', 'is_active']
+        fields = ['username', 'password', 'email', 'phone']
+        exclude = ['activation']
         widgets = {
             'username': forms.TextInput(attrs={'autocomplete': 'off','placeholder': 'Enter your username'}),
             'password': forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'Enter your password'}),

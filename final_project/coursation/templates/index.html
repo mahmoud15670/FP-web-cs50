@@ -3,6 +3,9 @@
 {% block body %}
     
     {% if user.is_authenticated%}
-       <h1>hi {{user}}</h1> 
+       <h1>hi {{user}}</h1>
+       {% if not user.activation %} 
+       <a href="#">please complete your profile </a>
+       {% endif %}
     {% endif %}
 {% endblock %}
