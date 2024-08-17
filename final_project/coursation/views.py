@@ -51,4 +51,6 @@ def teacher_register(request):
 
 def teacher_detail_entry(request):
     if request.method != 'POST':
-        return render
+        return render(request, 'teacher_detsil_entry.html', {
+            'form':Teacher_detail_form
+        })
