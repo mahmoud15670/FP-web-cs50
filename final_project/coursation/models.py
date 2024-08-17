@@ -21,7 +21,7 @@ class Techer(User):
     age = models.PositiveSmallIntegerField(null=True)
     acceptaiton = models.BooleanField(default=False)
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
-    section = models.CharField(max_length=20, null=True)
+    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
     exams = models.CharField(max_length=20, null=True)
     cv = models.FileField(upload_to=cv_upload_path, null=True)
     demo = models.FileField(upload_to=demo_upload_path, null=True)
