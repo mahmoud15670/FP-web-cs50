@@ -33,5 +33,4 @@ class Teacher_detail_form(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'required':True}),
             'last_name': forms.TextInput(attrs={'required':True}),
-            'activation':forms.BooleanField(show_hidden_initial=True)
         }
