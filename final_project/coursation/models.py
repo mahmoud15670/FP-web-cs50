@@ -31,7 +31,7 @@ class Techer(User):
     lessons = models.CharField(max_length=20, null=True)
 
     def __str__(self) -> str:
-        return self.activation
+        return self.section
 
 
 class Student(User):
