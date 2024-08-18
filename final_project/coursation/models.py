@@ -34,6 +34,9 @@ class Student(Techer):
     progress = models.PositiveSmallIntegerField(default=0)
     certification = models.FileField(upload_to=certificate_upload_path)
 
+    def is_student(self):
+        return True
+
 
 class Stage(models.Model):
     age_start = models.PositiveSmallIntegerField(choices=age_choises())
