@@ -22,18 +22,18 @@ class User(AbstractUser):
     exams = models.CharField(max_length=20, null=True)
     section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
     rating = models.CharField(max_length=5, null=True)
+
 class Techer(models.Model):
-    user = models.OneToOneField(to='User', on_delete=models.CASCADE, related_name='teacher_profile')
-    activation = models.BooleanField(default=False )
-    acceptaiton = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher_profile')
+    activation = models.BooleanField(default=False)
+    acceptation = models.BooleanField(default=False)
     cv = models.FileField(upload_to=cv_upload_path, null=True)
     demo = models.FileField(upload_to=demo_upload_path, null=True)
     period = models.DateField(null=True)
     lessons = models.CharField(max_length=20, null=True)
 
-
 class Student(models.Model):
-    user = models.OneToOneField(to='User', on_delete=models.CASCADE, related_name='student_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student_profile')
     progress = models.PositiveSmallIntegerField(default=0)
     certification = models.FileField(upload_to=certificate_upload_path)
 
