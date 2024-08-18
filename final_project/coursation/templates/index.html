@@ -3,7 +3,7 @@
 {% block body %}
     
     {% if user.is_authenticated %}
-       <h1>hi {{user.activation}}</h1>
+       <h1>hi {{user}}</h1>
        {% if not user.activation %} 
        <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
        {% endif %}

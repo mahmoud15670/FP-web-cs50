@@ -32,10 +32,13 @@ class Techer(AbstractUser):
 
 
 class Student(AbstractBaseUser):
+    username = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, null=True)
+    last_name = models.CharField(max_length=20, null=True)
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField()
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
-    section = models.CharField(max_length=20)
+    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
     exams = models.CharField(max_length=20)
     group = models.CharField(max_length=20)
     progress = models.PositiveSmallIntegerField(default=0)
