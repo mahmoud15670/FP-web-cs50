@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 CSRF_TRUSTED_ORIGINS=["https://vigilant-doodle-w6v9pxr747vf5999.github.dev","https://localhost:8000"]
 
+AUTH_USER_MODEL = 'coursation.Techer'
 # Application definition
 
 INSTALLED_APPS = [
