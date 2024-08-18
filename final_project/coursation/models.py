@@ -31,8 +31,7 @@ class Techer(AbstractUser):
     lessons = models.CharField(max_length=20, null=True)
 
 
-class Student(models.Model):
-    user = models.OneToOneField(Techer, on_delete=models.CASCADE)
+class Student(Techer):
     progress = models.PositiveSmallIntegerField(default=0)
     certification = models.FileField(upload_to=certificate_upload_path)
 
