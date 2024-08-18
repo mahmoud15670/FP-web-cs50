@@ -57,4 +57,8 @@ class Teacher_detail_entry(generic.UpdateView):
     template_name = 'teacher_detsil_entry.html'
     success_url = reverse_lazy('index')
     
-    def
+    def form_valid(self, form):
+        teacher = form.save(commit=False)
+        teacher.activation = True
+        teacher.save()
+        return super().form_valid(form)
