@@ -51,8 +51,18 @@ def teacher_register(request):
         'warning':'enter correct data'
     })
 
-def stu
+class Student_register(generic.CreateView):
+    model = Student
+    form_class = Student_form
+    template_name = 'student_register.html'
+    success_url = reverse_lazy('index')
 
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
+
+        
 class Teacher_detail_entry(generic.UpdateView):
     model = Techer
     form_class = Teacher_detail_form

@@ -30,8 +30,14 @@ class Techer(AbstractUser):
     lessons = models.CharField(max_length=20, null=True)
 
 
-class Student(Techer):
+class Student(AbstractUser):
+    phone = models.CharField(max_length=11)
+    age = models.PositiveSmallIntegerField(null=True)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
+    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
+    exams = models.CharField(max_length=20, null=True)
     progress = models.PositiveSmallIntegerField(default=0)
+    reting = models.CharField(max_length=5, null=True)
     certification = models.FileField(upload_to=certificate_upload_path)
 
     def is_student(self):
