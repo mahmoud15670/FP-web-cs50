@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 def cv_upload_path(techer, file_name):
@@ -15,22 +15,29 @@ def age_choises():
     return [(i, i) for i in range(7, 81)]
 
 
-class Techer(AbstractUser):
-    activation = models.BooleanField(default=False )
+class User(AbstractUser):
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField(null=True)
-    acceptaiton = models.BooleanField(default=False)
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
-    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
     exams = models.CharField(max_length=20, null=True)
+    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
+    rating = models.CharField(max_length=5, null=True)
+class Techer(models.Model):
+    user = models.OneToOneField(to='User', on_delete=models.CASCADE, related_name='teacher_profile')
+    activation = models.BooleanField(default=False )
+    acceptaiton = models.BooleanField(default=False)
     cv = models.FileField(upload_to=cv_upload_path, null=True)
     demo = models.FileField(upload_to=demo_upload_path, null=True)
     period = models.DateField(null=True)
-    reting = models.CharField(max_length=5, null=True)
     lessons = models.CharField(max_length=20, null=True)
 
 
-class Student(AbstractUser):
+class Student(models.Model):
+    user = models.OneToOneField(to='User', on_delete=models.CASCADE, related_name='student_profile')
+    username = models.CharField(max_length=150, unique=True)
+    email = models.EmailField(unique=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    password = models.CharField(max_length=128)
     phone = models.CharField(max_length=11)
     age = models.PositiveSmallIntegerField(null=True)
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
@@ -40,8 +47,11 @@ class Student(AbstractUser):
     reting = models.CharField(max_length=5, null=True)
     certification = models.FileField(upload_to=certificate_upload_path)
 
-    def is_student(self):
-        return True
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    def __str__(self):
+        return self.username
 
 
 class Stage(models.Model):
@@ -87,3 +97,5 @@ class Groub(models.Model):
             return False
         return True
     
+
+

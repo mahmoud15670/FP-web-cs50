@@ -55,12 +55,11 @@ class Student_register(generic.CreateView):
     model = Student
     form_class = Student_form
     template_name = 'student_register.html'
-    success_url = reverse_lazy('index')
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return super().form_valid(form)
+        return HttpResponseRedirect(reverse('index'))
 
         
 class Teacher_detail_entry(generic.UpdateView):
