@@ -65,3 +65,11 @@ class Section(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+class Groub(models.Model):
+    teacher = models.ManyToManyField(to='Techer')
+    student = models.ManyToManyField(to='Student')
+    leader = models.ForeignKey(to='Student', on_delete=models.PROTECT)
+    lesson = models.CharField(max_length=20)
+    count = models.SmallIntegerField()
+    
