@@ -56,3 +56,4 @@ class Teacher_detail_entry(generic.UpdateView):
     form_class = Teacher_detail_form
     template_name = 'teacher_detsil_entry.html'
     success_url = reverse_lazy('index')
+    
