@@ -30,9 +30,6 @@ class Techer(User):
     reting = models.CharField(max_length=5, null=True)
     lessons = models.CharField(max_length=20, null=True)
 
-    def __str__(self) -> str:
-        return self.last_name
-
 
 class Student(User):
     phone = models.CharField(max_length=11)
