@@ -16,7 +16,7 @@ def login_view(request):
     password = request.POST['password']
 
     user = authenticate(request, username=username, password=password)
-
+    
     if user:
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
@@ -47,7 +47,8 @@ def teacher_register(request):
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
     return render(request, 'teacher_register.html', {
-        'form':form
+        'form':form,
+        'warning':'enter correct data'
     })
 
 class Teacher_detail_entry(generic.UpdateView):
@@ -55,14 +56,3 @@ class Teacher_detail_entry(generic.UpdateView):
     form_class = Teacher_detail_form
     template_name = 'teacher_detsil_entry.html'
     success_url = reverse_lazy('index')
-# def teacher_detail_entry(request):
-#     if request.method != 'POST':
-#         return render(request, 'teacher_detsil_entry.html', {
-#             'form':Teacher_detail_form
-#         })
-#     user_id = request.POST['user_id']
-#     teacher = get_object_or_404(Techer, pk=int(user_id))
-#     form = Teacher_detail_form(request.POST)
-
-#     if form.is_valid():
-#         print(form)
