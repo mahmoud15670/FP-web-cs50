@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login, logout, authenticate
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -52,7 +52,9 @@ def teacher_register(request):
 
 class Teacher_detail_entry(generic.UpdateView):
     model = Techer
-    fields = ['first_name', 'last_name', 'age', 'stage', 'section', 'cv', 'demo']
+    form_class = Teacher_detail_form
+    template_name = 'teacher_detsil_entry.html'
+    success_url = reverse_lazy('index')
 # def teacher_detail_entry(request):
 #     if request.method != 'POST':
 #         return render(request, 'teacher_detsil_entry.html', {

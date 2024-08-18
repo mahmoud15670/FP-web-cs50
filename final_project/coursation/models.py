@@ -44,8 +44,8 @@ class Student(User):
 
 
 class Stage(models.Model):
-    age_start = models.PositiveSmallIntegerField(choices=age_choises)
-    age_end = models.PositiveSmallIntegerField(choices=age_choises)
+    age_start = models.PositiveSmallIntegerField(choices=age_choises())
+    age_end = models.PositiveSmallIntegerField(choices=age_choises())
     name = models.CharField(max_length=20)
 
     def age(self):
