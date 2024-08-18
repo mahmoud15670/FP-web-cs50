@@ -51,6 +51,7 @@ def teacher_register(request):
         'warning':'enter correct data'
     })
 
+def stu
 
 class Teacher_detail_entry(generic.UpdateView):
     model = Techer
