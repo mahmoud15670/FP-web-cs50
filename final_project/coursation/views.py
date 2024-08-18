@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
+from django.views import generic
 from django.http import HttpResponseRedirect
 
 from .forms import *
@@ -49,14 +50,17 @@ def teacher_register(request):
         'form':form
     })
 
-def teacher_detail_entry(request):
-    if request.method != 'POST':
-        return render(request, 'teacher_detsil_entry.html', {
-            'form':Teacher_detail_form
-        })
-    user_id = request.POST['user_id']
-    teacher = get_object_or_404(Techer, pk=int(user_id))
-    form = Teacher_detail_form(request.POST)
+class Teacher_detail_entry(generic.UpdateView):
+    model = Techer
+    fields = ['first_name', 'last_name', 'age', 'stage', 'section', 'cv', 'demo']
+# def teacher_detail_entry(request):
+#     if request.method != 'POST':
+#         return render(request, 'teacher_detsil_entry.html', {
+#             'form':Teacher_detail_form
+#         })
+#     user_id = request.POST['user_id']
+#     teacher = get_object_or_404(Techer, pk=int(user_id))
+#     form = Teacher_detail_form(request.POST)
 
-    if form.is_valid():
-        print(form)
+#     if form.is_valid():
+#         print(form)
