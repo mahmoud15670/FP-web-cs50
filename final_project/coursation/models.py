@@ -34,24 +34,9 @@ class Techer(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(to='User', on_delete=models.CASCADE, related_name='student_profile')
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(unique=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    password = models.CharField(max_length=128)
-    phone = models.CharField(max_length=11)
-    age = models.PositiveSmallIntegerField(null=True)
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
-    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
-    exams = models.CharField(max_length=20, null=True)
     progress = models.PositiveSmallIntegerField(default=0)
-    reting = models.CharField(max_length=5, null=True)
     certification = models.FileField(upload_to=certificate_upload_path)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
-    def __str__(self):
-        return self.username
 
 
 class Stage(models.Model):
