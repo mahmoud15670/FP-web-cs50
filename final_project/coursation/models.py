@@ -25,7 +25,6 @@ class Techer(AbstractUser):
     exams = models.CharField(max_length=20, null=True)
     cv = models.FileField(upload_to=cv_upload_path, null=True)
     demo = models.FileField(upload_to=demo_upload_path, null=True)
-    groub = models.CharField(max_length=20, null=True)
     period = models.DateField(null=True)
     reting = models.CharField(max_length=5, null=True)
     lessons = models.CharField(max_length=20, null=True)
@@ -67,9 +66,15 @@ class Section(models.Model):
         return self.name
 
 class Groub(models.Model):
-    teacher = models.ManyToManyField(to='Techer')
-    student = models.ManyToManyField(to='Student')
-    leader = models.ForeignKey(to='Student', on_delete=models.PROTECT)
+    name = models.CharField(max_length=20)
+    teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT, related_name='teacher')
+    student = models.ManyToManyField(to='Student', related_name='students')
+    leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, related_name='leader')
     lesson = models.CharField(max_length=20)
     count = models.SmallIntegerField()
+
+    def is_avilable(self):
+        if self.count == self.student.all().count():
+            return False
+        return True
     
