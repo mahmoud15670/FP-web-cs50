@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django.contrib.auth.models import AbstractUser, User
 
 # Create your models here.
 def cv_upload_path(techer, file_name):
@@ -31,18 +31,8 @@ class Techer(AbstractUser):
     lessons = models.CharField(max_length=20, null=True)
 
 
-class Student(AbstractBaseUser):
-    username = models.CharField(max_length=20)
-    first_name = models.CharField(max_length=20, null=True)
-    last_name = models.CharField(max_length=20, null=True)
-    phone = models.CharField(max_length=11)
-    age = models.PositiveSmallIntegerField()
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
-    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
-    exams = models.CharField(max_length=20)
-    group = models.CharField(max_length=20)
+class Student(Techer):
     progress = models.PositiveSmallIntegerField(default=0)
-    reting = models.CharField(max_length=5)
     certification = models.FileField(upload_to=certificate_upload_path)
 
 
