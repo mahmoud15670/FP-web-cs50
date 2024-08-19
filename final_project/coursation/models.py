@@ -32,6 +32,7 @@ class Techer(models.Model):
     period = models.DateField(null=True)
     lessons = models.CharField(max_length=20, null=True)
 
+
     def __str__(self) -> str:
         return self.user.username
 
@@ -76,10 +77,10 @@ class Section(models.Model):
 
 class Groub(models.Model):
     name = models.CharField(max_length=20)
-    teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT, related_name='teacher')
+    teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
-    leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, related_name='leader')
-    lesson = models.CharField(max_length=20)
+    leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
+    lesson = models.CharField(max_length=20, null=True)
     count = models.SmallIntegerField()
 
     def is_avilable(self):

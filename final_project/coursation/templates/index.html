@@ -1,14 +1,32 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    
+     {% if stage_list %}
+     <p>stages:</p>
+    <ul>
+     {% for stage in stage_list %}
+          <li>{{stage}}</li>
+     {% endfor %}
+    </ul>
+    {% endif %}
     {% if user.is_authenticated %}
           <h1>hi {{user}}</h1>
+          {{user.stage}}
           {% if not user.student %}
                {% if not user.techer.activation %} 
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
-               <a href="#">create group</a>
+               <a href="{% url 'group_creation' %}">create group</a>
+               {% if user.techer.groub_set %}
+                    <h4>your gorups:</h4>
+                    <ul>
+                         {% for group in user.techer.groub_set.all %}
+                              <li>{{group.name}}</li>
+                         {% endfor %}
+                    </ul>
+               {% else %}
+                    <h4>you haven't any groups</h4>
+               {% endif %}
           {% endif %}
     {% endif %}
 {% endblock %}
