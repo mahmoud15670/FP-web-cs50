@@ -3,7 +3,7 @@
 {% block body %}
     <ul>
         {% for user in section.user_set.all %}
-            <li>{{ user.techer }}</li>
+            <li>{{ user.techer.groub_set.first }}</li>
         {% endfor %}
     </ul>
 {% endblock %}
