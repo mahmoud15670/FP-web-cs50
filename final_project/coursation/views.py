@@ -122,4 +122,7 @@ class Section_list_view(generic.ListView):
     context_object_name = 'sections'
 
 
-class Section_details_view(gene)
+class Section_details_view(generic.DetailView):
+    model = Section
+    template_name = 'section_details.html'
+    context_object_name = 'section'
