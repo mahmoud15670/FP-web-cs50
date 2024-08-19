@@ -59,6 +59,7 @@ class Student_register(generic.CreateView):
     form_class = Student_form
     template_name = 'student_register.html'
 
+
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
@@ -76,3 +77,5 @@ class Teacher_detail_entry(generic.UpdateView):
         teacher.activation = True
         teacher.save()
         return super().form_valid(form)
+
+    
