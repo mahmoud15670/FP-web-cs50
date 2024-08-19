@@ -12,7 +12,7 @@ def index(request):
 class Stage_List(generic.ListView):
     model = Stage
     template_name = 'index.html'
-    context_object_name = 'stage_list'    
+    context_object_name = 'stage_list'
 
 def login_view(request):
     if request.method != 'POST':
@@ -21,7 +21,7 @@ def login_view(request):
     password = request.POST['password']
 
     user = authenticate(request, username=username, password=password)
-    
+
     if user:
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
@@ -91,8 +91,8 @@ class Teacher_detail_entry(generic.UpdateView):
     template_name = 'teacher_detsil_entry.html'
     success_url = reverse_lazy('index')
 
-    
-    
+
+
     def form_valid(self, form):
         teacher = form.save(commit=False)
         teacher.user.first_name = form.cleaned_data['first_name']
@@ -114,3 +114,5 @@ class Group_creation(generic.CreateView):
         group.teacher = self.request.user.techer
         group.save()
         return super().form_valid(form)
+
+
