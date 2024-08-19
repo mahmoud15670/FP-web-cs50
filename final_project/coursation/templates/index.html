@@ -9,12 +9,19 @@
      {% endfor %}
     </ul>
     {% endif %}
+    {% if sections %}
+    <ul>
+     {% for section in sections %}
+     <li>{{ section }}</li>
+     {% endfor %}
+    </ul>
+    {% endif %}
     {% if user.is_authenticated %}
           <h1>hi {{user}}</h1>
           <p>your stage {{user.stage}}</p>
-          
+
           {% if not user.student %}
-               {% if not user.techer.activation %} 
+               {% if not user.techer.activation %}
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
                <a href="{% url 'group_creation' %}">create group</a>
