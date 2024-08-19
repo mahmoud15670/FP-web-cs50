@@ -8,5 +8,6 @@ urlpatterns =[
     path('teacher/register', views.teacher_register, name='teacher_register'),
     path('student/register', views.student_register, name='student_register'),
     path('teacher/<int:pk>/detsil/entry', views.Teacher_detail_entry.as_view(), name='teacher_detail_entry'),
-    path('group/create', views.Group_creation.as_view(), name='group_creation')
+    path('group/create', views.Group_creation.as_view(), name='group_creation'),
+    path('sections/list', views.Section_list_view.as_view(), name='section_list'),
 ]
