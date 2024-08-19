@@ -10,5 +10,5 @@ urlpatterns =[
     path('teacher/<int:pk>/detsil/entry', views.Teacher_detail_entry.as_view(), name='teacher_detail_entry'),
     path('group/create', views.Group_creation.as_view(), name='group_creation'),
     path('section/list', views.Section_list_view.as_view(), name='section_list'),
-    path('section/details', views.Section_detsails_view.as_view(), name='dection_details')
+    path('section/details', views.Section_details_view.as_view(), name='dection_details')
 ]
