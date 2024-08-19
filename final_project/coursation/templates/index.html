@@ -11,7 +11,8 @@
     {% endif %}
     {% if user.is_authenticated %}
           <h1>hi {{user}}</h1>
-          {{user.stage}}
+          <p>your stage {{user.stage}}</p>
+          
           {% if not user.student %}
                {% if not user.techer.activation %} 
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
