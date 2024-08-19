@@ -44,13 +44,12 @@ def teacher_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
-        teacher = Techer.objects.create(user=user)
+        teacher = Techer.objects.create(user=user, id=user.id)
         teacher.save()
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
     return render(request, 'teacher_register.html', {
-        'form':user_form,
-        'warning':'enter correct data'
+        'form':user_form
     })
 
 def student_register(request):
@@ -68,38 +67,25 @@ def student_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
-        student = Student.objects.create(user=user)
+        student = Student.objects.create(user=user, id=user.id)
         student.save()
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
     return render(request, 'student_register.html', {
-        'form':user_form,
-        'warning':'enter correct data'
+        'form':user_form
     })
 
-
-def teacher_detail_entry(requset, pk):
-    if requset != 'POST':
-        return render(requset, 'teacher_detsil_entry.html', {
-            'user_form':User_detail_form,
-            'teacher_form':Teacher_form
-        })
-    user_form = User_Form(requset.POST)
-    teacher_form = Teacher_form(requset.POST)
-
-    if user_form.is_valid() and teacher_form.is_valid():
-        teacher = get_object_or_404(Techer, pk=pk)
-        print(teacher)        
-# class Teacher_detail_entry(generic.UpdateView):
-#     model = Techer
-#     form_class = [User_detail_form, Teacher_form]
-#     template_name = 'teacher_detsil_entry.html'
-#     success_url = reverse_lazy('index')
+   
+class Teacher_detail_entry(generic.UpdateView):
+    model = Techer
+    form_class = Teacher_form
+    template_name = 'teacher_detsil_entry.html'
+    success_url = reverse_lazy('index')
     
-#     def form_valid(self, form):
-#         teacher = form.save(commit=False)
-#         teacher.activation = True
-#         teacher.save()
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        teacher = form.save(commit=False)
+        teacher.activation = True
+        teacher.save()
+        return super().form_valid(form)
 
     

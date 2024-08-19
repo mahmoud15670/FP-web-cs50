@@ -16,7 +16,7 @@ def age_choises():
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=11)
+    phone = models.CharField(verbose_name='phone', max_length=11)
     age = models.PositiveSmallIntegerField(null=True)
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
     exams = models.CharField(max_length=20, null=True)
@@ -24,7 +24,7 @@ class User(AbstractUser):
     rating = models.CharField(max_length=5, null=True)
 
 class Techer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     activation = models.BooleanField(default=False)
     acceptation = models.BooleanField(default=False)
     cv = models.FileField(upload_to=cv_upload_path, null=True)
@@ -32,11 +32,16 @@ class Techer(models.Model):
     period = models.DateField(null=True)
     lessons = models.CharField(max_length=20, null=True)
 
+    def __str__(self) -> str:
+        return self.user.username
+
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     progress = models.PositiveSmallIntegerField(default=0)
     certification = models.FileField(upload_to=certificate_upload_path)
 
+    def __str__(self) -> str:
+        return self.user.username
 
 
 class Stage(models.Model):

@@ -6,5 +6,5 @@ urlpatterns =[
     path('logout', views.logout_view, name='logout'),
     path('teacher/register', views.teacher_register, name='teacher_register'),
     path('student/register', views.student_register, name='student_register'),
-    path('teacher/<int:pk>/detsil/entry', views.teacher_detail_entry, name='teacher_detail_entry'),
+    path('teacher/<int:pk>/detsil/entry', views.Teacher_detail_entry.as_view(), name='teacher_detail_entry'),
 ]

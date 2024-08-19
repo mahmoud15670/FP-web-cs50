@@ -3,17 +3,14 @@ from .models import *
 
 class User_Form(forms.ModelForm):
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'Confirm your password'})
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
     )
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'phone']
+        fields = ['username', 'password', 'confirm_password', 'email', 'phone', 'age', 'stage', 'section']
         widgets = {
-            'username': forms.TextInput(attrs={'autocomplete': 'new-password', 'placeholder':'your user name'}),
-            'password': forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'your password'}),
-            'email': forms.EmailInput(attrs={'placeholder':'your email'}),
-            'phone': forms.TextInput(attrs={'placeholder':'your phone'})
-        }
+            'password': forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+         }
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -27,11 +24,6 @@ class Teacher_form(forms.ModelForm):
     class Meta:
         model = Techer
         fields = [ 'cv', 'demo']
-
-class User_detail_form(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['age', 'stage', 'section']
 
 
 class Student_form(forms.ModelForm):
