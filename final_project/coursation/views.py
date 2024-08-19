@@ -116,4 +116,7 @@ class Group_creation(generic.CreateView):
         return super().form_valid(form)
 
 
-class Section_list_view(generic.)
+class Section_list_view(generic.ListView):
+    model = Section
+    template_name = 'index.html'
+    context_object_name = 'sections'
