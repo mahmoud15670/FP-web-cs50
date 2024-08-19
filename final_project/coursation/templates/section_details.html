@@ -3,6 +3,7 @@
 {% block body %}
 <ul>
     {% for teacher in section.techer_set.all %}
-    <li>{{} teacher }}</li>
+    <li>{{ teacher }}</li>
+    {% endfor %}
 </ul>
 {% endblock %}
