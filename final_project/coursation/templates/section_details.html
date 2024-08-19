@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<ul>
-    {% for user in section.user_set.all %}
-    <li>{{ user.cv }}</li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for user in section.user_set.all %}
+            <li>{{ user.cv }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
