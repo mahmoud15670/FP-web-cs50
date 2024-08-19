@@ -24,13 +24,14 @@ class User_Form(forms.ModelForm):
 
 
 class Teacher_form(forms.ModelForm):
-    model = Techer
-    fields = [ 'cv', 'demo']
-
-class Teacher_detail_form(forms.ModelForm):
     class Meta:
         model = Techer
         fields = [ 'cv', 'demo']
+
+class User_detail_form(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['age', 'stage', 'section']
 
 
 class Student_form(forms.ModelForm):
