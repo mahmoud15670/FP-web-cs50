@@ -126,10 +126,9 @@ class Group_detail_view(generic.DetailView):
 def student_enroll(request, pk):
     group = get_object_or_404(Groub, pk=pk)
     group.student.add(request.user.student)
-    group.save()
     return HttpResponseRedirect(reverse('index'))
 
-    
+
 class Section_list_view(generic.ListView):
     model = Section
     template_name = 'index.html'
