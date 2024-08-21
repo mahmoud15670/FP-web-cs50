@@ -68,4 +68,4 @@ class Group_Form(forms.ModelForm):
 class Lesson_Form(forms.ModelForm):
     class Meta:
         model = Lessson
-        
+        fields = "__all__"
