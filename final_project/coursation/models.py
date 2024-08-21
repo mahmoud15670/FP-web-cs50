@@ -87,6 +87,7 @@ class Groub(models.Model):
         if self.count == self.student.all().count():
             return False
         return True
-    
+    def avilable_count(self):
+        student_count = 
 
 

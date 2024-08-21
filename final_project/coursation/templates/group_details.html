@@ -3,8 +3,8 @@
 {% block body %}
     <h2>name:{{group.name}}</h2>
     <h3>teacher:{{group.teacher}}</h3>
-    <p>group count: {{group.count}}</p>
-    <p>student count: {{group.student.count}}</p>
+    <p>group count: </p>
+    <p>student count: {{group.student.count}}/{{group.count}}</p>
     <p>
         {% if user not in group.student %}
             {% if group.is_avilable %}
