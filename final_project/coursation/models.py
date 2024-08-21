@@ -84,10 +84,11 @@ class Groub(models.Model):
     count = models.SmallIntegerField()
 
     def is_avilable(self):
-        if self.count == self.student.all().count():
+        if self.count == self.student.count():
             return False
         return True
     def avilable_count(self):
-        student_count = 
+        student_count = self.student.count()
+        return self.count - student_count
 
 
