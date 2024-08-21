@@ -29,7 +29,7 @@
                     <h4>your gorups:</h4>
                     <ul>
                          {% for group in user.techer.groub_set.all %}
-                              <li>{{group.name}}</li>
+                              <li><a href="{% url 'group_details' group.id %}">{{group.name}}</a></li>
                          {% endfor %}
                     </ul>
                {% else %}
