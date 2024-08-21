@@ -59,23 +59,13 @@ class Teacher_form(forms.ModelForm):
         return demo
     
 
-
 class Group_Form(forms.ModelForm):
     class Meta:
         model = Groub
         fields = ['name', 'count']
-class Student_form(forms.ModelForm):
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'placeholder': 'Confirm your password'})
-    )
+
+
+class Lesson_Form(forms.ModelForm):
     class Meta:
-        model = Student
-        fields = ['progress']
-
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])
-        if commit:
-            user.save()
-        return user
+        model = Lessson
+        
