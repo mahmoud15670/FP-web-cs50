@@ -128,6 +128,8 @@ def student_enroll(request, pk):
     group.student.add(request.user.student)
     group.save()
     return HttpResponseRedirect(reverse('index'))
+
+    
 class Section_list_view(generic.ListView):
     model = Section
     template_name = 'index.html'
