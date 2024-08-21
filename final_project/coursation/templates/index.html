@@ -35,11 +35,12 @@
                {% else %}
                     <h4>you haven't any groups</h4>
                {% endif %}
-               {{user}}
+          {% else %}
+               {{user.student.groub}}
                {% if user.student.groub %}
                     <h4>your gorups:</h4>
                     <ul>
-                         {% for group in user.student.groub %}
+                         {% for group in user.techer.groub_set.all %}
                               <li><a href="{% url 'group_details' group.id %}">{{group.name}}</a></li>
                          {% endfor %}
                     </ul>
