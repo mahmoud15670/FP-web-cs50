@@ -8,7 +8,12 @@ from django.http import HttpResponseRedirect
 from .forms import *
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    stage_list = Stage.objects.all()
+    sections = Section.objects.all()
+    return render(request, 'index.html', {
+        'stage_list':stage_list,
+        'sections':sections
+    })
 
 class Stage_List(generic.ListView):
     model = Stage
