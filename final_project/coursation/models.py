@@ -44,7 +44,6 @@ class Student(models.Model):
     def __str__(self) -> str:
         return self.user.username
 
-
 class Stage(models.Model):
     age_start = models.PositiveSmallIntegerField(choices=age_choises())
     age_end = models.PositiveSmallIntegerField(choices=age_choises())
@@ -59,7 +58,6 @@ class Stage(models.Model):
         }
 
     def __str__(self) -> str:
-
         return self.name
 class Exam(models.Model):
     date = models.DateTimeField(auto_now_add=False, auto_created=False)
