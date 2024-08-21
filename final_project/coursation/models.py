@@ -7,6 +7,8 @@ def cv_upload_path(techer, file_name):
 
 def demo_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/Demo/{file_name}'
+def lesson_upload_path(techer, file_name):
+    return f'coursation/teachers/{techer.id}/lessons/{file_name}'
 
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
@@ -91,4 +93,7 @@ class Groub(models.Model):
 
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
-    video = models.FileField(upload_to=)
+    video = models.FileField(upload_to=lesson_upload_path)
+    resource = models.URLField()
+    topic = models.TextField()
+    
