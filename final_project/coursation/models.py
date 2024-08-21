@@ -89,4 +89,6 @@ class Groub(models.Model):
         student_count = self.student.count()
         return self.count - student_count
 
-
+class Lessson(models.Model):
+    name = models.CharField(max_length=20)
+    video = models.FileField(upload_to=)
