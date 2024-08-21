@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.http import HttpResponseRedirect
 
@@ -116,6 +117,17 @@ class Group_creation(generic.CreateView):
         return super().form_valid(form)
 
 
+class Group_detail_view(generic.DetailView):
+    model = Groub
+    template_name = 'group_details.html'
+    context_object_name = 'group'
+
+@login_required(login_url='login')
+def student_enroll(request, pk):
+    group = get_object_or_404(Groub, pk=pk)
+    group.student.add(request.user.student)
+    group.save()
+    return HttpResponseRedirect(reverse('index'))
 class Section_list_view(generic.ListView):
     model = Section
     template_name = 'index.html'

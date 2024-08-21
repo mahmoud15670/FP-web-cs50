@@ -9,6 +9,8 @@ urlpatterns =[
     path('student/register', views.student_register, name='student_register'),
     path('teacher/<int:pk>/detsil/entry', views.Teacher_detail_entry.as_view(), name='teacher_detail_entry'),
     path('group/create', views.Group_creation.as_view(), name='group_creation'),
+    path('group/<int:pk>/details', views.Group_detail_view.as_view(), name='group_details'),
+    path('group/<int:pk>/enroll', views.student_enroll, name='student_enroll'),
     path('section/list', views.Section_list_view.as_view(), name='section_list'),
-    path('section/<int:pk>/details', views.Section_details_view.as_view(), name='dection_details')
+    path('section/<int:pk>/details', views.Section_details_view.as_view(), name='section_details')
 ]

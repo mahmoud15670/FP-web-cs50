@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h2>{{group.name}}</h2>
+    <h3>{{group.teacher}}</h3>
+    <p>{{group.count}}</p>
+    <p>{{group.student.count}}</p>
+    <p>
+        {% if user not in group.student %}
+            {% if group.is_avilable %}
+                <a href="{% url 'student_enroll' group.id %}">enroll</a>
+            {% endif %}
+        {% elif  user in group.student %}
+            <p>you in <a href="#">unroll</a></p>
+        {% endif %}
+        {% if user.id == group.teacher.id %}
+            <p>group's students</p>
+            <ul>
+                {% for student in group.student.all %}
+                    <li>{{student}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+    
+
+{% endblock %}

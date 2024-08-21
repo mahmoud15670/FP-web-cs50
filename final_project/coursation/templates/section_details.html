@@ -4,7 +4,11 @@
     <ul>
         {% for user in section.user_set.all %}
             {% if user.techer %}
-            <li>{{ user.techer.groub_set.first }}</li>
+                {% for group in user.techer.groub_set.all %}
+                    <li>{{group.name}}</li>
+                    <li>{{group.teacher}}</li>
+                    <li><a href="{% url 'group_details' group.id %}">details</a></li>
+                {% endfor %}
             {% endif %}
         {% endfor %}
     </ul>
