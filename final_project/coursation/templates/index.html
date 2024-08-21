@@ -1,22 +1,6 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-     {% if stage_list %}
-     <p>stages:</p>
-    <ul>
-     {% for stage in stage_list %}
-          <li>{{stage}}</li>
-     {% endfor %}
-    </ul>
-    {% endif %}
-    {% if sections %}
-    <p>sections</p>
-    <ul>
-     {% for section in sections %}
-     <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
-     {% endfor %}
-    </ul>
-    {% endif %}
     {% if user.is_authenticated %}
           <h1>hi {{user}}</h1>
           <p>your stage {{user.stage}}</p>
@@ -47,6 +31,23 @@
                {% else %}
                     <h4>you haven't any groups</h4>
                {% endif %}
+          {% endif %}
+     {% else %}
+          {% if stage_list %}
+               <p>stages:</p>
+               <ul>
+                    {% for stage in stage_list %}
+                         <li>{{stage}}</li>
+                    {% endfor %}
+               </ul>
+          {% endif %}
+          {% if sections %}
+               <p>sections</p>
+               <ul>
+                    {% for section in sections %}
+                    <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
+                    {% endfor %}
+               </ul>
           {% endif %}
     {% endif %}
 {% endblock %}
