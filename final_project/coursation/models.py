@@ -80,7 +80,7 @@ class Groub(models.Model):
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
     leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
-    lesson = models.CharField(max_length=20, null=True)
+    lesson = models.ManyToManyField(to='Lessson', null=True)
     count = models.SmallIntegerField()
 
     def is_avilable(self):
@@ -96,4 +96,4 @@ class Lessson(models.Model):
     video = models.FileField(upload_to=lesson_upload_path)
     resource = models.URLField()
     topic = models.TextField()
-    
+
