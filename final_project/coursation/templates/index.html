@@ -10,6 +10,7 @@
     </ul>
     {% endif %}
     {% if sections %}
+    <p>sections</p>
     <ul>
      {% for section in sections %}
      <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
