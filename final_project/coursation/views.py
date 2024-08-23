@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views import generic
@@ -8,22 +9,22 @@ from django.http import HttpResponseRedirect
 from .forms import *
 # Create your views here.
 def index(request):
-    try:
-        if request.user.techer in Techer.objects.all():
-            return render(request, 'teacher.html')
-    except AttributeError:
-        ...
+    if request.user == AnonymousUser:
+        stage_list = Stage.objects.all()
+        sections = Section.objects.all()
+        return render(request, 'index.html', {
+            'stage_list':stage_list,
+            'sections':sections
+        })
     else:
-        if request.user.student:
+        if request.user.techer:
+            if request.user.techer in Techer.objects.all():
+                return render(request, 'teacher.html')
+        elif request.user.student:
             if request.user.student in Student.objects.all():
                 return render(request, 'student.html')
-        else:
-            stage_list = Stage.objects.all()
-            sections = Section.objects.all()
-            return render(request, 'index.html', {
-                'stage_list':stage_list,
-                'sections':sections
-            })
+
+
 
 class Stage_List(generic.ListView):
     model = Stage
