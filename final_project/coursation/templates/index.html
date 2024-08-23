@@ -1,14 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% if user.is_authenticated %}
-          <h1>hi {{user}}</h1>
-          <p>your stage {{user.stage}}</p>
                {% block teacher %}
                {% endblock %}
                {% block student %}
                {% endblock %}
-     {% else %}
           {% if stage_list %}
                <p>stages:</p>
                <ul>
@@ -25,5 +21,4 @@
                     {% endfor %}
                </ul>
           {% endif %}
-    {% endif %}
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 
 {% block teacher %}
+    <h1>hi Mr.: {{user}}</h1>
+    <p>your stage {{user.stage}}</p>
     {% if not user.techer.activation %}
         <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
     {% endif %}
