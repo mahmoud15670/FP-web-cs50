@@ -7,7 +7,9 @@
 
           {% if user.techer %}
                {% if user.techer.activation %}
-                    <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
+               {% else %}
+
+               <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
 
           {% else %}
