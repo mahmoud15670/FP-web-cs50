@@ -1,9 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+    {% if user.student or not user.is_authenticated %}
+        <p>Get out of here</p>
+    {% else %}
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+    {% endif %}
 {% endblock %}
