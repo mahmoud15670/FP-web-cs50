@@ -4,21 +4,10 @@
     {% if user.is_authenticated %}
           <h1>hi {{user}}</h1>
           <p>your stage {{user.stage}}</p>
-
-          {% if not user.student %}
-               {% if not user.techer.activation %}
-                    <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
-               {% endif %}
-               {% if user.techer.acceptation %}
-                    {% block teacher %}
-                    {% endblock %}
-               {% else %}
-                         <p>please wait until you get accepted that may take 1-2 days</p>
-               {% endif %}
-          {% else %}
+               {% block teacher %}
+               {% endblock %}
                {% block student %}
                {% endblock %}
-          {% endif %}
      {% else %}
           {% if stage_list %}
                <p>stages:</p>
