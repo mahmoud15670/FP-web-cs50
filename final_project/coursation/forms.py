@@ -41,13 +41,10 @@ class User_Student_Form(forms.ModelForm):
 class Teacher_form(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput())
     last_name = forms.CharField(widget=forms.TextInput())
+    age = forms.IntegerField(widget=forms.NumberInput())
     class Meta:
         model = Techer
-        fields = ['first_name', 'last_name', 'cv', 'demo']
-
-        widgets = {
-            'age':forms.NumberInput()
-        }
+        fields = ['first_name', 'last_name', 'age','cv', 'demo']
 
 
     def clean_cv(self):
