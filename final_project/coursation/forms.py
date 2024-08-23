@@ -66,6 +66,8 @@ class Group_Form(forms.ModelForm):
         model = Groub
         fields = ['name', 'count']
 
+    
+
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
