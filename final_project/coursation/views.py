@@ -14,8 +14,11 @@ def index(request):
             if request.user.techer in Techer.objects.all():
                 return render(request, 'teacher.html')
         except ObjectDoesNotExist:
-            if request.user.student in Student.objects.all():
-                return render(request, 'student.html')
+            try:
+                if request.user.student in Student.objects.all():
+                    return render(request, 'student.html')
+            except ObjectDoesNotExist:
+                return render(request, 'index.html')
     else:
         stage_list = Stage.objects.all()
         sections = Section.objects.all()
