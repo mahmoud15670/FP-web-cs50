@@ -9,7 +9,7 @@
                {% if not user.techer.activation %}
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
-               {% if user.techer.acception %}
+               {% if user.techer.acceptation %}
                     <a href="{% url 'group_creation' %}">create group</a>
                     {% if user.techer.groub_set %}
                          <h4>your gorups:</h4>
