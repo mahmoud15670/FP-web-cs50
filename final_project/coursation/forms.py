@@ -44,7 +44,11 @@ class Teacher_form(forms.ModelForm):
     class Meta:
         model = Techer
         fields = ['first_name', 'last_name', 'cv', 'demo']
-    
+
+        widgets = {
+            'age':forms.NumberInput()
+        }
+
 
     def clean_cv(self):
         cv = self.cleaned_data['cv']
@@ -57,7 +61,7 @@ class Teacher_form(forms.ModelForm):
         if  demo.content_type != 'video/mp4':
             raise ValidationError('please upload a mp4 video')
         return demo
-    
+
 
 class Group_Form(forms.ModelForm):
     class Meta:
