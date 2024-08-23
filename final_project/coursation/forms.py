@@ -6,12 +6,12 @@ class User_Form(forms.ModelForm):
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
     )
-    age = forms.IntegerField(widget=forms.NumberInput())
     class Meta:
         model = User
         fields = ['username', 'password', 'confirm_password', 'email', 'phone', 'age', 'stage', 'section']
         widgets = {
             'password': forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+            'age':forms.NumberInput(attrs={'max':80, 'min':20})
          }
 
     def save(self, commit=True):
