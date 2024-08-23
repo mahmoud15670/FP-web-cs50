@@ -7,9 +7,10 @@
 
           {% if user.techer %}
                {% if user.techer.activation %}
+                    {% block teacher %}
+                    {% endblock %}
                {% else %}
-
-               <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
+                    <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
 
           {% else %}
