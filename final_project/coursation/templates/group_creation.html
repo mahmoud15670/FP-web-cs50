@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+    {% if user.student %}
+        <p>that is not your bi</p>
+    {% else %}
     {% if not user.techer.activation and not user.techer.acceptation %}
         <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
     {% else %}
