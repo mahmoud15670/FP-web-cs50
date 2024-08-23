@@ -132,10 +132,9 @@ class Group_creation(generic.CreateView):
         if self.request.user.techer.activation:
             group.teacher = self.request.user.techer
         else:
+            return super().form_invalid(form)
             raise ValidationError('you are not active please complete yor profile')
-        try:
-            group.save()
-            
+
         return super().form_valid(form)
 
 
