@@ -9,13 +9,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import *
 # Create your views here.
-def index(request, warning=False):
+def index(request):
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
-                return render(request, 'teacher.html', {
-                    'warning':warning
-                })
+                return render(request, 'teacher.html')
         except ObjectDoesNotExist:
             try:
                 if request.user.student in Student.objects.all():
@@ -137,7 +135,7 @@ class Group_creation(generic.CreateView):
             group.save()
             return super().form_valid(form)
         else:
-            return HttpResponseRedirect(reverse('index', kwargs={'warning':True}))
+            return HttpResponseRedirect(reverse('index'))
             raise ValidationError('you are not active please complete yor profile')
 
 

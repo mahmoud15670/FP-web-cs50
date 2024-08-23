@@ -4,11 +4,7 @@
     <h1>hi Mr.: {{user}}</h1>
     <p>your stage {{user.stage}}</p>
     {% if not user.techer.activation %}
-        {% if warning %}
-            <h2><a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a></h2>
-        {% else %}
-            <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
-        {% endif %}
+        <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
     {% else %}
         {% if not user.techer.acceptation %}
             <p>please wait until you get accepted that may take 1-2 days</p>
