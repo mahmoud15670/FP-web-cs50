@@ -9,11 +9,11 @@ from .forms import *
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        if request.user.techer:
+        if request.user.techer or request.user.student:
             if request.user.techer in Techer.objects.all():
                 return render(request, 'teacher.html')
-        elif request.user.student in Student.objects.all():
-            return render(request, 'student.html')
+            elif request.user.student in Student.objects.all():
+                return render(request, 'student.html')
     else:
         stage_list = Stage.objects.all()
         sections = Section.objects.all()
