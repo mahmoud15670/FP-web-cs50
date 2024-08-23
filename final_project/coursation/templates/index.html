@@ -10,17 +10,8 @@
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
                {% if user.techer.acceptation %}
-                    <a href="{% url 'group_creation' %}">create group</a>
-                    {% if user.techer.groub_set %}
-                         <h4>your gorups:</h4>
-                         <ul>
-                              {% for group in user.techer.groub_set.all %}
-                                   <li><a href="{% url 'group_details' group.id %}">{{group.name}}</a></li>
-                              {% endfor %}
-                         </ul>
-                    {% else %}
-                         <h4>you haven't any groups</h4>
-                    {% endif %}
+                   {% block teacher %}
+                   {% endblock %}
                {% else %}
                          <p>please wait until you get accepted that may take 1-2 days</p>
                {% endif %}
