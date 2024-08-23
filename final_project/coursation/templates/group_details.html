@@ -6,11 +6,11 @@
     <p>avilable count: {{group.avilable_count}}</p>
     <p>student count: {{group.student.count}} / {{group.count}}</p>
     <p>
-        {% if user.student not in group.student %}
+        {% if user.student not in group.student.all %}
             {% if group.is_avilable %}
                 <a href="{% url 'student_enroll' group.id %}">enroll</a>
             {% endif %}
-        {% elif  user.student in group.student %}
+        {% elif  user.student in group.student.all %}
             <p>you in <a href="#">unroll</a></p>
         {% endif %}
         {% if user.id == group.teacher.id %}
