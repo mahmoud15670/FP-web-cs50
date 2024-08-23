@@ -20,17 +20,17 @@ def age_choises():
 class User(AbstractUser):
     phone = models.CharField(verbose_name='phone', max_length=11)
     age = models.PositiveSmallIntegerField(choices=age_choises() ,null=True)
-    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT, null=True, help_text='choose the stage you want to learn thim')
     exams = models.CharField(max_length=20, null=True)
-    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True)
+    section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True, help_text='choose your subject')
     rating = models.CharField(max_length=5, null=True)
 
 class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     activation = models.BooleanField(default=False)
     acceptation = models.BooleanField(default=False)
-    cv = models.FileField(upload_to=cv_upload_path, null=True)
-    demo = models.FileField(upload_to=demo_upload_path, null=True)
+    cv = models.FileField(upload_to=cv_upload_path, null=True, help_text='upload a cv in pdf format')
+    demo = models.FileField(upload_to=demo_upload_path, null=True, help_text='upload a short video in mp4 format to intrduse your self and of your shar7')
     period = models.DateField(null=True)
     lessons = models.CharField(max_length=20, null=True)
 
@@ -76,7 +76,7 @@ class Section(models.Model):
         return self.name
 
 class Groub(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, )
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
     leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
