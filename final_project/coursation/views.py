@@ -135,7 +135,7 @@ class Group_creation(generic.CreateView):
             group.save()
             return super().form_valid(form)
         else:
-            return super().form_invalid(form), HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('index'))
             raise ValidationError('you are not active please complete yor profile')
 
 
