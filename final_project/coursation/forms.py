@@ -6,6 +6,7 @@ class User_Form(forms.ModelForm):
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'})
     )
+    age = forms.IntegerField(widget=forms.NumberInput())
     class Meta:
         model = User
         fields = ['username', 'password', 'confirm_password', 'email', 'phone', 'age', 'stage', 'section']
@@ -41,10 +42,9 @@ class User_Student_Form(forms.ModelForm):
 class Teacher_form(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput())
     last_name = forms.CharField(widget=forms.TextInput())
-    age = forms.IntegerField(widget=forms.NumberInput())
     class Meta:
         model = Techer
-        fields = ['first_name', 'last_name', 'age','cv', 'demo']
+        fields = ['first_name', 'last_name','cv', 'demo']
 
 
     def clean_cv(self):
