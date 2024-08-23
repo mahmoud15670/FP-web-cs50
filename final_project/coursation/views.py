@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.db.models import ObjectDoesNotExist
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views import generic
@@ -12,8 +13,8 @@ def index(request):
         try:
             if request.user.techer in Techer.objects.all():
                 return render(request, 'teacher.html')
-        except RelatedObjectDoesNotExist:
-            elif request.user.student in Student.objects.all():
+        except ObjectDoesNotExist:
+            if request.user.student in Student.objects.all():
                 return render(request, 'student.html')
     else:
         stage_list = Stage.objects.all()
