@@ -130,7 +130,7 @@ class Group_creation(generic.CreateView):
 
     def form_valid(self, form):
         group = form.save(commit=False)
-        if self.request.user.techer.activation:
+        if self.request.user.techer.activation and self.request.user.techer.acceptation:
             group.teacher = self.request.user.techer
             group.save()
             return super().form_valid(form)
