@@ -1,0 +1,14 @@
+{% extends 'index.html %}
+
+{% block student %}
+    {% if user.student.students %}
+    <h4>your gorups:</h4>
+    <ul>
+        {% for group in user.student.students.all %}
+            <li><a href="{% url 'group_details' group.id %}">{{group.name}}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h4>you haven't any groups</h4>
+    {% endif %}
+{% endblock %}

@@ -8,8 +8,12 @@ from django.http import HttpResponseRedirect
 from .forms import *
 # Create your views here.
 def index(request):
-    if request.user.techer in Techer.objects.all():
-        return render(request, 'teacher.html')
+    if request.user.techer:
+        if request.user.techer in Techer.objects.all():
+            return render(request, 'teacher.html')
+    elif request.user.student:
+        if request.user.student in Student.objects.all():
+            return render(request, 'student.html')
     stage_list = Stage.objects.all()
     sections = Section.objects.all()
     return render(request, 'index.html', {
