@@ -134,7 +134,7 @@ class Group_creation(generic.CreateView):
             group.save()
             return super().form_valid(form)
         else:
-            return super().form_invalid(form)
+            return super().form_invalid(form, 'fg;')
             raise ValidationError('you are not active please complete yor profile')
 
 
