@@ -115,11 +115,6 @@ class Teacher_detail_entry(generic.UpdateView):
     def form_valid(self, form):
         print(self.request.user.id)
         print(self.pk_url_kwarg)
-        teacher = form.save(commit=False)
-        teacher.user.first_name = form.cleaned_data['first_name']
-        teacher.user.last_name = form.cleaned_data['last_name']
-        teacher.user.save()
-        teacher.activation = True
         return super().form_valid(form)
 
 
