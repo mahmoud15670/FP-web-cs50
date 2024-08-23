@@ -1,10 +1,11 @@
+from django.forms import BaseModelForm
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.db.models import ObjectDoesNotExist
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import *
 # Create your views here.
@@ -134,7 +135,7 @@ class Group_creation(generic.CreateView):
             group.save()
             return super().form_valid(form)
         else:
-            return super().form_invalid(form, 'fg;')
+            return super().form_invalid(form), HttpResponseRedirect(reverse('index'))
             raise ValidationError('you are not active please complete yor profile')
 
 
