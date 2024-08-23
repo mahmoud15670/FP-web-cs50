@@ -16,13 +16,13 @@ def index(request):
             'stage_list':stage_list,
             'sections':sections
         })
-    else:
-        if request.user.techer:
-            if request.user.techer in Techer.objects.all():
-                return render(request, 'teacher.html')
-        elif request.user.student:
-            if request.user.student in Student.objects.all():
-                return render(request, 'student.html')
+    # else:
+    #     if request.user.techer:
+    #         if request.user.techer in Techer.objects.all():
+    #             return render(request, 'teacher.html')
+    #     elif request.user.student:
+    #         if request.user.student in Student.objects.all():
+    #             return render(request, 'student.html')
 
 
 
