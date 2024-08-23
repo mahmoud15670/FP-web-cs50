@@ -30,6 +30,7 @@ class User_Student_Form(forms.ModelForm):
         fields = ['username', 'password', 'confirm_password', 'email', 'phone', 'age']
         widgets = {
             'password': forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+            'age':forms.NumberInput(attrs={'max':80, 'min':7})
          }
 
     def save(self, commit=True):
