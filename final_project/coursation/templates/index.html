@@ -5,14 +5,12 @@
           <h1>hi {{user}}</h1>
           <p>your stage {{user.stage}}</p>
 
-          {% if user.techer %}
-               {% if user.techer.activation %}
-                    {% block teacher %}
-                    {% endblock %}
-               {% else %}
+          {% if not user.student %}
+               {% if not user.techer.activation %}
                     <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
                {% endif %}
-
+               {% block teacher %}
+               {% endblock %}
           {% else %}
                {% if user.student.students %}
                     <h4>your gorups:</h4>
