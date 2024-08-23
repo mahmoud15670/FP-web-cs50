@@ -1,24 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-               {% block teacher %}
-               {% endblock %}
-               {% block student %}
-               {% endblock %}
-          {% if stage_list %}
-               <p>stages:</p>
-               <ul>
-                    {% for stage in stage_list %}
-                         <li>{{stage}}</li>
-                    {% endfor %}
-               </ul>
-          {% endif %}
-          {% if sections %}
-               <p>sections</p>
-               <ul>
-                    {% for section in sections %}
-                    <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
-                    {% endfor %}
-               </ul>
-          {% endif %}
+     {% block teacher %}
+     {% endblock %}
+     {% block student %}
+     {% endblock %}
+     {% if stage_list %}
+          <p>stages:</p>
+          <ul>
+               {% for stage in stage_list %}
+                    <li>{{stage}}</li>
+               {% endfor %}
+          </ul>
+     {% endif %}
+     {% if sections %}
+          <p>sections</p>
+          <ul>
+               {% for section in sections %}
+               <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
+               {% endfor %}
+          </ul>
+     {% endif %}
 {% endblock %}
