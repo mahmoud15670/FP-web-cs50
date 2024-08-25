@@ -81,6 +81,8 @@ class Skills(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
 class Groub(models.Model):
     name = models.CharField(max_length=20, help_text='the name of the group')
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
@@ -97,6 +99,10 @@ class Groub(models.Model):
         student_count = self.student.count()
         return self.count - student_count
 
+
+class course(models.Model):
+    name = models.CharField(max_length=20)
+    date_
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
