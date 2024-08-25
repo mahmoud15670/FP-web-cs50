@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+
 def cv_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/CV/{file_name}'
 
