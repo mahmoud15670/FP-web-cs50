@@ -7,6 +7,7 @@ def cv_upload_path(techer, file_name):
 
 def demo_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/Demo/{file_name}'
+
 def lesson_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/lessons/{file_name}'
 
@@ -61,6 +62,7 @@ class Stage(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
 class Exam(models.Model):
     date = models.DateTimeField(auto_now_add=False, auto_created=False)
     total = models.SmallIntegerField()
@@ -75,13 +77,11 @@ class Section(models.Model):
     def __str__(self) -> str:
         return self.name
 
-
 class Skills(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self) -> str:
         return self.name
-
 
 class Groub(models.Model):
     name = models.CharField(max_length=20, help_text='the name of the group')
@@ -99,7 +99,6 @@ class Groub(models.Model):
         student_count = self.student.count()
         return self.count - student_count
 
-
 class Course(models.Model):
     name = models.CharField(max_length=20)
     start_date = models.DateField()
@@ -114,12 +113,10 @@ class Course(models.Model):
     create_date = models.DateField(auto_now_add=True)
     review = models.IntegerField(default=0,choices=[(1,1),(2,2),(3,3),(4,4),(5,5)])
 
-
 class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
     incloude = models.FileField(upload_to='unit')
-
 
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
