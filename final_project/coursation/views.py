@@ -110,7 +110,10 @@ class Teacher_detail_entry(generic.UpdateView):
     template_name = 'teacher_detsil_entry.html'
     success_url = reverse_lazy('index')
 
-
+    def get(self, request, *args: str, **kwargs) -> HttpResponse:
+        if self.request.user.id != int(kwargs['pk']):
+            return HttpResponseRedirect(reverse('index'))
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         if self.request.user.id != int(self.kwargs['pk']):

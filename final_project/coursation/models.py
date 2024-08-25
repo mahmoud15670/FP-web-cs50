@@ -29,7 +29,7 @@ class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     activation = models.BooleanField(default=False)
     acceptation = models.BooleanField(default=False)
-    cv = models.FileField(upload_to=cv_upload_path, null=True, help_text='upload a cv in pdf format')
+    cv = models.FileField(upload_to=cv_upload_path,blank=False, null=True, help_text='upload a cv in pdf format')
     demo = models.FileField(upload_to=demo_upload_path, null=True, help_text='upload a short video in mp4 format to intrduse your self and of your shar7')
     period = models.DateField(null=True)
     lessons = models.CharField(max_length=20, null=True)
