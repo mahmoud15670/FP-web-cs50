@@ -23,9 +23,11 @@ def index(request):
     else:
         stage_list = Stage.objects.all()
         sections = Section.objects.all()
+        skills = Skills.objects.all()
         return render(request, 'index.html', {
             'stage_list':stage_list,
-            'sections':sections
+            'sections':sections,
+            'skills':skills
         })
 
 class Stage_List(generic.ListView):
