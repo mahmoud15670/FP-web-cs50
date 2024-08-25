@@ -75,6 +75,9 @@ class Section(models.Model):
     def __str__(self) -> str:
         return self.name
 
+
+class Skills(models.Model):
+    
 class Groub(models.Model):
     name = models.CharField(max_length=20, help_text='the name of the group')
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
