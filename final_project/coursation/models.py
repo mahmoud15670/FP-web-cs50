@@ -77,6 +77,7 @@ class Section(models.Model):
 
 
 class Skills(models.Model):
+    name = models.CharField(max_length=20)
     
 class Groub(models.Model):
     name = models.CharField(max_length=20, help_text='the name of the group')
