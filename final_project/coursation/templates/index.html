@@ -21,4 +21,12 @@
                {% endfor %}
           </ul>
      {% endif %}
+     {% if skills %}
+          <p>skills</p>
+          <ul>
+               {% for skill in skills %}
+               <li><a href="#">{{ skill }}</a></li>
+               {% endfor %}
+          </ul>
+     {% endif %}
 {% endblock %}
