@@ -102,7 +102,15 @@ class Groub(models.Model):
 
 class course(models.Model):
     name = models.CharField(max_length=20)
-    start_date = models.DateField
+    start_date = models.DateField()
+    units = models.CharField(max_length=2)
+    stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
+    skill = models.ManyToManyField(to='Skills')
+    duration = models.CharField(max_length=20)
+    teacher = models.ForeignKey(to='Techer', on_delete=models.PROTECT)
+    student = models.ManyToManyField(to='Student')
+    about = models.TextField()
+    
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
