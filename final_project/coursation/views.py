@@ -140,7 +140,6 @@ class Group_creation(generic.CreateView):
             return super().form_valid(form)
         else:
             return HttpResponseRedirect(reverse('index'))
-            raise ValidationError('you are not active please complete yor profile')
 
 
 
@@ -148,6 +147,7 @@ class Group_detail_view(generic.DetailView):
     model = Groub
     template_name = 'group_details.html'
     context_object_name = 'group'
+
 
 @login_required(login_url='login')
 def student_enroll(request, pk):
