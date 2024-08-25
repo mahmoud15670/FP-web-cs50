@@ -114,8 +114,7 @@ class Teacher_detail_entry(generic.UpdateView):
 
     def form_valid(self, form):
         print(self.request.user.id)
-        print(self.pk_url_kwarg['pk'])
-        raise ValidationError('hi')
+        raise ValidationError(self.kwargs['pk'])
         return super().form_valid(form)
 
 
