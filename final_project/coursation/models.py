@@ -117,7 +117,8 @@ class Course(models.Model):
 
 class Unit(models.Model):
     name = models.CharField(max_length=20)
-    goal = models.TextChoices
+    goal = models.TextField()
+    incloude = models.FileField(upload_to='unit')
 
 
 class Lessson(models.Model):
