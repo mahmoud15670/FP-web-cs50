@@ -100,7 +100,7 @@ class Groub(models.Model):
         return self.count - student_count
 
 
-class course(models.Model):
+class Course(models.Model):
     name = models.CharField(max_length=20)
     start_date = models.DateField()
     units = models.CharField(max_length=2)
@@ -112,7 +112,7 @@ class course(models.Model):
     about = models.TextField()
     cirtification = models.FileField(upload_to=certificate_upload_path)
     create_date = models.DateField(auto_now_add=True)
-    review = models.IntegerChoices('5')
+    review = models.IntegerField(default=0)
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
