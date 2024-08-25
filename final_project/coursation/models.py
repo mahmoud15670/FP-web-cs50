@@ -102,7 +102,7 @@ class Groub(models.Model):
 
 class course(models.Model):
     name = models.CharField(max_length=20)
-    date_
+    start_date = models.DateField
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
