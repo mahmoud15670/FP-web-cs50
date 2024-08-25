@@ -112,7 +112,7 @@ class Course(models.Model):
     about = models.TextField()
     cirtification = models.FileField(upload_to=certificate_upload_path)
     create_date = models.DateField(auto_now_add=True)
-    review = models.IntegerField(default=0,choices={'1':1, '2':2, '3':3, 4:4, 5:5})
+    review = models.IntegerField(default=0,choices=[(1,1),(2,2),(3,3),(4,4),(5,5)])
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
