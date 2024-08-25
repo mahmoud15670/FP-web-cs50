@@ -110,7 +110,9 @@ class course(models.Model):
     teacher = models.ForeignKey(to='Techer', on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student')
     about = models.TextField()
-    
+    cirtification = models.FileField(upload_to=certificate_upload_path)
+    create_date = models.DateField(auto_now_add=True)
+    review = models.IntegerChoices('5')
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
     video = models.FileField(upload_to=lesson_upload_path)
