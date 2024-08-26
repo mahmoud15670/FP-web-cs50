@@ -73,7 +73,7 @@ class Course_Form(forms.ModelForm):
         fields = "__all__"
         exclude = ['teacher', 'student', 'cirtification', 'review']
         widget = {
-            'start_date':forms.DateField(input_formats='dd/mm/yy')
+            'start_date':forms.DurationField()
         }
 
 class Lesson_Form(forms.ModelForm):
