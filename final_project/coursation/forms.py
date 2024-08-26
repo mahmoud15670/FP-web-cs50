@@ -74,6 +74,9 @@ class Course_Form(forms.ModelForm):
         model = Course
         fields = "__all__"
         exclude = ['teacher', 'student', 'cirtification', 'review']
+        widgets = {
+            'skill':forms
+        }
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
