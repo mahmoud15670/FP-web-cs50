@@ -17,11 +17,11 @@ def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
 def unit_video_upload_path(unit, file_name):
-    
+
     return Unit.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
-    
+
     return Unit.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
@@ -131,14 +131,14 @@ class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
-    
+
 class Lessson(models.Model):
     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     topic = models.TextField()
     video = models.FileField(upload_to=unit_video_upload_path)
     read = models.FileField(upload_to=unit_read_upload_path)
-    exam = models.ManyToManyField(to='Exam')
+    exam = models.ManyToManyField(to='Exam', null=True)
 
     def upload_path(self):
         return f'coursation/teachers/{self.course.teacher.id}/Courses/{self.course.id}/Units/'
