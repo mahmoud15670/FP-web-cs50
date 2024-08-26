@@ -16,7 +16,10 @@ def lesson_upload_path(techer, file_name):
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
-def unit_files_upload_path(unit, file_name):
+def unit_video_upload_path(unit, file_name):
+    
+    return Unit.upload_path(unit) + f'{unit.id}/{file_name}'
+def unit_read_upload_path(unit, file_name):
     
     return Unit.upload_path(unit) + f'{unit.id}/{file_name}'
 
@@ -125,7 +128,8 @@ class Course(models.Model):
 class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
-    incloude = models.FileField(upload_to=unit_files_upload_path)
+    video = models.FileField(upload_to=unit_files_upload_path)
+    read = models.FileField(upload_to=unit_files_upload_path)
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
     def upload_path(self):
