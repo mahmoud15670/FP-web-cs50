@@ -145,7 +145,6 @@ class Group_creation(generic.CreateView):
             return HttpResponseRedirect(reverse('index'))
 
 
-
 class Group_detail_view(generic.DetailView):
     model = Groub
     template_name = 'group_details.html'
@@ -165,6 +164,7 @@ class Course_create_view(generic.CreateView):
             course.save()
             return super().form_valid(form)
         return HttpResponseRedirect(reverse('index'))
+
 
 @login_required(login_url='login')
 def student_enroll(request, pk):
