@@ -223,8 +223,10 @@ def lesson_create(request, unit_id):
         })
     unit = get_object_or_404(Unit, pk=unit_id)
     form = Lesson_Form(request.POST, request.FILES)
-    form.save(commit=False)
 
     if form.is_valid:
-        lesson = 
+        lesson = form.save(commit=False)
+        lesson.unit = unit
+        lesson.save()
+        return HttpResponseRedirect(reverse(''))
 
