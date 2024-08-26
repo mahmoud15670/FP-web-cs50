@@ -221,4 +221,6 @@ def lesson_create(request, unit_id):
         return render(request, 'lesson_create.html', {
             'form':Lesson_Form
         })
+    unit = get_object_or_404(Unit, pk=unit_id)
     
+
