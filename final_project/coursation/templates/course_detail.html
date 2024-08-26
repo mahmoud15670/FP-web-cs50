@@ -3,6 +3,7 @@
 {% block body %}
     <h2>{{course.name}}</h2>
     {% if course.is_started %}
+        
         <p>enroll</p>
     {% else %}
         <p>start in {{ course.start_date }}</p>
