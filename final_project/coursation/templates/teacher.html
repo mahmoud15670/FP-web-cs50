@@ -3,6 +3,14 @@
 {% block teacher %}
     <h1>hi Mr.: {{teacher}}</h1>
     <p>your stage {{teacher.user.stage}}</p>
+    
+
+    <video width="600" controls>
+        <source src="{{ teacher.demo.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    
     {% if not teacher.activation %}
         <a href="{% url 'teacher_detail_entry' teacher.id %}">please complete your profile </a>
     {% else %}
