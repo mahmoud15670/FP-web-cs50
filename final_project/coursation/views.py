@@ -14,7 +14,9 @@ def index(request):
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
-                s = ContentFile(request.user.techer.cv)
+
+                # s = ContentFile(request.user.techer.cv)
+                s = request.user.techer.cv.url
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
                     's':s
