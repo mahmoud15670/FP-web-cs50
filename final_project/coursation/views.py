@@ -16,13 +16,13 @@ def index(request):
             if request.user.techer in Techer.objects.all():
 
                 # s = ContentFile(request.user.techer.cv)
-                s = request.user.techer.cv.path
-                with open(s, "rb") as f:
-                    myfile = f.read()
-                    print(myfile)
+                # s = request.user.techer.cv.path
+                # with open(s, "rb") as f:
+                #     myfile = f.read()
+                #     print(myfile)
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
-                    's':myfile
+                    # 's':myfile
                 })
         except ObjectDoesNotExist:
             try:

@@ -3,8 +3,7 @@
 {% block teacher %}
     <h1>hi Mr.: {{teacher}}</h1>
     <p>your stage {{teacher.user.stage}}</p>
-    {{s}}
-    <iframe src="" frameborder="0"></iframe>
+    <iframe src="{{teacher.demo.path}}" frameborder="4">xc</iframe>
     {% if not teacher.activation %}
         <a href="{% url 'teacher_detail_entry' teacher.id %}">please complete your profile </a>
     {% else %}
