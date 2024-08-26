@@ -67,7 +67,10 @@ class Group_Form(forms.ModelForm):
         fields = ['name', 'count']
 
     
-
+class Course_Form(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = "__all__"
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
