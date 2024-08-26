@@ -1,5 +1,5 @@
 from django.forms import BaseModelForm
-from django.core.files import File
+from django.core.files import File, base
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.db.models import ObjectDoesNotExist
@@ -18,7 +18,7 @@ def index(request):
                 # s = ContentFile(request.user.techer.cv)
                 s = request.user.techer.cv.path
                 f = open(s,"w")
-                l = File(f)
+                l = base.ContentFile(f)
                 print(l)
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
