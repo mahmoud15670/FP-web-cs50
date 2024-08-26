@@ -3,8 +3,13 @@
 {% block body %}
     <h2>{{course.name}}</h2>
     {% if course.is_started %}
-        {% if user.is_auth%}
-        <a href="{% url 'student_enroll' course.id %}">enroll</a>
+        {% if user.is_authenticated %}
+            {% if user.student %}
+                <a href="{% url 'student_enroll' course.id %}">enroll</a>
+            {% else %}
+                <a href="#">add unit</a>
+            {% endif %}
+        {% endif %}
     {% else %}
         <p>start in {{ course.start_date }}</p>
     {% endif %}
