@@ -13,7 +13,9 @@ def index(request):
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
-                return render(request, 'teacher.html')
+                return render(request, 'teacher.html', {
+                    'teacher':request.user.techer
+                })
         except ObjectDoesNotExist:
             try:
                 if request.user.student in Student.objects.all():
