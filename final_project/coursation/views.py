@@ -228,5 +228,8 @@ def lesson_create(request, unit_id):
         lesson = form.save(commit=False)
         lesson.unit = unit
         lesson.save()
-        return HttpResponseRedirect(reverse(''))
+        return HttpResponseRedirect(reverse('unit_detail', args=(unit_id,)))
+    return render(request, 'lesson_create.html', {
+        'form':form
+    })
 
