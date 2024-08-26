@@ -18,7 +18,7 @@ def certificate_upload_path(techer, file_name):
 
 def unit_files_upload_path(unit, file_name):
     
-    return Unit.upload_path() + f'{unit.id}/{file_name}'
+    return Unit.upload_path(unit) + f'{unit.id}/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
