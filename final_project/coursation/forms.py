@@ -72,6 +72,9 @@ class Course_Form(forms.ModelForm):
         model = Course
         fields = "__all__"
         exclude = ['teacher', 'student', 'cirtification', 'review']
+        widget = {
+            'start_date':forms.DateInput()
+        }
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
