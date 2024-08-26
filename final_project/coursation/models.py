@@ -107,12 +107,12 @@ class Course(models.Model):
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
     skill = models.ManyToManyField(to='Skills')
     duration = models.CharField(max_length=20)
-    teacher = models.ForeignKey(to='Techer', on_delete=models.PROTECT)
-    student = models.ManyToManyField(to='Student')
+    teacher = models.ForeignKey(to='Techer', on_delete=models.PROTECT, null=True)
+    student = models.ManyToManyField(to='Student', null=True)
     about = models.TextField()
-    cirtification = models.FileField(upload_to=certificate_upload_path)
+    cirtification = models.FileField(upload_to=certificate_upload_path, null=True)
     create_date = models.DateField(auto_now_add=True)
-    review = models.IntegerField(default=0,choices=[(1,1),(2,2),(3,3),(4,4),(5,5)])
+    review = models.IntegerField(default=0,choices=[(1,1),(2,2),(3,3),(4,4),(5,5)], null=True)
 
 class Unit(models.Model):
     name = models.CharField(max_length=20)
