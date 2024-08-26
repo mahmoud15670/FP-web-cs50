@@ -171,6 +171,8 @@ class Course_create_view(generic.CreateView):
 class Course_detail_view(generic.DetailView):
     model = Course
     template_name = 'course_detail.html'
+    context_object_name = 'course'
+
 
 @login_required(login_url='login')
 def student_enroll(request, pk):
