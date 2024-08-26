@@ -1,4 +1,5 @@
 from django.forms import BaseModelForm
+from django.core.files.base import ContentFile
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.db.models import ObjectDoesNotExist
@@ -8,14 +9,15 @@ from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import *
-# Create your views here.
+# بسم الله الرحمن الرحيم
 def index(request):
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
-                
+                s = ContentFile(request.user.techer.cv)
                 return render(request, 'teacher.html', {
-                    'teacher':request.user.techer
+                    'teacher':request.user.techer,
+                    's':s
                 })
         except ObjectDoesNotExist:
             try:
