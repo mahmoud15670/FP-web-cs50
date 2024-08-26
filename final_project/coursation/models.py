@@ -125,9 +125,10 @@ class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
     incloude = models.FileField(upload_to='unit')
+    course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.course_set.first()
+        return self.course.id
 
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
