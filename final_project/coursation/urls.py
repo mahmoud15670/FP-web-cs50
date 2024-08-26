@@ -12,5 +12,6 @@ urlpatterns =[
     path('group/<int:pk>/details', views.Group_detail_view.as_view(), name='group_details'),
     path('group/<int:pk>/enroll', views.student_enroll, name='student_enroll'),
     path('section/list', views.Section_list_view.as_view(), name='section_list'),
+    path('course/create', views.Course_create_view.as_view(), name='course_create'),
     path('section/<int:pk>/details', views.Section_details_view.as_view(), name='section_details')
 ]
