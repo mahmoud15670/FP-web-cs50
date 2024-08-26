@@ -68,13 +68,13 @@ class Group_Form(forms.ModelForm):
 
     
 class Course_Form(forms.ModelForm):
-    
-    start_date = forms.DateField(widget=forms.DateInput(format="%Y-%m-%d", attrs={"type":"date"}),input_formats=["%Y-%m-%d"])
     class Meta:
         model = Course
         fields = "__all__"
         exclude = ['teacher', 'student', 'cirtification', 'review']
-        
+        widget = {
+            'start_date':forms.DateInput(format="%Y-%m-%d", attrs={"type":"date"})
+        }
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
