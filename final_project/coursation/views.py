@@ -217,4 +217,8 @@ class Unit_detail_view(generic.DetailView):
     context_object_name = 'unit'
 
 def lesson_create(request, unit_id):
-    if request.method != 'PO
+    if request.method != 'POST':
+        return render(request, 'lesson_create.html', {
+            'form':Lesson_Form
+        })
+    
