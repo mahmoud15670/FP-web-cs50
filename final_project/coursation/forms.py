@@ -64,9 +64,9 @@ class Group_Form(forms.ModelForm):
     class Meta:
         model = Groub
         fields = ['name', 'count']
-   
+
 class Course_Form(forms.ModelForm):
-    
+
     start_date = forms.DateField(widget=forms.DateInput(format="%Y-%m-%d", attrs={"type":"date"}),input_formats=["%Y-%m-%d"])
     class Meta:
         model = Course
@@ -85,4 +85,4 @@ class Lesson_Form(forms.ModelForm):
     class Meta:
         model = Lessson
         fields = "__all__"
-        exclude = ['unit']
+        exclude = ['unit', 'exam']
