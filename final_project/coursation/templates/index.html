@@ -34,11 +34,7 @@
           <ul>
                {% for course in courses %}
                <li><a href="{% url 'course_detail' course.id %}">{{ course }}</a></li>
-               {% if course.is_started %}
-                    <p>enroll</p>
-               {% else %}
-                    <p>start in {{ course.start_date }}</p>
-               {% endif %}
+               
                {% endfor %}
           </ul>
      {% endif %}
