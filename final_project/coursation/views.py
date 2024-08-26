@@ -223,4 +223,5 @@ def lesson_create(request, unit_id):
         })
     unit = get_object_or_404(Unit, pk=unit_id)
     form = Lesson_Form(request.POST, request.FILES)
+    form.save(commit=False)
 
