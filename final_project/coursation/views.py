@@ -176,8 +176,8 @@ class Course_detail_view(generic.DetailView):
 
 @login_required(login_url='login')
 def student_enroll(request, pk):
-    group = get_object_or_404(Groub, pk=pk)
-    group.student.add(request.user.student)
+    course = get_object_or_404(Course, pk=pk)
+    course.student.add(request.user.student)
     return HttpResponseRedirect(reverse('index'))
 
 
