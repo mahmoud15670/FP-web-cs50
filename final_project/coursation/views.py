@@ -225,3 +225,6 @@ def lesson_create(request, unit_id):
     form = Lesson_Form(request.POST, request.FILES)
     form.save(commit=False)
 
+    if form.is_valid:
+        lesson = 
+
