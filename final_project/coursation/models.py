@@ -134,7 +134,7 @@ class Unit(models.Model):
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
     def upload_path(self):
-        return f'coursation/teachers/{self.course.teacher.id}/Course/{self.course.id}/Unit/'
+        return f'coursation/teachers/{self.course.teacher.id}/Courses/{self.course.id}/Units/'
 
 
 class Lessson(models.Model):
