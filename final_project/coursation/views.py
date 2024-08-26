@@ -18,7 +18,7 @@ def index(request):
                 # s = ContentFile(request.user.techer.cv)
                 s = request.user.techer.cv.path
                 with open(s, "r") as f:
-                    myfile = File(f)
+                    myfile = File(f).read()
                     print(myfile)
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
