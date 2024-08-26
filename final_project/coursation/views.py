@@ -1,5 +1,4 @@
 from django.forms import BaseModelForm
-from django.core.files import File, base
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.db.models import ObjectDoesNotExist
@@ -14,15 +13,8 @@ def index(request):
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
-
-                # s = ContentFile(request.user.techer.cv)
-                # s = request.user.techer.cv.path
-                # with open(s, "rb") as f:
-                #     myfile = f.read()
-                #     print(myfile)
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
-                    # 's':myfile
                 })
         except ObjectDoesNotExist:
             try:
@@ -201,3 +193,20 @@ class Section_details_view(generic.DetailView):
     model = Section
     template_name = 'section_details.html'
     context_object_name = 'section'
+
+
+def unit_create(request, course_id):
+    if request.method != 'POST':
+        return render(request, 'unit_create.html', {
+            'form':Unit_Form
+        })
+    form = Unit_Form(request.POST)
+    course = get_object_or_404(Course, pk=course_id)
+    if form.is_valid:
+        unit = form.save(commit=False)
+        unit.course = course
+        unit.save()
+        return reverse('course_detail', kwargs={'pk':course_id})
+    return render(request, 'unit_create.html', {
+            'form':form
+        })

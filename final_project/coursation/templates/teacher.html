@@ -3,8 +3,6 @@
 {% block teacher %}
     <h1>hi Mr.: {{teacher}}</h1>
     <p>your stage {{teacher.user.stage}}</p>
-    <a href="{{ teacher.cv.url }}">cv</a>
-    <!-- <embed src="" width="100%" height="600px" type="application/pdf"> -->
     {% if not teacher.activation %}
         <a href="{% url 'teacher_detail_entry' teacher.id %}">please complete your profile </a>
     {% else %}

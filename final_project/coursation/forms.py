@@ -60,13 +60,11 @@ class Teacher_form(forms.ModelForm):
             raise ValidationError('please upload a mp4 video')
         return demo
 
-
 class Group_Form(forms.ModelForm):
     class Meta:
         model = Groub
         fields = ['name', 'count']
-
-    
+   
 class Course_Form(forms.ModelForm):
     
     start_date = forms.DateField(widget=forms.DateInput(format="%Y-%m-%d", attrs={"type":"date"}),input_formats=["%Y-%m-%d"])
@@ -78,7 +76,13 @@ class Course_Form(forms.ModelForm):
             'skill':forms.CheckboxSelectMultiple()
         }
 
+class Unit_Form(forms.ModelForm):
+    class Meta:
+        model = Unit
+        fields = ['name', 'goal']
+
 class Lesson_Form(forms.ModelForm):
     class Meta:
         model = Lessson
         fields = "__all__"
+        exclude = ['unit']

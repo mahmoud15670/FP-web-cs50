@@ -17,5 +17,6 @@ urlpatterns =[
     path('section/list', views.Section_list_view.as_view(), name='section_list'),
     path('course/create', views.Course_create_view.as_view(), name='course_create'),
     path('course/<int:pk>/detail', views.Course_detail_view.as_view(), name='course_detail'),
+    path('course/<int:course_id>/unit/create', views.unit_create, name='unit_create'),
     path('section/<int:pk>/details', views.Section_details_view.as_view(), name='section_details')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
