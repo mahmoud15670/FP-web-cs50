@@ -7,13 +7,13 @@
             {% if user.student %}
                 <a href="{% url 'student_enroll' course.id %}">enroll</a>
             {% endif %}
-            {% if user.techer == course.teacher %}
-                <a href="#">add unit</a>
-            {% endif %}
         {% endif %}
     {% else %}
         <p>start in {{ course.start_date }}</p>
     {% endif %}
+        {% if user.techer == course.teacher %}
+            <a href="#">add unit</a>
+        {% endif %}
     <p>{{course.teacher}}</p>
     <ul>
         {% for skill in course.skill.all %}
