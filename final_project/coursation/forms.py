@@ -73,7 +73,7 @@ class Course_Form(forms.ModelForm):
     class Meta:
         model = Course
         fields = "__all__"
-        exclude = ['teacher', 'student', 'cirtification', 'review']
+        exclude = ['teacher', 'student', 'cirtification', 'review', 'units']
         widgets = {
             'skill':forms.CheckboxSelectMultiple()
         }
