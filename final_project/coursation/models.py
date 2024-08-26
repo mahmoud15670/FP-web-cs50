@@ -141,4 +141,4 @@ class Lessson(models.Model):
     exam = models.ManyToManyField(to='Exam', null=True)
 
     def upload_path(self):
-        return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.course.id}/Units/{self.unit.id}/Lessons'
+        return f'coursation/teachers/{self.unit.}/Courses/{self.course.id}/Units/{self.unit.id}/Lessons'
