@@ -8,7 +8,11 @@
         <p>start in {{ course.start_date }}</p>
     {% endif %}
     <p>{{course.teacher}}</p>
-    <p>{{course.skill.all}}</p>
+    <ul>
+        {% for skill in course.skill.all %}
+            <li>{{skill}}</li>
+        {% endfor %}
+    </ul>
     <p>{{course.stage}}</p>
     <p>{{course.duration}}</p>
     <p>{{course.about}}</p>
