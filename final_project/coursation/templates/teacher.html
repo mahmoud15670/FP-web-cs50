@@ -10,6 +10,7 @@
             <p>please wait until you get accepted that may take 1-2 days</p>
         {% else %}
             <a href="{% url 'group_creation' %}">create group</a>
+            <a href="{% url 'course_create' %}">create course</a>
             {% if user.techer.groub_set %}
             <h4>your gorups:</h4>
             <ul>
