@@ -6,7 +6,8 @@
         {% if user.is_authenticated %}
             {% if user.student %}
                 <a href="{% url 'student_enroll' course.id %}">enroll</a>
-            {% elif user.techer == course.teacher %}
+            {% endif %}
+            {% if user.techer == course.teacher %}
                 <a href="#">add unit</a>
             {% endif %}
         {% endif %}
