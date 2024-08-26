@@ -168,6 +168,10 @@ class Course_create_view(generic.CreateView):
         return HttpResponseRedirect(reverse('index'))
 
 
+class Course_detail_view(generic.DetailView):
+    model = Course
+    template_name = 'course_detail.html'
+
 @login_required(login_url='login')
 def student_enroll(request, pk):
     group = get_object_or_404(Groub, pk=pk)
