@@ -16,6 +16,9 @@ def lesson_upload_path(techer, file_name):
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
+def unit_files_upload_path(unit, file_name):
+    return f'coursation/'
+
 def age_choises():
     return [(i, i) for i in range(7, 81)]
 
@@ -104,7 +107,6 @@ class Groub(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=20)
     start_date = models.DateField()
-    units = models.CharField(max_length=2)
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
     skill = models.ManyToManyField(to='Skills')
     duration = models.CharField(max_length=20)
@@ -123,6 +125,9 @@ class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
     incloude = models.FileField(upload_to='unit')
+
+    def __str__(self):
+        return self.course_set.first()
 
 class Lessson(models.Model):
     name = models.CharField(max_length=20)
