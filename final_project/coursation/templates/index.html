@@ -29,4 +29,13 @@
                {% endfor %}
           </ul>
      {% endif %}
+     {% if courses %}
+          <p>courses</p>
+          <ul>
+               {% for cousre in courses %}
+               <li><a href="#">{{ cousre }}</a></li>
+               {{cousre.start_check}}
+               {% endfor %}
+          </ul>
+     {% endif %}
 {% endblock %}
