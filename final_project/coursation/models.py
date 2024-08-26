@@ -18,11 +18,11 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
 
-    return Unit.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+    return Lessson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
 
-    return Unit.upload_path(unit) + f'{unit.id}/read/{file_name}'
+    return Lessson.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
