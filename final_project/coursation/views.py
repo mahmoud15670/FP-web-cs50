@@ -211,4 +211,7 @@ def unit_create(request, course_id):
             'form':form
         })
 
-
+class Unit_detail_view(generic.DetailView):
+    model = Unit
+    template_name = 'unit_detail.html'
+    context_object_name = 'unit'
