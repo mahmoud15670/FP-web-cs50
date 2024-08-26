@@ -17,12 +17,13 @@ def index(request):
 
                 # s = ContentFile(request.user.techer.cv)
                 s = request.user.techer.cv.path
-                f = open(s,"w")
-                l = base.ContentFile(f)
-                print(l)
+                with open(s, "w") as f:
+                    myfile = File(f)
+                    myfile.write('hi')
+                    print(myfile)
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
-                    's':l
+                    's':myfile
                 })
         except ObjectDoesNotExist:
             try:
