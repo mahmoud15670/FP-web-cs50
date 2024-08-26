@@ -18,10 +18,11 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
     
-    return Unit.upload_path(unit) + f'{unit.id}/{file_name}'
+    return Unit.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+
 def unit_read_upload_path(unit, file_name):
     
-    return Unit.upload_path(unit) + f'{unit.id}/{file_name}'
+    return Unit.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -128,8 +129,8 @@ class Course(models.Model):
 class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
-    video = models.FileField(upload_to=unit_files_upload_path)
-    read = models.FileField(upload_to=unit_files_upload_path)
+    video = models.FileField(upload_to=unit_video_upload_path)
+    read = models.FileField(upload_to=unit_read_upload_path)
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
     def upload_path(self):
