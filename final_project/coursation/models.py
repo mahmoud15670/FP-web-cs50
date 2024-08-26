@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -114,6 +115,10 @@ class Course(models.Model):
     create_date = models.DateField(auto_now_add=True)
     review = models.IntegerField(default=0,choices=[(1,1),(2,2),(3,3),(4,4),(5,5)], null=True)
 
+    def start_chek(self):
+        if self.start_date > datetime.datetime.now().date():
+            return 0
+        return 1
 class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
