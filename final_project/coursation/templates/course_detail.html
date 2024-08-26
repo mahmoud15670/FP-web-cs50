@@ -15,9 +15,16 @@
             <a href="{% url 'unit_create' course.id %}">add unit</a>
         {% endif %}
     <p>{{course.teacher}}</p>
+    
     <ul>
         {% for skill in course.skill.all %}
             <li>{{skill}}</li>
+        {% endfor %}
+    </ul>
+    <p>units:</p>
+    <ul>
+        {% for unit in course.unit_set.all %}
+            <li>{{unit.name}}</li>
         {% endfor %}
     </ul>
     <p>{{course.stage}}</p>

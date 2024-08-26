@@ -206,7 +206,7 @@ def unit_create(request, course_id):
         unit = form.save(commit=False)
         unit.course = course
         unit.save()
-        return reverse('course_detail', kwargs={'pk':course_id})
+        return HttpResponseRedirect(reverse('course_detail', kwargs={'pk':course_id}))
     return render(request, 'unit_create.html', {
             'form':form
         })
