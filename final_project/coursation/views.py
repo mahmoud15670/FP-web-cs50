@@ -184,7 +184,7 @@ def student_enroll(request, pk):
 class Section_list_view(generic.ListView):
     model = Course
     template_name = 'index.html'
-    context_object_name = 'sections'
+    context_object_name = 'courses'
 
 
 class Section_details_view(generic.DetailView):
