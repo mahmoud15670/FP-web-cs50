@@ -33,7 +33,7 @@
           <p>courses</p>
           <ul>
                {% for course in courses %}
-               <li><a href="#">{{ course }}</a></li>
+               <li><a href="{% url 'course_detail' course.id %}">{{ course }}</a></li>
                {% if course.is_started %}
                     <p>enroll</p>
                {% else %}
