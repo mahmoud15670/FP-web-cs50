@@ -158,6 +158,14 @@ class Course_create_view(generic.CreateView):
     template_name = 'course_create.html'
     success_url = reverse_lazy('index')
 
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        course = form.save(commit=False)
+        if self.request.user.techer.activation and self.request.user.techer.acceptation:
+            course.teacher = self.request.user.techer
+            course.save()
+            return super().form_valid(form)
+        return HttpResponseRedirect(reverse('index'))
+
 @login_required(login_url='login')
 def student_enroll(request, pk):
     group = get_object_or_404(Groub, pk=pk)
