@@ -24,10 +24,12 @@ def index(request):
         stage_list = Stage.objects.all()
         sections = Section.objects.all()
         skills = Skills.objects.all()
+        courses = Course.objects.all()
         return render(request, 'index.html', {
             'stage_list':stage_list,
             'sections':sections,
-            'skills':skills
+            'skills':skills,
+            'courses':courses
         })
 
 class Stage_List(generic.ListView):
