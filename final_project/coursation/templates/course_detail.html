@@ -18,6 +18,8 @@
     <p>{{course.teacher}}</p>
     <p>{{ course.student.count }} already enrolled</p>
     <hr>
+
+    <p>units:{{course.unit_set.count}}</p>    
     <ul>
         {% for skill in course.skill.all %}
             <li>{{skill}}</li>
