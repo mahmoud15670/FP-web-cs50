@@ -21,11 +21,11 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
 
-    return Lessson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+    return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
 
-    return Lessson.upload_path(unit) + f'{unit.id}/read/{file_name}'
+    return Lesson.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -134,7 +134,7 @@ class Course(models.Model):
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            for lesson in unit.lessson_set.all():
+            for lesson in unit.lesson_set.all():
                 num.append(lesson.exam.count())
         return sum(num)
         
@@ -146,7 +146,10 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
-class Lessson(models.Model):
+    # def lesson_count(self):
+        # for lesson in self.lessson
+
+class Lesson(models.Model):
     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     topic = models.TextField()
