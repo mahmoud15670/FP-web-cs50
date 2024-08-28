@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+    <img src="{{course.photo.url }}" alt="background photo" style="width: 100%;">
     <h2>{{course.name}}</h2>
     {% if course.is_started %}
         {% if user.is_authenticated %}
