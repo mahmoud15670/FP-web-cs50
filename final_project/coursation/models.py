@@ -14,7 +14,8 @@ def lesson_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/lessons/{file_name}'
 
 def course_photo_path(course, file_name):
-    return f''
+    return Course.upload_path(course) +  f'potos/{file_name}'
+
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
@@ -129,6 +130,8 @@ class Course(models.Model):
         if self.start_date > datetime.datetime.now().date():
             return False
         return True
+    def upload_path(self):
+        return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
 
 class Unit(models.Model):
     name = models.CharField(max_length=20)
