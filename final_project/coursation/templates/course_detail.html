@@ -6,7 +6,7 @@
     {% if course.is_started %}
         {% if user.is_authenticated %}
             {% if user.student %}
-                <a href="{% url 'student_enroll' course.id %}">enroll</a>
+                <a href="{% url 'student_enroll' course.id %}" style="border: 2px black solid;">enroll</a>
             {% endif %}
         {% endif %}
     {% else %}
