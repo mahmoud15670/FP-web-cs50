@@ -146,6 +146,12 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
+    def get_video_count(self):
+        num = 0
+        for lesson in self.lesson_set.all():
+            if lesson.video:
+                num = num + 1
+        return num
 class Lesson(models.Model):
     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
