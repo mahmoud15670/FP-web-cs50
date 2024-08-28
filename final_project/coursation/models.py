@@ -133,9 +133,7 @@ class Course(models.Model):
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            if unit.lesson_set:
-                for lesson in unit.lesson_set.all():
-                    num.append(lesson.exam.count())
+            num.append(unit.exam_count())
         return sum(num)
 
     def upload_path(self):
@@ -145,6 +143,12 @@ class Unit(models.Model):
     name = models.CharField(max_length=20)
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
+
+    def exam_count(self):
+        num = []
+        for lesson in self.lesson_set.all():
+            num.append(lesson.exam.count())
+        return sum(num)
 
 class Lessson(models.Model):
     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
