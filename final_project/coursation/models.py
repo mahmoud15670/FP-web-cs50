@@ -21,7 +21,7 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
 
-    return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+    return Lesson.upload_path(unit) + f'/{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
 
