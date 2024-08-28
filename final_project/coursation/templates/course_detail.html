@@ -30,7 +30,10 @@
         {% endfor %}
     </ul>
     <h4>Detailes</h4>
-    <p>cirtification: {{ course.cirtification.count }} | exams: {{course.exam_count}}</p>
+    <p>
+        {% if course.cirtification %}
+        cirtification: <a href="{{ course.cirtification.url }}">cirtification</a>
+        {% endif %} | exams: {{course.exam_count}}</p>
     <p>units:</p>
     <ul>
         {% for unit in course.unit_set.all %}
