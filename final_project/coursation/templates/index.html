@@ -33,7 +33,7 @@
           <p>courses</p>
           <ul>
                {% for course in courses %}
-               <li>
+               <li style="border: black solid 3px">
                     <img src="{{ course.photo.url }}" width="250px" alt="course background photo">
                     <p>{{ course.teacher }}</p>
                     <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
