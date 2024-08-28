@@ -33,7 +33,10 @@
           <p>courses</p>
           <ul>
                {% for course in courses %}
-               <li><a href="{% url 'course_detail' course.id %}">{{ course }}</a></li>
+               <li>
+                    <a href="{% url 'course_detail' course.id %}">{{ course }}</a>
+                    
+               </li>
                
                {% endfor %}
           </ul>
