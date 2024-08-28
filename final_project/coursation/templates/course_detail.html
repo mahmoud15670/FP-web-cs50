@@ -10,7 +10,7 @@
             {% endif %}
         {% endif %}
     {% else %}
-        <p>start in {{ course.start_date }}</p>
+        <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
     {% endif %}
         {% if user.techer == course.teacher %}
             <a href="{% url 'unit_create' course.id %}">add unit</a>
