@@ -10,7 +10,7 @@
 <ul>
     {% for lesson in unit.lesson_set.all %}
         {% if lesson.video %}
-        <li><a href="{{lesson.video.url}}">{{lesson.video.size}}</a></li>
+        <li><a href="{{lesson.video.url}}">{{lesson.video.name}}</a></li>
         {% endif %}
     {% endfor %}
 </ul>
