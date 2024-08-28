@@ -130,12 +130,14 @@ class Course(models.Model):
         if self.start_date > datetime.datetime.now().date():
             return False
         return True
+        
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            for lesson in unit.lesson_set.all():
+            for lesson in unit.lessson_set.all():
                 num.append(lesson.exam.count())
         return sum(num)
+        
     def upload_path(self):
         return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
 
