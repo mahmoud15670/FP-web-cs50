@@ -10,8 +10,8 @@ def cv_upload_path(techer, file_name):
 def demo_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/Demo/{file_name}'
 
-# def lesson_upload_path(techer, file_name):
-#     return f'coursation/teachers/{techer.id}/lessons/{file_name}'
+def lesson_upload_path(techer, file_name):
+    return f'coursation/teachers/{techer.id}/lessons/{file_name}'
 
 def course_photo_path(course, file_name):
     return Course.upload_path(course) +  f'potos/{file_name}'
@@ -19,13 +19,13 @@ def course_photo_path(course, file_name):
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
-# def unit_video_upload_path(unit, file_name):
+def unit_video_upload_path(unit, file_name):
 
-#     return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+    return Lessson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
-# def unit_read_upload_path(unit, file_name):
+def unit_read_upload_path(unit, file_name):
 
-#     return Lesson.upload_path(unit) + f'{unit.id}/read/{file_name}'
+    return Lessson.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -101,7 +101,7 @@ class Groub(models.Model):
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
     leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
-    # lesson = models.ManyToManyField(to='Lessson', null=True)
+    lesson = models.ManyToManyField(to='Lessson', null=True)
     count = models.SmallIntegerField(help_text='the number of student that you want to learn thim in this group')
 
     def is_avilable(self):
@@ -130,14 +130,12 @@ class Course(models.Model):
         if self.start_date > datetime.datetime.now().date():
             return False
         return True
-        
-    # def exam_count(self):
-    #     num = []
-    #     for unit in self.unit_set.all():
-    #         for lesson in unit.lesson_set.all():
-    #             num.append(lesson.exam.count())
-    #     return sum(num)
-        
+    def exam_count(self):
+        num = []
+        for unit in self.unit_set.all():
+            for lesson in unit.lesson_set.all():
+                num.append(lesson.exam.count())
+        return sum(num)
     def upload_path(self):
         return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
 
@@ -146,16 +144,13 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
-    # def lesson_count(self):
-        # for lesson in self.lessson
+class Lessson(models.Model):
+    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    topic = models.TextField()
+    video = models.FileField(upload_to=unit_video_upload_path)
+    read = models.FileField(upload_to=unit_read_upload_path)
+    exam = models.ManyToManyField(to='Exam', null=True)
 
-# class Lessson(models.Model):
-#     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
-#     name = models.CharField(max_length=20)
-#     topic = models.TextField()
-#     video = models.FileField(upload_to=unit_video_upload_path)
-#     read = models.FileField(upload_to=unit_read_upload_path)
-#     exam = models.ManyToManyField(to='Exam', null=True)
-
-#     def upload_path(self):
-#         return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
+    def upload_path(self):
+        return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
