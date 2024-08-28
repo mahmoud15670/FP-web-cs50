@@ -34,10 +34,10 @@
         {% if course.cirtification %}
         cirtification: <a href="{{ course.cirtification.url }}">cirtification</a>
         {% endif %} | exams: {{course.exam_count}}</p>
-    <p>units:</p>
+    <h4>units</h4>
     <ul>
         {% for unit in course.unit_set.all %}
-            <li><a href="{% url 'unit_detail' unit.id %}">{{unit.name}}</a></li>
+            <li style="border: 1px solid black;"><a href="{% url 'unit_detail' unit.id %}">{{unit.name}}</a></li>
         {% endfor %}
     </ul>
     <p>{{course.stage}}</p>
