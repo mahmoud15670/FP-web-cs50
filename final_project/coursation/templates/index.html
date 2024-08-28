@@ -34,9 +34,11 @@
           <ul>
                {% for course in courses %}
                <li style="border: black solid 3px;margin: 5px;">
-                    <img src="{{ course.photo.url }}" width="100%" alt="course background photo">
-                    <p>{{ course.teacher }}</p>
-                    <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
+                    <a href="{% url 'course_detail' course.id %}"></a>
+                         <img src="{{ course.photo.url }}" width="100%" alt="course background photo">
+                         <p>{{ course.teacher }}</p>
+                         {{ course.name }}
+                    </a>
 
                </li>
                
