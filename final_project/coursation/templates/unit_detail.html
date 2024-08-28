@@ -4,6 +4,8 @@
 <h2>{{unit.name}}</h2>
 <p>{{unit.goal}}</p>
 <h4>What's included</h4>
-<p>videos: {{unit.lessson_set.count}}</p>
+{% for lesson in unit.lessson_set.all %}
+<p>videos: {{lesson.video}}</p>
+{% endfor %}
 <a href="{% url 'lesson_create' unit.id %}">add lesson</a>
 {% endblock %}
