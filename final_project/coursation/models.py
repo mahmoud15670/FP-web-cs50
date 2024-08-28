@@ -130,10 +130,11 @@ class Course(models.Model):
         if self.start_date > datetime.datetime.now().date():
             return False
         return True
+        
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            for lesson in unit.lesson_set.all():
+            for lesson in unit.lessson_set.all():
                 num.append(lesson.exam.count())
         return sum(num)
         
@@ -146,7 +147,7 @@ class Unit(models.Model):
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
 class Lessson(models.Model):
-    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE, related_name='lesson')
+    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     topic = models.TextField()
     video = models.FileField(upload_to=unit_video_upload_path)
