@@ -21,11 +21,11 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
 
-    return Lessson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+    return  f'{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
 
-    return Lessson.upload_path(unit) + f'{unit.id}/read/{file_name}'
+    return f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -146,13 +146,13 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
-class Lessson(models.Model):
-    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
-    topic = models.TextField()
-    video = models.FileField(upload_to=unit_video_upload_path)
-    read = models.FileField(upload_to=unit_read_upload_path)
-    exam = models.ManyToManyField(to='Exam', null=True)
+# class Lessson(models.Model):
+#     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
+#     name = models.CharField(max_length=20)
+#     topic = models.TextField()
+#     video = models.FileField(upload_to=unit_video_upload_path)
+#     read = models.FileField(upload_to=unit_read_upload_path)
+#     exam = models.ManyToManyField(to='Exam', null=True)
 
-    def upload_path(self):
-        return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
+#     def upload_path(self):
+#         return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
