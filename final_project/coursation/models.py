@@ -149,13 +149,13 @@ class Unit(models.Model):
     # def lesson_count(self):
         # for lesson in self.lessson
 
-class Lesson(models.Model):
-    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
-    topic = models.TextField()
-    video = models.FileField(upload_to=unit_video_upload_path)
-    read = models.FileField(upload_to=unit_read_upload_path)
-    exam = models.ManyToManyField(to='Exam', null=True)
+# class Lesson(models.Model):
+#     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
+#     name = models.CharField(max_length=20)
+#     topic = models.TextField()
+#     video = models.FileField(upload_to=unit_video_upload_path)
+#     read = models.FileField(upload_to=unit_read_upload_path)
+#     exam = models.ManyToManyField(to='Exam', null=True)
 
-    def upload_path(self):
-        return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
+#     def upload_path(self):
+#         return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
