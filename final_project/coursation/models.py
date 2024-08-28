@@ -133,9 +133,10 @@ class Course(models.Model):
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            num.append(unit.exam_count())
+            for lesson in unit.lesson_set.all():
+                num.append(lesson.exam.count())
         return sum(num)
-
+        
     def upload_path(self):
         return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
 
@@ -144,14 +145,8 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
-    def exam_count(self):
-        num = []
-        for lesson in self.lesson_set.all():
-            num.append(lesson.exam.count())
-        return sum(num)
-
 class Lessson(models.Model):
-    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
+    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE, related_name='lesson')
     name = models.CharField(max_length=20)
     topic = models.TextField()
     video = models.FileField(upload_to=unit_video_upload_path)
