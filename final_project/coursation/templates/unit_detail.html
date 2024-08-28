@@ -17,8 +17,8 @@
 <h4>read</h4>
 <ul>
     {% for lesson in unit.lesson_set.all %}
-        {% if lesson.video %}
-        <li><a href="{{lesson.video.url}}">{{lesson.name}}</a></li>
+        {% if lesson.read %}
+        <li><a href="{{lesson.read.url}}">{{lesson.name}}</a></li>
         {% endif %}
     {% endfor %}
 </ul>
