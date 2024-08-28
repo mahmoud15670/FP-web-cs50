@@ -40,10 +40,8 @@
             <li style="border: 1px solid black;"><a href="{% url 'unit_detail' unit.id %}">{{unit.name}}</a></li>
         {% endfor %}
     </ul>
-    <p>{{course.stage}}</p>
-    
-    
-    <p>{{course.create_date}}</p>
-    <p>{{course.review}} stars</p>
+    <hr>
+    <p>created on : {{course.create_date}}</p>
+    <p>review form {{course.review}} stars</p>
 
 {% endblock %}
