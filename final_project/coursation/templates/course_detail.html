@@ -17,9 +17,8 @@
 
     <p>{{course.teacher}}</p>
     <p>{{ course.student.count }} already enrolled</p>
-    <hr>
 
-    <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}}</p>    
+    <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}} | duration:{{course.duration}}</p>    
     <hr>
     
     <h4>About</h4>
@@ -42,7 +41,7 @@
         {% endfor %}
     </ul>
     <p>{{course.stage}}</p>
-    <p>{{course.duration}}</p>
+    
     
     <p>{{course.create_date}}</p>
     <p>{{course.review}} stars</p>
