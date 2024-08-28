@@ -172,9 +172,8 @@ class Course_create_view(generic.CreateView):
 
 class Course_list_view(generic.ListView):
     model = Course
-    template_name = 'index'
+    template_name = 'index.html'
     context_object_name = 'courses'
-    ordering = True
     
 
 class Course_detail_view(generic.DetailView):
