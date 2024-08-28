@@ -13,6 +13,8 @@ def demo_upload_path(techer, file_name):
 def lesson_upload_path(techer, file_name):
     return f'coursation/teachers/{techer.id}/lessons/{file_name}'
 
+def course_photo_path(course, file_name):
+    return f''
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
@@ -114,6 +116,7 @@ class Course(models.Model):
     start_date = models.DateField()
     stage = models.ForeignKey(to='Stage', on_delete=models.PROTECT)
     skill = models.ManyToManyField(to='Skills')
+    photo = models.ImageField(upload_to='')
     duration = models.CharField(max_length=20)
     teacher = models.ForeignKey(to='Techer', on_delete=models.PROTECT, null=True)
     student = models.ManyToManyField(to='Student', null=True)
