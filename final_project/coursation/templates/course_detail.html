@@ -8,11 +8,16 @@
     {% else %}
         <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
     {% endif %}
+        
+    {% if user.is_authenticated %}
         {% if user.techer == course.teacher %}
             <a href="{% url 'unit_create' course.id %}">add unit</a>
         {% endif %}
-    <p>{{course.teacher}}</p>
+    {% endif %}
 
+    <p>{{course.teacher}}</p>
+    <p>{{ course.student.count }} already enrolled</p>
+    <br>
     <ul>
         {% for skill in course.skill.all %}
             <li>{{skill}}</li>
