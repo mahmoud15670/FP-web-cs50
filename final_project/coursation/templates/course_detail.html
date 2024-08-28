@@ -22,6 +22,8 @@
     <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}}</p>    
     <hr>
     
+    <h4>About</h4>
+    <p>Skills you will learn</p>
     <ul>
         {% for skill in course.skill.all %}
             <li>{{skill}}</li>
