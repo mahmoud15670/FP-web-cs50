@@ -30,7 +30,7 @@
         {% endfor %}
     </ul>
     <h4>Detailes</h4>
-    <p>{{ course.</p>
+    <p>cirtification: {{ course.cirtification }} | exams: {{course.unit_set.first.lesson_set.first}}</p>
     <p>units:</p>
     <ul>
         {% for unit in course.unit_set.all %}
