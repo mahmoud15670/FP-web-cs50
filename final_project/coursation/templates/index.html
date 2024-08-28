@@ -33,10 +33,10 @@
           <p>courses</p>
           <ul>
                {% for course in courses %}
-               <li style="border: black solid 3px;margin: 5px;width: fit-content;">
+               <li style="border: black solid 3px; margin: 5px; width: fit-content;">
                     <img src="{{ course.photo.url }}" width="250px" alt="course background photo">
                     <p>{{ course.teacher }}</p>
-                    <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
+                    <a href="{% url 'course_detail' course.id %}"><h3>{{ course.name }}</h3></a>
 
                </li>
                
