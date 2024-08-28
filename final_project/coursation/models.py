@@ -19,13 +19,13 @@ def course_photo_path(course, file_name):
 def certificate_upload_path(techer, file_name):
     return f'coursation/students/{techer.id}/Certificate/{file_name}'
 
-def unit_video_upload_path(unit, file_name):
+# def unit_video_upload_path(unit, file_name):
 
-    return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
+#     return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
-def unit_read_upload_path(unit, file_name):
+# def unit_read_upload_path(unit, file_name):
 
-    return Lesson.upload_path(unit) + f'{unit.id}/read/{file_name}'
+#     return Lesson.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -149,7 +149,7 @@ class Unit(models.Model):
     # def lesson_count(self):
         # for lesson in self.lessson
 
-# class Lesson(models.Model):
+# class Lessson(models.Model):
 #     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
 #     name = models.CharField(max_length=20)
 #     topic = models.TextField()
