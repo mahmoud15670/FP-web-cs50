@@ -170,6 +170,13 @@ class Course_create_view(generic.CreateView):
         return HttpResponseRedirect(reverse('index'))
 
 
+class Course_list_view(generic.ListView):
+    model = Course
+    template_name = 'index'
+    context_object_name = 'courses'
+    ordering = True
+    
+
 class Course_detail_view(generic.DetailView):
     model = Course
     template_name = 'course_detail.html'
