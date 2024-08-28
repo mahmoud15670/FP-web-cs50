@@ -23,6 +23,7 @@
     <hr>
     
     <h4>About</h4>
+    <p>{{course.about}}</p>
     <p>Skills you will learn</p>
     <ul>
         {% for skill in course.skill.all %}
@@ -42,7 +43,7 @@
     </ul>
     <p>{{course.stage}}</p>
     <p>{{course.duration}}</p>
-    <p>{{course.about}}</p>
+    
     <p>{{course.create_date}}</p>
     <p>{{course.review}} stars</p>
 
