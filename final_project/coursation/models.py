@@ -133,10 +133,11 @@ class Course(models.Model):
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            for lesson in unit.lesson_set.all():
-                num.append(lesson.exam.count())
+            if unit.lesson_set:
+                for lesson in unit.lesson_set.all():
+                    num.append(lesson.exam.count())
         return sum(num)
-        
+
     def upload_path(self):
         return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
 
