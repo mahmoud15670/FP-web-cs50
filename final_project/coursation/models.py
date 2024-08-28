@@ -101,7 +101,7 @@ class Groub(models.Model):
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
     leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
-    lesson = models.ManyToManyField(to='Lessson', null=True)
+    # lesson = models.ManyToManyField(to='Lessson', null=True)
     count = models.SmallIntegerField(help_text='the number of student that you want to learn thim in this group')
 
     def is_avilable(self):
