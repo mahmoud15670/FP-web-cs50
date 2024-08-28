@@ -4,11 +4,7 @@
     <img src="{{course.photo.url }}" alt="background photo" style="width: 100%;">
     <h2>{{course.name}}</h2>
     {% if course.is_started %}
-        {% if user.is_authenticated %}
-            {% if user.student %}
-                <a href="{% url 'student_enroll' course.id %}" style="border: 2px black solid;">enroll</a>
-            {% endif %}
-        {% endif %}
+        <a href="{% url 'student_enroll' course.id %}" style="border: 2px black solid;">enroll</a>
     {% else %}
         <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
     {% endif %}
