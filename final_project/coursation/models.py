@@ -21,11 +21,11 @@ def certificate_upload_path(techer, file_name):
 
 def unit_video_upload_path(unit, file_name):
 
-    return  f'{unit.id}/Video/{file_name}'
+    return Lesson.upload_path(unit) + f'{unit.id}/Video/{file_name}'
 
 def unit_read_upload_path(unit, file_name):
 
-    return f'{unit.id}/read/{file_name}'
+    return Lesson.upload_path(unit) + f'{unit.id}/read/{file_name}'
 
 def age_choises():
     return [(i, i) for i in range(7, 81)]
@@ -101,7 +101,7 @@ class Groub(models.Model):
     teacher = models.ForeignKey(to='Techer',on_delete=models.PROTECT)
     student = models.ManyToManyField(to='Student', related_name='students')
     leader = models.ForeignKey(to='Student', on_delete=models.PROTECT, null=True)
-    # lesson = models.ManyToManyField(to='Lessson', null=True)
+    lesson = models.ManyToManyField(to='Lesson', null=True)
     count = models.SmallIntegerField(help_text='the number of student that you want to learn thim in this group')
 
     def is_avilable(self):
@@ -134,7 +134,7 @@ class Course(models.Model):
     def exam_count(self):
         num = []
         for unit in self.unit_set.all():
-            for lesson in unit.lessson_set.all():
+            for lesson in unit.lesson_set.all():
                 num.append(lesson.exam.count())
         return sum(num)
         
@@ -146,13 +146,13 @@ class Unit(models.Model):
     goal = models.TextField()
     course = models.ForeignKey(to='Course', on_delete=models.CASCADE)
 
-# class Lessson(models.Model):
-#     unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
-#     name = models.CharField(max_length=20)
-#     topic = models.TextField()
-#     video = models.FileField(upload_to=unit_video_upload_path)
-#     read = models.FileField(upload_to=unit_read_upload_path)
-#     exam = models.ManyToManyField(to='Exam', null=True)
+class Lesson(models.Model):
+    unit = models.ForeignKey(to='Unit', on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    topic = models.TextField()
+    video = models.FileField(upload_to=unit_video_upload_path)
+    read = models.FileField(upload_to=unit_read_upload_path)
+    exam = models.ManyToManyField(to='Exam', null=True)
 
-#     def upload_path(self):
-#         return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'
+    def upload_path(self):
+        return f'coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons'

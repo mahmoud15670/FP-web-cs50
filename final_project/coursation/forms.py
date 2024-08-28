@@ -83,6 +83,6 @@ class Unit_Form(forms.ModelForm):
 
 class Lesson_Form(forms.ModelForm):
     class Meta:
-        model = Unit
+        model = Lesson
         fields = "__all__"
         exclude = ['unit', 'exam']
