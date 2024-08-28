@@ -6,7 +6,8 @@
 <h3>What's included</h3>
 <p>videos: {{unit.get_video_count}} | read: {{unit.get_read_count}}</p>
 <hr>
-
-
+<h4>video</h4>
+{% for lesson unit.lesson.all %}
+    {% if lesson.vi%}
 <a href="{% url 'lesson_create' unit.id %}">add lesson</a>
 {% endblock %}
