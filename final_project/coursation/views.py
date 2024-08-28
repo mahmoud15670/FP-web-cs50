@@ -10,23 +10,26 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
 # بسم الله الرحمن الرحيم
 def index(request):
+    courses = Course.objects.all()
     if request.user.is_authenticated:
         try:
             if request.user.techer in Techer.objects.all():
                 return render(request, 'teacher.html', {
                     'teacher':request.user.techer,
+                    'courses':courses
                 })
         except ObjectDoesNotExist:
             try:
                 if request.user.student in Student.objects.all():
-                    return render(request, 'student.html')
+                    return render(request, 'student.html', {
+                        'courses':courses
+                    })
             except ObjectDoesNotExist:
                 return render(request, 'index.html')
     else:
         stage_list = Stage.objects.all()
         sections = Section.objects.all()
         skills = Skills.objects.all()
-        courses = Course.objects.all()
         return render(request, 'index.html', {
             'stage_list':stage_list,
             'sections':sections,
