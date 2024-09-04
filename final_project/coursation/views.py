@@ -222,8 +222,6 @@ def unit_create(request, course_id):
         return render(request, "unit_create.html", {"form": Unit_Form})
     form = Unit_Form(request.POST)
     course = get_object_or_404(Course, pk=course_id)
-    if course.teacher.id != request.user.techer.id:
-        return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": course_id}))
     if form.is_valid:
         unit = form.save(commit=False)
         unit.course = course
