@@ -29,8 +29,10 @@ def student_access_only():
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
-            if student_test(request.user):
-                return view(request, *args, **kwargs)
-            return HttpResponseForbidden('you are not student')
+            if request.user.is_authenticated:
+                if student_test(request.user):
+                    return view(request, *args, **kwargs)
+                return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('login'))
         return _wrapped_view
     return decorator
