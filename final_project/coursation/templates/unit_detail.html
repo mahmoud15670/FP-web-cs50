@@ -22,6 +22,7 @@
         {% endif %}
     {% endfor %}
 </ul>
-{% %}
+{% @unit_select %}
 <a href="{% url 'lesson_create' unit.id %}">add lesson</a>
+{% endunit_select %}
 {% endblock %}
