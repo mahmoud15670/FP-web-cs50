@@ -1,17 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% if user.student or not user.is_authenticated %}
+    {% if not user.is_authenticated %}
         <p>Get out of here</p>
     {% else %}
         {% if not user.techer.activation and not user.techer.acceptation %}
             <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
         {% else %}
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="create">
-            </form>
         {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="create">
+        </form>
     {% endif %}
 {% endblock %}
