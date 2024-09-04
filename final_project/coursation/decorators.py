@@ -2,6 +2,7 @@ from functools import wraps
 
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from .models import *
 
 def teacher_test(user):
     if user.is_teacher:
@@ -27,8 +28,8 @@ def teacher_access_only():
 
 def accepted_teacher():
     def decorator(view):
-        @wraps(view)
         @teacher_access_only()
+        @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
             if request.user.techer.activation and request.user.techer.acceptation:
                 return view(request, *args, **kwargs)
@@ -48,4 +49,9 @@ def student_access_only():
         return _wrapped_view
     return decorator
 
-def course_select(pk):
+def course_select():
+    def decorator(view):
+        @accepted_teacher
+        @wraps
+        def _wrapped_view(request, course_id):
+            course = get_object_or_404(Course, pk=course_id)
