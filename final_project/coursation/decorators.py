@@ -13,4 +13,6 @@ def student_test(user):
 
 def check_student():
     def decorator(view):
-        
+        @wraps(view)
+        def _wrapped_view(request, *args, **kwargs):
+            ...
