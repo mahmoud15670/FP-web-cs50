@@ -1,10 +1,10 @@
 from functools import wraps
+from django.shortcuts import redirect
 from django.http import HttpResponseForbidden
 
 def teacher_test(user):
-    if user.is_authenticated:
-        if user.is_teacher:
-            return True
+    if user.is_teacher:
+        return True
     return False
 
 def student_test(user):
@@ -16,9 +16,11 @@ def teacher_access_only():
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
-            if teacher_test(request.user):
-                return view(request, *args, **kwargs)
-            return HttpResponseForbidden('you are not teacher')
+            if request.user.is_authenticated:
+                if teacher_test(request.user):
+                    return view(request, *args, **kwargs)
+                return HttpResponseForbidden('you are not teacher')
+            return 
         return _wrapped_view
     return decorator
 
