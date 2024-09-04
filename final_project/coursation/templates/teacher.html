@@ -10,7 +10,7 @@
             <p>please wait until you get accepted that may take 1-2 days</p>
         {% else %}
             <a href="{% url 'course_create' %}">create course</a>
-            {% if teacher.groub_set %}
+            {% if teacher.course_set.all %}
             <h4>your courses:</h4>
             <ul>
                 {% for course in teacher.course_set.all %}
