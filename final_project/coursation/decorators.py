@@ -47,3 +47,6 @@ def student_access_only():
             return HttpResponseRedirect(reverse('login'))
         return _wrapped_view
     return decorator
+
+def course_select():
+    
