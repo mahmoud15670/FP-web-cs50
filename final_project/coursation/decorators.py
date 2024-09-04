@@ -54,9 +54,9 @@ def course_select():
         @accepted_teacher()
         @wraps
         def _wrapped_view(request, *args, **kwargs):
-            course = get_object_or_404(Course, pk=course_id)
+            course = get_object_or_404(Course, pk=kwargs['course_id'])
             if course.teacher.id != request.user.techer.id:
-                return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": course_id}))
-            return view(request, course_id)
+                return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": kwargs['course_id']}))
+            return view(request, *args, **kwargs)
         return _wrapped_view
     return decorator
