@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 
+from .decorators import *
+
 from .forms import *
 # بسم الله الرحمن الرحيم
 def index(request):
@@ -185,7 +187,7 @@ class Course_detail_view(generic.DetailView):
     context_object_name = 'course'
 
 
-@login_required(login_url='login')
+@student_access_only()
 def student_enroll(request, pk):
     course = get_object_or_404(Course, pk=pk)
     course.student.add(request.user.student)

@@ -11,7 +11,7 @@ def student_test(user):
         return True
     return False
 
-def check_student():
+def student_access_only():
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
