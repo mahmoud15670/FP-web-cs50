@@ -1,6 +1,6 @@
 from functools import wraps
-from django.shortcuts import redirect
-from django.http import HttpResponseForbidden
+from django.urls import reverse
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 
 def teacher_test(user):
     if user.is_teacher:
@@ -20,7 +20,7 @@ def teacher_access_only():
                 if teacher_test(request.user):
                     return view(request, *args, **kwargs)
                 return HttpResponseForbidden('you are not teacher')
-            return 
+            return HttpResponseRedirect(reverse('login'))
         return _wrapped_view
     return decorator
 
