@@ -39,6 +39,8 @@ class User(AbstractUser):
     section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True, help_text='choose your subject')
     rating = models.CharField(max_length=5, null=True)
 
+    
+
 class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     activation = models.BooleanField(default=False)
