@@ -4,6 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.db.models import ObjectDoesNotExist
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -165,7 +166,7 @@ class Course_create_view(generic.CreateView):
     form_class = Course_Form
     template_name = 'course_create.html'
     success_url = reverse_lazy('index')
-
+    @method_decorator(teacher_access_only)
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         course = form.save(commit=False)
         if self.request.user.techer.activation and self.request.user.techer.acceptation:
