@@ -216,7 +216,7 @@ class Section_details_view(generic.DetailView):
     context_object_name = "section"
 
 
-@accepted_teacher()
+@course_select()
 def unit_create(request, course_id):
     if request.method != "POST":
         return render(request, "unit_create.html", {"form": Unit_Form})
