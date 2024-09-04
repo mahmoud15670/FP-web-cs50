@@ -60,3 +60,15 @@ def course_select():
             return view(request, *args, **kwargs)
         return _wrapped_view
     return decorator
+    
+def  unit_select():
+    def decorator(view):
+        @accepted_teacher()
+        @wraps(view)
+        def _wrapped_view(request, *args, **kwargs):
+            unit = get_object_or_404(Unit, pk=kwargs['unit_id'])
+            if unit.teacher.id != request.user.techer.id:
+                return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": kwargs['course_id']}))
+            return view(request, *args, **kwargs)
+        return _wrapped_view
+    return decorator
