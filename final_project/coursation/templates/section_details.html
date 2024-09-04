@@ -3,13 +3,11 @@
 {% block body %}
     <ul>
         {% for user in section.user_set.all %}
-            {% if user.techer %}
-                {% for course in user.techer.course_set.all %}
-                    <li>{{course.name}}</li>
-                    <li>{{course.teacher}}</li>
-                    <li><a href="{% url 'course_detail' course.id %}">details</a></li>
-                {% endfor %}
-            {% endif %}
+            {% for course in user.techer.course_set.all %}
+                <li>{{course.name}}</li>
+                <li>{{course.teacher}}</li>
+                <li><a href="{% url 'course_detail' course.id %}">details</a></li>
+            {% endfor %}
         {% endfor %}
     </ul>
 {% endblock %}
