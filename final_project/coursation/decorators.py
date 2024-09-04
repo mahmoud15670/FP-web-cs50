@@ -67,8 +67,8 @@ def  unit_select():
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
             unit = get_object_or_404(Unit, pk=kwargs['unit_id'])
-            if unit.teacher.id != request.user.techer.id:
-                return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": kwargs['course_id']}))
+            if unit.course.teacher.id != request.user.techer.id:
+                return HttpResponseRedirect(reverse("unit_detail", kwargs={"pk": kwargs['unit_id']}))
             return view(request, *args, **kwargs)
         return _wrapped_view
     return decorator
