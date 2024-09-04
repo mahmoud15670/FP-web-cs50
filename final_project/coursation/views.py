@@ -182,11 +182,9 @@ class Course_create_view(generic.CreateView):
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         course = form.save(commit=False)
-        if self.request.user.techer.activation and self.request.user.techer.acceptation:
-            course.teacher = self.request.user.techer
-            course.save()
-            return super().form_valid(form)
-        return HttpResponseRedirect(reverse("index"))
+        course.teacher = self.request.user.techer
+        course.save()
+        return super().form_valid(form)
 
 
 class Course_list_view(generic.ListView):
