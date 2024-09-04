@@ -17,7 +17,7 @@
         {% endif %}
     {% endif %}
 
-    <p>{{course.teacher}}</p>
+    <p>By: {{course.teacher}}</p>
     <p>{{ course.student.count }} already enrolled</p>
 
     <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}} | duration:{{course.duration}}</p>    
