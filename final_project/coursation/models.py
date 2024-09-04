@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import AbstractUser
 
 
@@ -140,6 +141,7 @@ class Course(models.Model):
             for lesson in unit.lesson_set.all():
                 num.append(lesson.exam.count())
         return sum(num)
+
         
     def upload_path(self):
         return f'coursation/teachers/{self.teacher.id}/Courses/{self.id}/'
