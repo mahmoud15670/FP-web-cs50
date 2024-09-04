@@ -166,7 +166,7 @@ class Group_detail_view(generic.DetailView):
     context_object_name = 'group'
 
 
-@method_decorator(teacher_access_only(), name="dispatch")
+@method_decorator(accepted_teacher(), name="dispatch")
 class Course_create_view(generic.CreateView):
     model = Course
     form_class = Course_Form
@@ -212,7 +212,7 @@ class Section_details_view(generic.DetailView):
     context_object_name = 'section'
 
 
-@teacher_access_only()
+@accepted_teacher()
 def unit_create(request, course_id):
     if request.method != 'POST':
         return render(request, 'unit_create.html', {

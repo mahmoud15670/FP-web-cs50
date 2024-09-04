@@ -1,6 +1,7 @@
 from functools import wraps
+
 from django.urls import reverse
-from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 def teacher_test(user):
     if user.is_teacher:
