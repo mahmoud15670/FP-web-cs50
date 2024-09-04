@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block student %}
-    <h1>hi dear student: {{student}}</h1>
+    <h1>hi, dear student: {{student}}</h1>
     <h4>your stage </h4><p>{{student.stage}}</p>
     {% if student.course_set.all %}
         <h4>your enrolled courses:</h4>

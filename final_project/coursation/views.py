@@ -20,7 +20,7 @@ def index(request):
                 return render(
                     request,
                     "teacher.html",
-                    {"teacher": request.user.techer, "courses": courses},
+                    {"teacher": request.user.techer},
                 )
         except ObjectDoesNotExist:
             try:

@@ -1,13 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% if not user.techer.activation and not user.techer.acceptation %}
-        <a href="{% url 'teacher_detail_entry' user.id %}">please complete your profile </a>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="add">
-        </form>
-    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="add">
+    </form>
 {% endblock %}
