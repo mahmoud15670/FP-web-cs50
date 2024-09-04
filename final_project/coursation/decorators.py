@@ -48,5 +48,4 @@ def student_access_only():
         return _wrapped_view
     return decorator
 
-def course_select():
-    
+def course_select(pk):
