@@ -3,12 +3,11 @@
 {% block student %}
     <h1>hi dear student: {{user}}</h1>
     <p>your stage {{user.stage}}</p>
-    {{user.student.course_set.all}}
-    {% if user.student.students %}
+    {% if user.student.course_set.all %}
     <h4>your gorups:</h4>
     <ul>
-        {% for group in user.student.students.all %}
-            <li><a href="{% url 'group_details' group.id %}">{{group.name}}</a></li>
+        {% for course in user.student.course_set.all %}
+            <li><a href="{% url 'group_details' course.id %}">{{course.name}}</a></li>
         {% endfor %}
     </ul>
     {% else %}
