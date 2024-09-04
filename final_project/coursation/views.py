@@ -105,7 +105,8 @@ def student_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
-        user.
+        user.is_student = True
+        user.save()
         for stage in Stage.objects.all():
             if stage.age()['start'] <= user.age and  user.age <= stage.age()['end']:
                 user.stage = stage
