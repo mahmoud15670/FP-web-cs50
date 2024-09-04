@@ -32,6 +32,8 @@ def accepted_teacher():
             if request.user.techer.activation and request.user.techer.acceptation:
                 return view(request, *args, **kwargs)
             return HttpResponseRedirect(reverse('teacher_detail_entry', args=(request.user.id)))
+        return _wrapped_view
+    return decorator
 
 def student_access_only():
     def decorator(view):
