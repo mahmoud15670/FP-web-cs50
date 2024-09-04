@@ -1,16 +1,16 @@
-from django.forms import BaseModelForm
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse, reverse_lazy
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import ObjectDoesNotExist
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
+from django.forms import BaseModelForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.http import HttpResponse, HttpResponseRedirect
 
 from .decorators import *
-
 from .forms import *
+
+
 # بسم الله الرحمن الرحيم
 def index(request):
     courses = Course.objects.all()
