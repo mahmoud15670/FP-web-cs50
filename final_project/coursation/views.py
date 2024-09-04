@@ -80,7 +80,8 @@ def teacher_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
-        user.is
+        user.is_teacher = True
+        user.save()
         teacher = Techer.objects.create(user=user, id=user.id)
         teacher.save()
         login(request, user)
@@ -104,6 +105,7 @@ def student_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
+        user.
         for stage in Stage.objects.all():
             if stage.age()['start'] <= user.age and  user.age <= stage.age()['end']:
                 user.stage = stage
