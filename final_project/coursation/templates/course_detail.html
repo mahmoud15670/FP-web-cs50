@@ -3,10 +3,12 @@
 {% block body %}
     <img src="{{course.photo.url }}" alt="background photo" style="width: 100%;">
     <h2>{{course.name}}</h2>
-    {% if course.is_started %}
-        <a href="{% url 'student_enroll' course.id %}" style="border: 2px black solid;">enroll</a>
-    {% else %}
-        <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
+    {% if not user.techer %}
+        {% if course.is_started %}
+            <a href="{% url 'student_enroll' course.id %}" style="border: 2px black solid;">enroll</a>
+        {% else %}
+            <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
+        {% endif %}
     {% endif %}
         
     {% if user.is_authenticated %}
