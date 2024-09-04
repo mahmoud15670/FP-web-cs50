@@ -166,7 +166,7 @@ class Course_create_view(generic.CreateView):
     form_class = Course_Form
     template_name = 'course_create.html'
     success_url = reverse_lazy('index')
-    @method_decorator(teacher_access_only)
+    @method_decorator(teacher_access_only())
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         course = form.save(commit=False)
         if self.request.user.techer.activation and self.request.user.techer.acceptation:
