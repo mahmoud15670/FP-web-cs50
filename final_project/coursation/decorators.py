@@ -29,7 +29,8 @@ def accepted_teacher():
         @wraps(view)
         @teacher_access_only()
         def _wrapped_view(request, *args, **kwargs):
-            if request.user.techer
+            if request.user.techer.activation and not request.user.techer.acceptation:
+                ...
 
 def student_access_only():
     def decorator(view):
