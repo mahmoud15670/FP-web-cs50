@@ -5,15 +5,15 @@ from django.contrib.auth.models import AbstractUser
 
 
 def cv_upload_path(techer, file_name):
-    return f"coursation/teachers/{techer.id}/CV/{file_name}"
+    return f"teachers/{techer.id}/CV/{file_name}"
 
 
 def demo_upload_path(techer, file_name):
-    return f"coursation/teachers/{techer.id}/Demo/{file_name}"
+    return f"teachers/{techer.id}/Demo/{file_name}"
 
 
 def lesson_upload_path(techer, file_name):
-    return f"coursation/teachers/{techer.id}/lessons/{file_name}"
+    return f"teachers/{techer.id}/lessons/{file_name}"
 
 
 def course_photo_path(course, file_name):
@@ -21,7 +21,7 @@ def course_photo_path(course, file_name):
 
 
 def certificate_upload_path(techer, file_name):
-    return f"coursation/students/{techer.id}/Certificate/{file_name}"
+    return f"students/{techer.id}/Certificate/{file_name}"
 
 
 def unit_video_upload_path(unit, file_name):
@@ -176,7 +176,7 @@ class Course(models.Model):
         return sum(num)
 
     def upload_path(self):
-        return f"coursation/teachers/{self.teacher.id}/Courses/{self.id}/"
+        return f"teachers/{self.teacher.id}/Courses/{self.id}/"
 
 
 class Unit(models.Model):
@@ -208,4 +208,4 @@ class Lesson(models.Model):
     exam = models.ManyToManyField(to="Exam", null=True)
 
     def upload_path(self):
-        return f"coursation/teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons"
+        return f"teachers/{self.unit.course.teacher.id}/Courses/{self.unit.course.id}/Units/{self.unit.id}/Lessons"
