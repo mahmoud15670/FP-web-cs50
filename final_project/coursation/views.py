@@ -120,6 +120,7 @@ def student_register(request):
     })
 
 
+@method_decorator(teacher_access_only(), name="dispatch")
 class Teacher_detail_entry(generic.UpdateView):
     model = Techer
     form_class = Teacher_form
