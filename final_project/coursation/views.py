@@ -80,6 +80,7 @@ def teacher_register(request):
         })
     if user_form.is_valid():
         user = user_form.save()
+        user.is
         teacher = Techer.objects.create(user=user, id=user.id)
         teacher.save()
         login(request, user)
