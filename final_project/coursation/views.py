@@ -241,5 +241,3 @@ def lesson_create(request, unit_id):
     return render(request, 'lesson_create.html', {
         'form':form
     })
-
-# asdf
