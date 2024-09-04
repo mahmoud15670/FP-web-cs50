@@ -38,7 +38,8 @@ class User(AbstractUser):
     exams = models.CharField(max_length=20, null=True)
     section = models.ForeignKey(to='Section', on_delete=models.PROTECT, null=True, help_text='choose your subject')
     rating = models.CharField(max_length=5, null=True)
-
+    is_teacher = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
     
 
 class Techer(models.Model):
