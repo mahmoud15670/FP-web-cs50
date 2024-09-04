@@ -31,7 +31,7 @@ def accepted_teacher():
         def _wrapped_view(request, *args, **kwargs):
             if request.user.techer.activation and request.user.techer.acceptation:
                 return view(request, *args, **kwargs)
-            return HttpResponseRedirect(reverse('teacher_detail_entry', args=(request.user.id)))
+            return HttpResponseRedirect(reverse('teacher_detail_entry', args=(request.user.id,)))
         return _wrapped_view
     return decorator
 
