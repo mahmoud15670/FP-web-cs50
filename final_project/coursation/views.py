@@ -199,7 +199,6 @@ class Course_detail_view(generic.DetailView):
 
 @student_access_only()
 def student_enroll(request, pk):
-    
     course = get_object_or_404(Course, pk=pk)
     course.student.add(request.user.student)
     return HttpResponseRedirect(reverse("index"))
