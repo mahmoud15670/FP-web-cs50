@@ -74,8 +74,6 @@ class Techer(models.Model):
         null=True,
         help_text="upload a short video in mp4 format to intrduse your self and of your shar7",
     )
-    period = models.DateField(null=True)
-    lessons = models.CharField(max_length=20, null=True)
 
     def __str__(self) -> str:
         return self.user.username
