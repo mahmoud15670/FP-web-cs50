@@ -52,7 +52,7 @@ def student_access_only():
 def course_select():
     def decorator(view):
         @accepted_teacher()
-        @wraps
+        @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
             course = get_object_or_404(Course, pk=kwargs['course_id'])
             if course.teacher.id != request.user.techer.id:
