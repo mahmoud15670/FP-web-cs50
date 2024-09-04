@@ -34,6 +34,7 @@ AUTH_USER_MODEL = 'coursation.User'
 
 INSTALLED_APPS = [
     "coursation",
+    "delivery",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
