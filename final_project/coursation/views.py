@@ -25,7 +25,7 @@ def index(request):
         except ObjectDoesNotExist:
             try:
                 if request.user.student in Student.objects.all():
-                    return render(request, "student.html", {"courses": courses})
+                    return render(request, "student.html", {"student": request.user.student, "courses": courses})
             except ObjectDoesNotExist:
                 return render(request, "index.html")
     else:
