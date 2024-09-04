@@ -212,6 +212,7 @@ class Section_details_view(generic.DetailView):
     context_object_name = 'section'
 
 
+@teacher_access_only()
 def unit_create(request, course_id):
     if request.method != 'POST':
         return render(request, 'unit_create.html', {
