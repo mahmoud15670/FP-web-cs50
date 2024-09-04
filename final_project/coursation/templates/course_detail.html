@@ -39,7 +39,7 @@
     <h4>units</h4>
     <ul>
         {% for unit in course.unit_set.all %}
-            <li style="border: 1px solid black;"><a href="{% url 'unit_detail' unit.id %}">{{unit.name}}</a></li>
+            <li style="border: 1px solid black; width: fit-content; margin: 2px;"><a href="{% url 'unit_detail' unit.id %}">{{unit.name}}</a></li>
         {% endfor %}
     </ul>
     <hr>
