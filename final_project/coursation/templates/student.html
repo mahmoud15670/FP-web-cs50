@@ -3,7 +3,8 @@
 {% block student %}
     <h1>hi dear student: {{user}}</h1>
     <p>your stage {{user.stage}}</p>
-    {% if user.student.couse %}
+    {{user.student.course}}
+    {% if user.student.students %}
     <h4>your gorups:</h4>
     <ul>
         {% for group in user.student.students.all %}
