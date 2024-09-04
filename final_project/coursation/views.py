@@ -234,6 +234,7 @@ class Unit_detail_view(generic.DetailView):
     template_name = 'unit_detail.html'
     context_object_name = 'unit'
 
+@teacher_access_only()
 def lesson_create(request, unit_id):
     if request.method != 'POST':
         return render(request, 'lesson_create.html', {
