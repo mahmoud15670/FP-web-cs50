@@ -19,7 +19,7 @@ def teacher_access_only():
             if request.user.is_authenticated:
                 if teacher_test(request.user):
                     return view(request, *args, **kwargs)
-                return HttpResponseForbidden('you are not teacher')
+                return HttpResponseRedirect(reverse('index'))
             return HttpResponseRedirect(reverse('login'))
         return _wrapped_view
     return decorator
