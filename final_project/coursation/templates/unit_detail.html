@@ -22,7 +22,7 @@
         {% endif %}
     {% endfor %}
 </ul>
-{% if user.techer.id == unit. %}
+{% if user.id == unit.course.teacher.id %}
 <a href="{% url 'lesson_create' unit.id %}">add lesson</a>
-{% endunit_select %}
+{% endif %}
 {% endblock %}
