@@ -15,4 +15,8 @@ def check_student():
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
-            ...
+            if student_test(request.user):
+                return view(request, *args, **kwargs)
+            return HttpResponseForbidden('you are not student')
+        return _wrapped_view
+    return decorator
