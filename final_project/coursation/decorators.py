@@ -24,6 +24,12 @@ def teacher_access_only():
         return _wrapped_view
     return decorator
 
+def accepted_teacher():
+    def decorator(view):
+        @wraps(view)
+        @teacher_access_only()
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.techer
 
 def student_access_only():
     def decorator(view):
