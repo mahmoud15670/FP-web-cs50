@@ -6,7 +6,7 @@
      {% block student %}
      {% endblock %}
      {% if stage_list %}
-          <p>stages:</p>
+          <h4>stages:</h4>
           <ul>
                {% for stage in stage_list %}
                     <li>{{stage}}</li>
@@ -14,7 +14,7 @@
           </ul>
      {% endif %}
      {% if sections %}
-          <p>sections</p>
+          <h4>sections</h4>
           <ul>
                {% for section in sections %}
                <li><a href="{% url 'section_details' section.id %}">{{ section }}</a></li>
@@ -22,7 +22,7 @@
           </ul>
      {% endif %}
      {% if skills %}
-          <p>skills</p>
+          <h4>skills</h4>
           <ul>
                {% for skill in skills %}
                <li><a href="#">{{ skill }}</a></li>
@@ -30,7 +30,7 @@
           </ul>
      {% endif %}
      {% if courses %}
-          <p>courses</p>
+          <h4>courses</h4>
           <ul>
                {% for course in courses %}
                <li style="border: black solid 3px; margin: 5px; width: fit-content;">

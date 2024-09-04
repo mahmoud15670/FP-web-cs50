@@ -4,7 +4,7 @@
     <h1>hi dear student: {{user}}</h1>
     <p>your stage {{user.stage}}</p>
     {% if user.student.course_set.all %}
-        <h4>your gorups:</h4>
+        <h4>your courses:</h4>
         <ul>
             {% for course in user.student.course_set.all %}
                 <li><a href="{% url 'course_detail' course.id %}">{{course.name}}</a></li>
