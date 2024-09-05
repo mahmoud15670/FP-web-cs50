@@ -10,19 +10,20 @@
             <p style="border: 2px black solid;">start in {{ course.start_date }}</p>
         {% endif %}
     {% endif %}
-        
+
     {% if user.is_authenticated %}
         {% if user.techer == course.teacher %}
             <a href="{% url 'unit_create' course.id %}">add unit</a>
+            <a href="{% url 'course_delete' course.id %}">delete the course</a>
         {% endif %}
     {% endif %}
 
     <p>By: {{course.teacher}}</p>
     <p>{{ course.student.count }} already enrolled</p>
 
-    <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}} | duration:{{course.duration}}</p>    
+    <p>units:{{course.unit_set.count}} | review:{{course.review}} star | stage:{{course.stage}} | duration:{{course.duration}}</p>
     <hr>
-    
+
     <h4>About</h4>
     <p>{{course.about}}</p>
     <h4>Skills you will learn</h4>
