@@ -24,5 +24,6 @@
 </ul>
 {% if user.id == unit.course.teacher.id %}
     <a href="{% url 'lesson_create' unit.id %}">add lesson</a>
+    <a href="{% url 'unit_delete' unit.id %}">delete the unit</a>
 {% endif %}
 {% endblock %}
