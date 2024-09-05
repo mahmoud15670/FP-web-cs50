@@ -239,7 +239,7 @@ def unit_create(request, course_id):
     return render(request, "unit_create.html", {"form": form})
 
 
-@method_decorator(course_select(), name="dispatch")
+@method_decorator(unit_select(), name="dispatch")
 class Unit_delete_view(generic.DeleteView):
     model = Unit
     template_name = 'delete.html'
