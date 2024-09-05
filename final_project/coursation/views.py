@@ -186,6 +186,7 @@ class Course_create_view(generic.CreateView):
         course.save()
         return super().form_valid(form)
 
+
 @method_decorator(accepted_teacher(), name="dispatch")
 class Course_delete_view(generic.DeleteView):
     model = Course
@@ -245,6 +246,7 @@ class Unit_delete_view(generic.DeleteView):
     template_name = 'delete.html'
     context_object_name = 'object'
     success_url = reverse_lazy('index')
+
 
 class Unit_detail_view(generic.DetailView):
     model = Unit
