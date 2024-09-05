@@ -3,8 +3,8 @@
 {% block body %}
     <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            {{object}}
+            are you surely want to delete {{object.name}}!
                     {{ form.as_p }}
-                            <input type="submit" value="create">
+                            <input type="submit" value="yes sure ">
                                 </form>
                                 {% endblock %}
