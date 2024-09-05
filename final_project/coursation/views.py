@@ -253,16 +253,16 @@ class Unit_detail_view(generic.DetailView):
 
 
 @unit_select()
-def lesson_create(request, unit_id):
+def lesson_create(request, pk):
     if request.method != "POST":
         return render(request, "lesson_create.html", {"form": Lesson_Form})
-    unit = get_object_or_404(Unit, pk=unit_id)
+    unit = get_object_or_404(Unit, pk=pk)
     form = Lesson_Form(request.POST, request.FILES)
 
     if form.is_valid:
         lesson = form.save(commit=False)
         lesson.unit = unit
         lesson.save()
-        return HttpResponseRedirect(reverse("unit_detail", args=(unit_id,)))
+        return HttpResponseRedirect(reverse("unit_detail", args=(pk,)))
     return render(request, "lesson_create.html", {"form": form})
 # dfdfdf

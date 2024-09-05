@@ -85,10 +85,10 @@ def unit_select():
         @accepted_teacher()
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
-            unit = get_object_or_404(Unit, pk=kwargs["unit_id"])
+            unit = get_object_or_404(Unit, pk=kwargs["pk"])
             if unit.course.teacher.id != request.user.techer.id:
                 return HttpResponseRedirect(
-                    reverse("unit_detail", kwargs={"pk": kwargs["unit_id"]})
+                    reverse("unit_detail", kwargs={"pk": kwargs["pk"]})
                 )
             return view(request, *args, **kwargs)
 

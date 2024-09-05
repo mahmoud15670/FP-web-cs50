@@ -32,9 +32,9 @@ urlpatterns = [
         name="course_detail",
     ),
     path("course/<int:course_id>/unit/create", views.unit_create, name="unit_create"),
-    path("unit/<int:pk>/delete", views.Unit_delete_view.as_view(), name="unit_delete"),
+    path("unit/<int:unit_id>/delete", views.Unit_delete_view.as_view(), name="unit_delete"),
     path("unit/<int:pk>/detail", views.Unit_detail_view.as_view(), name="unit_detail"),
-    path("unit/<int:unit_id>/lesson/create", views.lesson_create, name="lesson_create"),
+    path("unit/<int:pk>/lesson/create", views.lesson_create, name="lesson_create"),
     path(
         "section/<int:pk>/details",
         views.Section_details_view.as_view(),
