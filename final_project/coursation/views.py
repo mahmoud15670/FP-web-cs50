@@ -188,7 +188,7 @@ class Course_create_view(generic.CreateView):
 
 @method_decorator(accepted_teacher(), name="dispatch")
 class Course_delete_view(generic.DeleteView):
-    model 
+    model = 
 
 
 class Course_list_view(generic.ListView):
