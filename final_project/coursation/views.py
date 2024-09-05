@@ -186,6 +186,10 @@ class Course_create_view(generic.CreateView):
         course.save()
         return super().form_valid(form)
 
+@method_decorator(accepted_teacher(), name="dispatch")
+class Course_delete_view(generic.DeleteView):
+    model 
+
 
 class Course_list_view(generic.ListView):
     model = Course
