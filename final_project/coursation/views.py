@@ -191,6 +191,7 @@ class Course_delete_view(generic.DeleteView):
     model = Course
     template_name = 'delete.html'
     context_object_name = 'object'
+    success_url = reverse_lazy('index')
 
 
 class Course_list_view(generic.ListView):
