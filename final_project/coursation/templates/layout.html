@@ -15,7 +15,7 @@
         {% else %}
             <a href="{% url 'login' %}">log in</a>
         {% endif %}
-        <form action="" method="get">
+        <form action="{% url 'search' %}" method="get">
             <input type="search" name="query" id="" placeholder="search">
         </form>
     </nav>

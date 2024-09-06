@@ -40,4 +40,5 @@ urlpatterns = [
         views.Section_details_view.as_view(),
         name="section_details",
     ),
+    path("search", views.search, name="search"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
