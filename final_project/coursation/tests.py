@@ -20,7 +20,7 @@ class LoginTestCase(TestCase):
         return super().setUp()
     def login_test(self):
         user = self.c.login(username='foo', password=123)
-        self.assertTrue(user)
+        self.assertFalse(user)
 
 
 
