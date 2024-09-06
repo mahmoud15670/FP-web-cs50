@@ -25,3 +25,6 @@ class UserTestCase(TestCase):
         self.user.save()
         self.assertEqual(self.user.stage.name, 'youth')
         self.assertEqual(self.user.stage.age_start, 9)
+
+    def test_section(self):
+        section = Section.objects.create()
