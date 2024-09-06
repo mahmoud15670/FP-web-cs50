@@ -7,14 +7,15 @@ class UserTestCase(TestCase):
         User.objects.create(username='foo', password=123, email='mgh@mgh.com')
         return super().setUpTestData()
 
+    def setUp(self) -> None:
+        self.user = User.objects.get(pk=1)
+        return super().setUp()
 
     def test_phone_max_length(self):
-        user = User.objects.get(pk=1)
-        phone_max_length =user._meta.get_field('phone').max_length
+        phone_max_length =self.user._meta.get_field('phone').max_length
         self.assertEqual(phone_max_length, 11)
 
-    def test_is_teacher(self):
-        user = User.objects.get(pk=1)
+    def test_is_teacher(self
         user.is_teacher = True
         self.assertTrue(user.is_teacher)
 
