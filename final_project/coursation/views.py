@@ -275,4 +275,5 @@ def search(request):
     if courses:
         return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": courses[0].id}))
     return HttpResponseRedirect(reverse('index'))
+    
 
