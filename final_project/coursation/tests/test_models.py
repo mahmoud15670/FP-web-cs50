@@ -9,5 +9,5 @@ class UserTestCase(TestCase):
 
     def test_first_name_label(self):
         user = User.objects.get(pk=1)
-        first_name_label =user._meta.get_field('first_name').verbose_name
-        self.assertEqual(first_name_label, 'first name')
+        phone_max_length =user._meta.get_field('phone').max_length
+        self.assertEqual(phone_max_length, 11)
