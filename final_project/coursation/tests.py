@@ -8,4 +8,4 @@ class UserTestCase(TestCase):
         return super().setUp()
     def test_user_name(self):
         mgh = User.objects.get(name='mgh')
-        self.assertEqual(mgh.email, )
+        self.assertEqual(mgh.email, 'mgh@mgh.com')
