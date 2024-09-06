@@ -267,3 +267,8 @@ def lesson_create(request, pk):
         lesson.save()
         return HttpResponseRedirect(reverse("unit_detail", args=(pk,)))
     return render(request, "lesson_create.html", {"form": form})
+
+
+def search(request):
+    
+
