@@ -17,3 +17,6 @@ class UserTestCase(TestCase):
         user = User.objects.get(pk=1)
         user.is_teacher = True
         self.assertTrue(user.is_teacher)
+
+    def test_stage(self):
+        ...
