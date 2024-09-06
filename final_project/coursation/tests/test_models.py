@@ -21,10 +21,15 @@ class UserTestCase(TestCase):
 
     def test_stage(self):
         stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
+        self.assertIsNone(self.user.stage)
         self.user.stage = stage
         self.user.save()
         self.assertEqual(self.user.stage.name, 'youth')
         self.assertEqual(self.user.stage.age_start, 9)
 
     def test_section(self):
-        section = Section.objects.create()
+        section = Section.objects.create(name='programming')
+        self.assertIsNone(self.user.section)
+        self.user.section = section
+        self.user.save()
+        self.assertEqual(self.user.section.name, 'programming')
