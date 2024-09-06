@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from .models import *
+from .views import *
 
 class UserTestCase(TestCase):
     def setUp(self) -> None:
@@ -21,7 +22,7 @@ class LoginTestCase(TestCase):
     def test_login(self):
         responce = self.client.get('')
         self.assertEqual(responce.status_code, 200)
-        self.assertEqual()
+        self.assertEqual(responce.resolver_match.func, index)
         user = self.client.login(username='foo', password=123)
         self.assertTrue(user)
 
