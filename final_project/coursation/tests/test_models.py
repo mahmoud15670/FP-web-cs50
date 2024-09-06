@@ -15,14 +15,13 @@ class UserTestCase(TestCase):
         phone_max_length =self.user._meta.get_field('phone').max_length
         self.assertEqual(phone_max_length, 11)
 
-    def test_is_teacher(self
-        user.is_teacher = True
-        self.assertTrue(user.is_teacher)
+    def test_is_teacher(self):
+        self.user.is_teacher = True
+        self.assertTrue(self.user.is_teacher)
 
     def test_stage(self):
         stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
-        user = User.objects.get(pk=1)
-        user.stage = stage
-        user.save()
-        self.assertEqual(user.stage.name, 'youth')
-        self.assertEqual(user.stage.age_start, 9)
+        self.user.stage = stage
+        self.user.save()
+        self.assertEqual(self.user.stage.name, 'youth')
+        self.assertEqual(self.user.stage.age_start, 9)
