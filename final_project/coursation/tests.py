@@ -12,3 +12,8 @@ class UserTestCase(TestCase):
         teacher_mgh = Techer.objects.get(user=mgh)
         self.assertEqual(mgh.email, 'mgh@mgh.com')
         self.assertEqual(teacher_mgh.user.is_teacher, True)
+
+class LoginTestCase(TestCase):
+    c = Client()
+    def login_test(self):
+        login = self.c.post()
