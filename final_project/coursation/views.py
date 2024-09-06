@@ -270,5 +270,5 @@ def lesson_create(request, pk):
 
 
 def search(request):
-    
+    ...
 
