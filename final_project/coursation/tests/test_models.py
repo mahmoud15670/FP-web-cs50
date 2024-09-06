@@ -19,4 +19,5 @@ class UserTestCase(TestCase):
         self.assertTrue(user.is_teacher)
 
     def test_stage(self):
-        stage = Stage.objects.create()
+        stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
+        user
