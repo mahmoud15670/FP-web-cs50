@@ -16,4 +16,4 @@ class UserTestCase(TestCase):
 class LoginTestCase(TestCase):
     c = Client()
     def login_test(self):
-        login = self.c.post()
+        login = self.c.post("/login")
