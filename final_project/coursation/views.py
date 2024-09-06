@@ -270,5 +270,7 @@ def lesson_create(request, pk):
 
 
 def search(request):
-    ...
+    query = request.GET['query']
+    course = Course.objects.filter(query)
+    return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": course.id}))
 
