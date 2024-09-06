@@ -19,8 +19,8 @@ class LoginTestCase(TestCase):
         User.objects.create(username='foo', password=123, email='mgh@mgh.com')
         return super().setUp()
     def test_login(self):
-        user = User.objects.get(username='foo')
-        print(user)
+        responce = self.client.get('')
+        self.assertEqual(responce.status_code, 200)
         user = self.client.login(username='foo', password=123)
         self.assertTrue(user)
 
