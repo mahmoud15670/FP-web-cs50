@@ -14,12 +14,12 @@ class UserTestCase(TestCase):
         self.assertEqual(teacher_mgh.user.is_teacher, True)
 
 class LoginTestCase(TestCase):
-    c = Client()
     def setUp(self) -> None:
+        self.client = Client()
         User.objects.create(username='foo', password=123)
         return super().setUp()
     def login_test(self):
-        user = self.c.login(username='foo', password=123)
+        user = self.client.login(username='foo', password=123)
         self.assertFalse(user)
 
 
