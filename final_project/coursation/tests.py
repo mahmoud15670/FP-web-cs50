@@ -17,10 +17,11 @@ class LoginTestCase(TestCase):
     def setUp(self) -> None:
         User.objects.create(username='foo', password=123, email='mgh@mgh.com')
         return super().setUp()
-    
+
     def test_login(self):
         responce = self.client.get('')
         self.assertEqual(responce.status_code, 200)
+        self.assertEqual()
         user = self.client.login(username='foo', password=123)
         self.assertTrue(user)
 
