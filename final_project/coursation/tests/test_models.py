@@ -1,5 +1,8 @@
 from django.test import TestCase
-from .models import *
+from co.models import *
 
 class UserTestCase(TestCase):
-    def set
+    @classmethod
+    def setUpTestData(cls) -> None:
+        User.
+        return super().setUpTestData()
