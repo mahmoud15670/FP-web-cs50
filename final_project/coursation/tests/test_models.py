@@ -6,3 +6,5 @@ class UserTestCase(TestCase):
     def setUpTestData(cls) -> None:
         User.objects.create(username='foo', password=123, email='mgh@mgh.com')
         return super().setUpTestData()
+
+    
