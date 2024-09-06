@@ -19,4 +19,4 @@ class UserTestCase(TestCase):
         self.assertTrue(user.is_teacher)
 
     def test_stage(self):
-        ...
+        stage = Stage.objects.create()
