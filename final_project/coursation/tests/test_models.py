@@ -1,8 +1,8 @@
 from django.test import TestCase
-from co.models import *
+from coursation.models import *
 
 class UserTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        User.
+        User.objects.create(username='foo', password=123, email='mgh@mgh.com')
         return super().setUpTestData()
