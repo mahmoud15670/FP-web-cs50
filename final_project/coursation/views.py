@@ -92,10 +92,7 @@ def teacher_register(request):
         )
     if user_form.is_valid():
         user = user_form.save()
-        user.is_teacher = True
-        user.save()
-        teacher = Techer.objects.create(user=user, id=user.id)
-        teacher.save()
+        user.c
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "teacher_register.html", {"form": user_form})
@@ -275,5 +272,5 @@ def search(request):
     if courses:
         return HttpResponseRedirect(reverse("course_detail", kwargs={"pk": courses[0].id}))
     return HttpResponseRedirect(reverse('index'))
-    
+
 
