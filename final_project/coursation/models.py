@@ -60,6 +60,7 @@ class User(AbstractUser):
 
     def create_tracher(self):
         self.is_teacher = True
+        self.save()
         teacher = Techer.objects.create(user=self, id=self.id)
         teacher.save()
 
