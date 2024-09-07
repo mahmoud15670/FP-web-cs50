@@ -70,7 +70,9 @@ class User(AbstractUser):
         student = Student.objects.create(user=self, id=self.id)
         student.save()
 
-    def set_student_stage(self)
+    def set_student_stage(self):
+        if self.is_student:
+            
 
 
 class Techer(models.Model):
