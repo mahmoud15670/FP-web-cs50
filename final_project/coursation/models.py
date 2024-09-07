@@ -72,7 +72,8 @@ class User(AbstractUser):
 
     def set_student_stage(self):
         if self.is_student:
-            
+            for stage in Stage.objects.all():
+                if 
 
 
 class Techer(models.Model):
