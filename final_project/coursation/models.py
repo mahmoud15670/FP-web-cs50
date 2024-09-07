@@ -74,6 +74,8 @@ class User(AbstractUser):
         if self.is_student:
             for stage in Stage.objects.all():
                 if stage.age()['start'] <= self.age <= stage.age()['end']:
+                    self.stage = stage
+                    self.save()
 
 
 
