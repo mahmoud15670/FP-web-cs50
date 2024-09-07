@@ -92,7 +92,7 @@ def teacher_register(request):
         )
     if user_form.is_valid():
         user = user_form.save()
-        user.c
+        user.create_tracher()
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "teacher_register.html", {"form": user_form})
