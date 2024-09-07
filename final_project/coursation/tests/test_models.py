@@ -33,3 +33,7 @@ class UserTestCase(TestCase):
         self.user.section = section
         self.user.save()
         self.assertEqual(self.user.section.name, 'programming')
+
+
+class StageTestCase():
+    ...
