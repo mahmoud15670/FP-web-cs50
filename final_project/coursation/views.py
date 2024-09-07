@@ -119,7 +119,7 @@ def student_register(request):
                 user.stage = stage
                 user.save()
         student = Student.objects.create(user=user, id=user.id)
-        student.save()
+        
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "student_register.html", {"form": user_form})
