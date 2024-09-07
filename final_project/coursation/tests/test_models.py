@@ -33,7 +33,8 @@ class UserTestCase(TestCase):
         self.assertEqual(student.user.id, 1)
         self.assertTrue(student.user.is_student)
         self.assertFalse(student.user.is_teacher)
-        
+        foo
+    
 
 
     def test_stage(self):
