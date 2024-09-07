@@ -19,6 +19,9 @@ class UserTestCase(TestCase):
         self.user.is_teacher = True
         self.assertTrue(self.user.is_teacher)
 
+
+    def test_user_create_teacher(self):
+        ...
     def test_stage(self):
         stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
         self.assertIsNone(self.user.stage)

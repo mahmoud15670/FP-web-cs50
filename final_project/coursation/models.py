@@ -58,6 +58,11 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
 
+    def create_tracher(self):
+        self.is_teacher = True
+        teacher = Techer.objects.create(user=self)
+        teacher.save()
+
 
 class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
