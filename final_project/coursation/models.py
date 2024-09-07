@@ -64,6 +64,12 @@ class User(AbstractUser):
         teacher = Techer.objects.create(user=self, id=self.id)
         teacher.save()
 
+    def create_student(self):
+        self.is_student = True
+        self.save()
+        student = Student.objects.create(user=self, id=self.id)
+        student.save()
+
 
 class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
