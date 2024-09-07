@@ -24,6 +24,7 @@ class UserTestCase(TestCase):
         self.user.create_tracher()
         teacher = Techer.objects.get(pk=1)
         self.assertEqual(teacher.user.id, 1)
+        self.
 
 
     def test_stage(self):
