@@ -27,6 +27,13 @@ class UserTestCase(TestCase):
         self.assertTrue(teacher.user.is_teacher)
         self.assertFalse(teacher.user.is_student)
 
+    def test_user_student_create(self):
+        self.user.create_student()
+        student = Student.objects.get(pk=1)
+        self.assertEqual(student.user.id, 1)
+        self.assertTrue(student.user.is_student)
+        self.assertFalse(student.user.is_teacher)
+
 
     def test_stage(self):
         stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
