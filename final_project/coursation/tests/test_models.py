@@ -37,10 +37,13 @@ class UserTestCase(TestCase):
     def test_user_set_stage(self):
         test_stage1 = Stage.objects.create(age_start=8, age_end=10, name='foo')
         test_stage2 = Stage.objects.create(age_start=7, age_end=9, name='foo')
+        test_stage3 = Stage.objects.create(age_start=10, age_end=18, name='foo')
         self.user.age = 9
         self.user.save()
         self.user.set_student_stage()
         self.assertEqual(self.user.stage, test_stage1)
+        self.assertEqual(self.user.stage, test_stage2)
+        self.assertNotEqual(self.user.stage, test_stage3)
 
 
     def test_stage(self):
