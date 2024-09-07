@@ -73,7 +73,8 @@ class User(AbstractUser):
     def set_student_stage(self):
         if self.is_student:
             for stage in Stage.objects.all():
-                if 
+                if stage.age()['start'] <= self.age <= stage.age()['end']:
+
 
 
 class Techer(models.Model):
