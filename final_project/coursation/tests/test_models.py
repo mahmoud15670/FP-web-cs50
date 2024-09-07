@@ -38,6 +38,7 @@ class UserTestCase(TestCase):
         test_stage1 = Stage.objects.create(age_start=8, age_end=10, name='foo')
         self.user.age = 9
         self.user.save()
+        self.user.set_student_stage()
         self.assertEqual(self.user.stage, test_stage1)
 
 
