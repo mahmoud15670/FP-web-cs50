@@ -21,7 +21,9 @@ class UserTestCase(TestCase):
 
 
     def test_user_create_teacher(self):
-        ...
+        self.user.create_tracher()
+        teacher = Techer.objects.get(pk=1)
+        self.assertEqual()
     def test_stage(self):
         stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
         self.assertIsNone(self.user.stage)
