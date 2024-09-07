@@ -70,6 +70,8 @@ class User(AbstractUser):
         student = Student.objects.create(user=self, id=self.id)
         student.save()
 
+    def set_student_stage(self)
+
 
 class Techer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
