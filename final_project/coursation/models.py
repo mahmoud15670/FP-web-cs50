@@ -73,7 +73,7 @@ class User(AbstractUser):
     def set_student_stage(self):
         if self.is_student:
             for stage in Stage.objects.all():
-                if stage.age()['start'] <= self.age <= stage.age()['end']:
+                if stage.age()['start'] <= self.age and self.age <= stage.age()['end']:
                     self.stage = stage
                     self.save()
 
