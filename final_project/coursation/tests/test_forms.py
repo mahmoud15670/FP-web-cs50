@@ -2,13 +2,16 @@ from django.test import TestCase
 
 from coursation.forms import *
 
-class UserFormTestCase(TestCase):
+class TeacherFormTestCase(TestCase):
     def test_confirm_password_field_label(self):
         form = User_Form()
         self.assertTrue(form.fields['confirm_password'].label is None or form.fields['confirm_password'].label == 'confirm password')
         self.assertEqual(form.fields['age'].help_text, 'age 7 to 80 years')
         self.assertEqual(form.fields['stage'].help_text, "choose the stage you want to learn thim")
         self.assertEqual(form.fields['section'].help_text, "choose your subject")
+
+
+class StudentFormTestCase(TestCase):
 
     def test_clean_age(self):
         stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
@@ -44,5 +47,3 @@ class UserFormTestCase(TestCase):
         self.assertFalse(form4.is_valid())
         self.assertIn('age',form4.errors)
         self.assertEqual(form4.errors['age'][0], "Age must be between 7 and 80 years.")
-
-class 
