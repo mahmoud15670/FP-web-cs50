@@ -138,3 +138,5 @@ class CourseTestCase(TestCase):
         lesson.exam.add(exam)
         lesson.save()
         self.assertEqual(course.exam_count(), 1)
+class UnitTestCase(TestCase):
+    ...
