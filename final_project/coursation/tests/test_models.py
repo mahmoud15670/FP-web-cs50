@@ -130,4 +130,6 @@ class CourseTestCase(TestCase):
             answer='sfsfs'
         )
         lesson = Lesson.objects.create(unit=unit)
-        lesson.
+        lesson.exam.add(exam)
+        lesson.save()
+        
