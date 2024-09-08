@@ -73,8 +73,8 @@ class User(AbstractUser):
 
     def set_student_stage(self):
         for stage in Stage.objects.all():
-            if stage.age() != 'age must in 7 to 80 years' or stage.age() != f"age must in range of {stage.age_start} and {stage.age_end}":
-                if stage.age()['start'] <= self.age and self.age <= stage.age()['end']:
+            if stage.age()[0]:
+                if stage.age()[1]['start'] <= self.age and self.age <= stage.age()[1]['end']:
                     self.stage = stage
                     self.save()
                 
