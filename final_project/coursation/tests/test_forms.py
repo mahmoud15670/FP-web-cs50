@@ -18,9 +18,10 @@ class UserFormTestCase(TestCase):
             'age': 7,
             'stage':Stage.objects.create(age_start=7, age_end=10, name="foo"),
             'exam':'dfdfd',
-            'section':
+            'section':Section.objects.create(name='foo'),
+            'rating':'2'
         }
-        form1 = User_Form(data={})
+        form1 = User_Form(data=data)
         self.assertTrue(form1.is_valid())
         # form2 = User_Form({'age':80})
         # self.assertTrue(form2.is_valid())
