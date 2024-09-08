@@ -41,5 +41,10 @@ class UserLoginViewTestCase(TestCase):
 
 class LogoutViewTestCase(TestCase):
     def setUp(self) -> None:
-        user
+        user = User.objects.create(username='foo')
+        user.set_password('123')
+        user.save()
+        self.client.login(username='foo', password='123')
         return super().setUp()
+    def test_logout_url(self):
+        response = self.client.get('/logout')
