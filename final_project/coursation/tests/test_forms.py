@@ -11,5 +11,11 @@ class UserFormTestCase(TestCase):
         self.assertEqual(form.fields['section'].help_text, "choose your subject")
 
     def test_clean_age(self):
-        form = User_Form(age=5)
+        form = User_Form({'age':7})
+        self.assertTrue(form.is_valid())
+        form = User_Form({'age':80})
+        self.assertTrue(form.is_valid())
+        form = User_Form({'age':5})
+        self.assertFalse(form.is_valid())
+        form = User_Form({'age':81})
         self.assertFalse(form.is_valid())
