@@ -14,15 +14,9 @@ class UserLoginViewTestCase(TestCase):
         section = Section.objects.create(name="foo")
         # teacher = Techer.objects.create(first_name='foo', last_name='bar', demo='fg', cv='df')
 
-        user = User.objects.create(username= "foo",
-            phone= "1234567890",
-            age= 7,
-            stage= stage,
-            exams= "dfdfd",
-            section= section,
-            rating= "2")
+        user = User.objects.create(username= "foo")
         user.set_password('123')
-        user.create_teacher()
+        # user.create_teacher()
         user.save()
         response = self.client.post('/login', {'username':'foo', 'password':'123'})
         self.assertEqual(response.status_code, 302)
