@@ -12,7 +12,6 @@ class UserLoginViewTestCase(TestCase):
     def test_login_user(self):
         stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
         section = Section.objects.create(name="foo")
-        teacher = Techer.objects.create()
 
         user = User.objects.create(username= "foo",
             phone= "1234567890",
@@ -22,9 +21,10 @@ class UserLoginViewTestCase(TestCase):
             section= section,
             rating= "2")
         user.set_password('123')
+        user.create_teacher()
         user.save()
         response = self.client.post('/login', {'username':'foo', 'password':'123'})
         print(response.context)
         self.assertEqual(response.status_code, 302)
-        # self.assertIn('index.html', [template.name for template in response.templates])
+        self.assertIn('index.html', [template.name for template in response.templates])
         
