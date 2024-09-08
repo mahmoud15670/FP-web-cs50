@@ -140,10 +140,10 @@ class CourseTestCase(TestCase):
         self.assertEqual(course.exam_count(), 1)
 class UnitTestCase(TestCase):
     def setUp(self) -> None:
-        Unit.objects.create()
+        Course.objects.create()
+        Unit.objects.create(course=Course.objects.get(pk=1))
         Lesson.objects.create(unit=Unit.objects.get(pk=1))
         return super().setUp()
 
     def test_get_video_count(self):
         lesson = Lesson.objects.get(pk=1)
-        
