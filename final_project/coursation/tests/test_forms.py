@@ -29,8 +29,9 @@ class UserFormTestCase(TestCase):
         # Validate form with valid data
         form1 = User_Form(data=data)
         self.assertTrue(form1.is_valid())
-        # form2 = User_Form({'age':80})
-        # self.assertTrue(form2.is_valid())
+        data['age']=80
+        form2 = User_Form(data=data)
+        self.assertTrue(form2.is_valid())
         # form3 = User_Form({'age':5})
         # self.assertRaisesMessage(form3.is_valid(),"age must in 7 to 80 years")
         # form4 = User_Form({'age':81})
