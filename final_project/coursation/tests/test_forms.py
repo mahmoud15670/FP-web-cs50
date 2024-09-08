@@ -38,9 +38,11 @@ class UserFormTestCase(TestCase):
         self.assertFalse(form3.is_valid())
         self.assertIn('age',form3.errors)
         self.assertEqual(form3.errors['age'][0], "Age must be between 7 and 80 years.")
-        
+
         data['age'] = 81
         form4 = User_Form(data=data)
         self.assertFalse(form4.is_valid())
         self.assertIn('age',form4.errors)
         self.assertEqual(form4.errors['age'][0], "Age must be between 7 and 80 years.")
+
+class 
