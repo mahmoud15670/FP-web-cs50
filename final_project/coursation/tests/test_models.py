@@ -89,5 +89,6 @@ class StageTestCase(TestCase):
     def test_stage_creat(self):
         age_start = 7
         age_end = 10
-        stage = Stage.objects.create(age_start=7, age_end=10, name='foo')
-        self.assertEqual(stage.age()[''])
+        stage = Stage.objects.create(age_start, age_end, name='foo')
+        self.assertEqual(stage.age()['start'], age_start)
+        self.assertEqual(stage.age()['end'], age_end)
