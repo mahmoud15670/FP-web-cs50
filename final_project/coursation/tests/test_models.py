@@ -98,4 +98,4 @@ class StageTestCase(TestCase):
         )
 
 class CourseTestCase(TestCase):
-    ...
+    
