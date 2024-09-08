@@ -121,4 +121,4 @@ class CourseTestCase(TestCase):
     def test_exam_count(self):
         course = Course.objects.get(pk=1)
         unit = Unit.objects.create(name='foo', course=course)
-        lesson = Lesson.objects.create()
+        lesson = Lesson.objects.create(unit=unit, exam=Exam.objects.create())
