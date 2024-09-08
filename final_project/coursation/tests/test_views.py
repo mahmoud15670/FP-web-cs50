@@ -6,6 +6,4 @@ class UserLoginViewTestCase(TestCase):
     def test_login_url(self):
         response = self.client.get('/login')
         self.assertEqual(response.status_code, 200)
-        self.assertIn('')
-        for template in response.templates:
-            print(template.name)
+        self.assertIn('signin.html', [template.name for template in response.templates])
