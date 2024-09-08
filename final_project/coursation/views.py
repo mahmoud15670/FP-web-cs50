@@ -175,6 +175,7 @@ class Course_list_view(generic.ListView):
     model = Course
     template_name = "index.html"
     context_object_name = "courses"
+    paginate_by = 5
 
 
 class Course_detail_view(generic.DetailView):
