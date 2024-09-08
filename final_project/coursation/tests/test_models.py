@@ -119,4 +119,6 @@ class CourseTestCase(TestCase):
         self.assertTrue(course.is_started())
 
     def test_exam_count(self):
-        unit = Unit.objects.create(name='foo', co)
+        course = Course.objects.get(pk=1)
+        unit = Unit.objects.create(name='foo', course=course)
+        lesson = Lesson.objects.create()
