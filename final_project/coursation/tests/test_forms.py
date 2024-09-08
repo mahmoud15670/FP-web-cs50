@@ -70,3 +70,4 @@ class TeacherDeatilFormTestCase(TestCase):
         self.assertTrue(form.is_valid())
         form2 = Teacher_form(data=data, files={'cv':invalid_cv_file,'demo': demo_file})
         self.assertFalse(form2.is_valid())
+        self.assertIn('cv', form2.errors)
