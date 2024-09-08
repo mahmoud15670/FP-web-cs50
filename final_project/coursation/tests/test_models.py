@@ -118,4 +118,5 @@ class CourseTestCase(TestCase):
         course.save()
         self.assertTrue(course.is_started())
 
-    
+    def test_exam_count(self):
+        
