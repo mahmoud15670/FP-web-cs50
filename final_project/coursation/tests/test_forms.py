@@ -16,7 +16,9 @@ class UserFormTestCase(TestCase):
             'password':123, 
             'phone':'123', 
             'age': 7,
-            'stage':Stage.objects.create(name='foo')
+            'stage':Stage.objects.create(age_start=7, age_end=10, name="foo"),
+            'exam':'dfdfd',
+            'section':
         }
         form1 = User_Form(data={})
         self.assertTrue(form1.is_valid())
