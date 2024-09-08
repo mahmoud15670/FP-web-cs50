@@ -26,10 +26,14 @@ class User_Form(forms.ModelForm):
             "age": forms.NumberInput(attrs={"max": 80, "min": 7}),
         }
 
-    def save(self, commit=True):
+    def clean_age(self):
         age = self.changed_data["age"]
+        if age not in range(7, 81):
+            raise ValidationError()
+        
+
+    def save(self, commit=True):
         user = super().save(commit=False)
-        user.stage.age_isvalid()
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
