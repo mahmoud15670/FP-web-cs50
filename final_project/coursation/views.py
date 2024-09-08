@@ -82,14 +82,7 @@ def teacher_register(request):
     if request.method != "POST":
         return render(request, "teacher_register.html", {"form": User_Form})
     user_form = User_Form(request.POST)
-    password = request.POST["password"]
-    confirm = request.POST["confirm_password"]
-    if password != confirm:
-        return render(
-            request,
-            "teacher_register.html",
-            {"form": user_form, "warning": "password didnot like the confirm"},
-        )
+    
     if user_form.is_valid():
         user = user_form.save()
         user.create_tracher()
@@ -102,14 +95,7 @@ def student_register(request):
     if request.method != "POST":
         return render(request, "student_register.html", {"form": User_Student_Form})
     user_form = User_Student_Form(request.POST)
-    password = request.POST["password"]
-    confirm = request.POST["confirm_password"]
-    if password != confirm:
-        return render(
-            request,
-            "student_register.html",
-            {"form": user_form, "warning": "password didn't like the confirm"},
-        )
+    
     if user_form.is_valid():
         user = user_form.save()
         user.create_student()
