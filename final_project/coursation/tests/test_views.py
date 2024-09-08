@@ -83,6 +83,8 @@ class IndexViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_teacher)
         self.assertIn('teacher', response.context)
+        self.assertNotIn('courses', response.context)
+        self.assertTemplateUsed(response, 'teacher.html')
     def test_student_index(self):
         self.client.login(username='bar', password='123')
         response = self.client.get('/')
@@ -90,4 +92,6 @@ class IndexViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_student)
         self.assertIn('student', response.context)
+        self.assertIn('courses', response.context)
+        self.assertTemplateUsed(response, 'student.html')
 
