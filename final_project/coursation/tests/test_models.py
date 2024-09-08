@@ -1,3 +1,4 @@
+import datetime
 from django.test import TestCase
 from coursation.models import *
 
@@ -97,4 +98,4 @@ class StageTestCase(TestCase):
         )
 
 class CourseTestCase(TestCase):
-    
+    ...
