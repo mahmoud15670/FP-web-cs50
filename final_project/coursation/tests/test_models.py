@@ -153,6 +153,8 @@ class CourseTestCase(TestCase):
         lesson2.exam.add(exam1)
         lesson2.save()
         self.assertEqual(course.exam_count(), 3)
+
+
 class UnitTestCase(TestCase):
     def setUp(self) -> None:
         Course.objects.create(
@@ -172,10 +174,21 @@ class UnitTestCase(TestCase):
     def test_get_video_count(self):
         lesson1 = Lesson.objects.get(pk=1)
         lesson2 = Lesson.objects.get(pk=2)
-        unit=Unit.objects.get(pk=1)
-        lesson1.video='dfdfdf'
+        unit = Unit.objects.get(pk=1)
+        lesson1.video = "dfdfdf"
         lesson1.save()
         self.assertEqual(unit.get_video_count(), 1)
-        lesson2.video='dfdfdf'
+        lesson2.video = "dfdfdf"
         lesson2.save()
         self.assertEqual(unit.get_video_count(), 2)
+
+    def test_get_read_count(self):
+        lesson1 = Lesson.objects.get(pk=1)
+        lesson2 = Lesson.objects.get(pk=2)
+        unit = Unit.objects.get(pk=1)
+        lesson1.read = "dfdfdf"
+        lesson1.save()
+        self.assertEqual(unit.get_read_count(), 1)
+        lesson2.read = "dfdfdf"
+        lesson2.save()
+        self.assertEqual(unit.get_read_count(), 2)
