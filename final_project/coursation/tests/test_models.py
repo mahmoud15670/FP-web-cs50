@@ -71,5 +71,7 @@ class UserTestCase(TestCase):
         self.assertEqual(self.user.section.name, "programming")
 
 
-class StageTestCase:
-    
+class StageTestCase(TestCase):
+    def setUp(self) -> None:
+        stage = Stage.objects.create(s)
+        return super().setUp()
