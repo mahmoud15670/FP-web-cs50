@@ -60,9 +60,11 @@ class TeacherDeatilFormTestCase(TestCase):
 
     def test_clean_cv(self):
         cv_file = SimpleUploadedFile('foo.pdf', content_type='application/pdf')
+        demo_file = SimpleUploadedFile('foo.mp4', content_type='application/pdf')
         data = {
             'first_name':'foo',
             'last_name':'bar',
-            
+            'cv':cv_file,
+            'demo': demo_file
         }
         form = Teacher_form(data=data)
