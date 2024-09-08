@@ -97,14 +97,17 @@ class StageTestCase(TestCase):
             f"age must in range of {stage5.age_start} and {stage5.age_end}",
         )
 
+
 class CourseTestCase(TestCase):
     def setUp(self) -> None:
         Course.objects.create(
-            name='foo',
-            start_date=datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=2)),
+            name="foo",
+            start_date=datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=2)
+            ),
             stage=Stage.objects.create(age_start=7, age_end=10, name="foo"),
-            duration='foo',
-            about='fgsdfjgd'
+            duration="foo",
+            about="fgsdfjgd",
         )
         return super().setUp()
 
@@ -114,20 +117,22 @@ class CourseTestCase(TestCase):
 
     def test_course_is_not_started(self):
         course = Course.objects.get(pk=1)
-        course.start_date = datetime.datetime.date(datetime.datetime.now() - datetime.timedelta(days=2))
+        course.start_date = datetime.datetime.date(
+            datetime.datetime.now() - datetime.timedelta(days=2)
+        )
         course.save()
         self.assertTrue(course.is_started())
 
     def test_exam_count(self):
         course = Course.objects.get(pk=1)
-        unit = Unit.objects.create(name='foo', course=course)
-        exam=Exam.objects.create(
+        unit = Unit.objects.create(name="foo", course=course)
+        exam = Exam.objects.create(
             date=datetime.datetime.date(datetime.datetime.now()),
             total=1,
             degree=100,
             duration=datetime.datetime.now(),
-            question='jkh?',
-            answer='sfsfs'
+            question="jkh?",
+            answer="sfsfs",
         )
         lesson = Lesson.objects.create(unit=unit)
         lesson.exam.add(exam)
