@@ -68,3 +68,8 @@ class IndexViewTestCase(TestCase):
         student.create_student()
         student.save()
         return super().setUp()
+    def test_none_user_index(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('', response.context)
+
