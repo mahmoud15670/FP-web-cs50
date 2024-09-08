@@ -13,4 +13,4 @@ jobs:
         pip install django
     - name: Run Tests
       run: |
-        python final_project/coursation/manage.py test
+        cd final_project && python manage.py test
