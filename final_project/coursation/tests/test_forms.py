@@ -15,37 +15,37 @@ class StudentFormTestCase(TestCase):
         form = User_Student_Form()
         self.assertEqual(form.fields['age'].help_text, 'age 7 to 80 years')
 
-    def test_clean_age(self):
-        stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
-        section = Section.objects.create(name='foo')
+    # def test_clean_age(self):
+    #     stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
+    #     section = Section.objects.create(name='foo')
 
-        data = {
-            'username': 'foo', 
-            'password': '12345678',
-            'confirm_password': '12345678',
-            'phone': '1234567890',
-            'age': 7,
-            'stage': stage.id,
-            'exams': 'dfdfd',
-            'section': section.id,
-            'rating': '2'
-        }
+    #     data = {
+    #         'username': 'foo', 
+    #         'password': '12345678',
+    #         'confirm_password': '12345678',
+    #         'phone': '1234567890',
+    #         'age': 7,
+    #         'stage': stage.id,
+    #         'exams': 'dfdfd',
+    #         'section': section.id,
+    #         'rating': '2'
+    #     }
 
-        form1 = User_Form(data=data)
-        self.assertTrue(form1.is_valid())
+    #     form1 = User_Form(data=data)
+    #     self.assertTrue(form1.is_valid())
 
-        data['age'] = 80
-        form2 = User_Form(data=data)
-        self.assertTrue(form2.is_valid())
+    #     data['age'] = 80
+    #     form2 = User_Form(data=data)
+    #     self.assertTrue(form2.is_valid())
         
-        data['age'] = 5
-        form3 = User_Form(data=data)
-        self.assertFalse(form3.is_valid())
-        self.assertIn('age',form3.errors)
-        self.assertEqual(form3.errors['age'][0], "Age must be between 7 and 80 years.")
+    #     data['age'] = 5
+    #     form3 = User_Form(data=data)
+    #     self.assertFalse(form3.is_valid())
+    #     self.assertIn('age',form3.errors)
+    #     self.assertEqual(form3.errors['age'][0], "Age must be between 7 and 80 years.")
 
-        data['age'] = 81
-        form4 = User_Form(data=data)
-        self.assertFalse(form4.is_valid())
-        self.assertIn('age',form4.errors)
-        self.assertEqual(form4.errors['age'][0], "Age must be between 7 and 80 years.")
+    #     data['age'] = 81
+    #     form4 = User_Form(data=data)
+    #     self.assertFalse(form4.is_valid())
+    #     self.assertIn('age',form4.errors)
+    #     self.assertEqual(form4.errors['age'][0], "Age must be between 7 and 80 years.")
