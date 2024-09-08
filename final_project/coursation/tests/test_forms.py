@@ -35,5 +35,6 @@ class UserFormTestCase(TestCase):
         data['age'] = 5
         form3 = User_Form()
         self.assertFalse(form3.is_valid())
+        self.assertEqual()
         # form4 = User_Form({'age':81})
         # self.assertRaisesMessage(form4.is_valid(),"age must in 7 to 80 years")
