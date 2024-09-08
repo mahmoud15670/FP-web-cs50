@@ -94,4 +94,4 @@ class StageTestCase(TestCase):
     
     def test_stage_invaild_create(self):
         stage1 = Stage.objects.create(age_start=2, age_end=5, name='foo')
-        self.assertEqual(stage1.age(), "age must in 7 to 80 years")
+        self.assertEqual(stage1.age()[1], "age must in 7 to 80 years")
