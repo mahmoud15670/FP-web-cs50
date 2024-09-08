@@ -71,4 +71,5 @@ class UserTestCase(TestCase):
         self.assertEqual(self.user.section.name, "programming")
 
 
-class StageTestCase: ...
+class StageTestCase:
+    
