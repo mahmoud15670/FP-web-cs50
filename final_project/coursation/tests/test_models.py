@@ -111,3 +111,9 @@ class CourseTestCase(TestCase):
     def test_course_is_started(self):
         course = Course.objects.get(pk=1)
         self.assertFalse(course.is_started())
+
+    def test_course_is_not_started(self):
+        course = Course.objects.get(pk=1)
+        course.start_date = datetime.datetime.date(datetime.datetime.now() - datetime.timedelta(days=2))
+        course.save()
+        self.assertTrue(course.is_started())
