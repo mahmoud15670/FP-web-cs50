@@ -26,12 +26,6 @@ class User_Form(forms.ModelForm):
             "age": forms.NumberInput(attrs={"max": 80, "min": 7}),
         }
 
-    def clean_age(self):
-        age = self.cleaned_data.get("age")
-        if age not in range(7, 81):
-            raise ValidationError("Age must be between 7 and 80 years.")
-        return age
-
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
@@ -62,6 +56,22 @@ class User_Student_Form(forms.ModelForm):
             "password": forms.PasswordInput(attrs={"autocomplete": "new-password"}),
             "age": forms.NumberInput(attrs={"max": 80, "min": 7}),
         }
+
+    def clean_age(self):
+        age = self.cleaned_data.get("age")
+        if age not in range(7, 81):
+            raise ValidationError("Age must be between 7 and 80 years.")
+        return age
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password != confirm_password:
+            self.add_error("confirm_password", "Passwords do not match.")
+
+        return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)
