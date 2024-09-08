@@ -64,8 +64,6 @@ class TeacherDeatilFormTestCase(TestCase):
         data = {
             'first_name':'foo',
             'last_name':'bar',
-            'cv':cv_file,
-            'demo': demo_file
         }
-        form = Teacher_form(data=data)
+        form = Teacher_form(data=data, files={})
         self.assertTrue(form.is_valid())
