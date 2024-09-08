@@ -123,6 +123,7 @@ class Stage(models.Model):
         return [False,"age must in 7 to 80 years"]
 
     def age(self):
+        print(self.age_isvalid()[0])
         if self.age_isvalid()[0]:
             return [True, {"start": self.age_start, "end": self.age_end}]
         return self.age_isvalid()[1]
