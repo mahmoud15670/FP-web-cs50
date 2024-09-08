@@ -12,7 +12,7 @@ class UserLoginViewTestCase(TestCase):
     def test_login_user(self):
         stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
         section = Section.objects.create(name="foo")
-        
+        teacher = Techer.objects.create()
 
         user = User.objects.create(username= "foo",
             phone= "1234567890",
