@@ -108,12 +108,11 @@ def student_register(request):
         return render(
             request,
             "student_register.html",
-            {"form": user_form, "warning": "password didnot like the confirm"},
+            {"form": user_form, "warning": "password didn't like the confirm"},
         )
     if user_form.is_valid():
         user = user_form.save()
-        user.
-        
+        user.create_student()
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "student_register.html", {"form": user_form})
