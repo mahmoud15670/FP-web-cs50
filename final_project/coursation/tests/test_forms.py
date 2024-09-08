@@ -11,16 +11,24 @@ class UserFormTestCase(TestCase):
         self.assertEqual(form.fields['section'].help_text, "choose your subject")
 
     def test_clean_age(self):
-        data={
-            'uaername':'foo', 
-            'password':'123', 
-            'phone':'123', 
+        # Create instances for Foreign Key fields
+        stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
+        section = Section.objects.create(name='foo')
+
+        # Prepare valid data for form
+        data = {
+            'username': 'foo', 
+            'password': '12345678',
+            'confirm_password': '12345678',
+            'phone': '1234567890',
             'age': 7,
-            'stage':Stage.objects.create(age_start=7, age_end=10, name="foo").id,
-            'exam':'dfdfd',
-            'section':Section.objects.create(name='foo').id,
-            'rating':'2'
+            'stage': stage.id,
+            'exams': 'dfdfd',
+            'section': section.id,
+            'rating': '2'
         }
+
+        # Validate form with valid data
         form1 = User_Form(data=data)
         self.assertTrue(form1.is_valid())
         # form2 = User_Form({'age':80})
