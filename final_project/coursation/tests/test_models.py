@@ -99,5 +99,8 @@ class StageTestCase(TestCase):
 
 class CourseTestCase(TestCase):
     def setUp(self) -> None:
-        course = Course.objects.create()
+        course = Course.objects.create(
+            name='foo'
+            
+        )
         return super().setUp()
