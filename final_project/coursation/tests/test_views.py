@@ -48,3 +48,4 @@ class LogoutViewTestCase(TestCase):
         return super().setUp()
     def test_logout_url(self):
         response = self.client.get('/logout')
+        self.assertEqual(response.status_code, 200)
