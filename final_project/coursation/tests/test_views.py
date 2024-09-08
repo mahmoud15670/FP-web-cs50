@@ -52,3 +52,4 @@ class LogoutViewTestCase(TestCase):
         self.assertEqual(response.wsgi_request.user.username, 'foo')
         response = self.client.get('/logout', follow=True)
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, )
