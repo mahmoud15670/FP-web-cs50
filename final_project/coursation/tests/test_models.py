@@ -21,7 +21,7 @@ class UserTestCase(TestCase):
         self.assertTrue(self.user.is_teacher)
 
     def test_user_create_teacher(self):
-        self.user.create_tracher()
+        self.user.create_teacher()
         teacher = Techer.objects.get(pk=1)
         self.assertEqual(teacher.user.id, 1)
         self.assertTrue(teacher.user.is_teacher)

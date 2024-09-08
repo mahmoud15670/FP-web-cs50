@@ -58,7 +58,7 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
 
-    def create_tracher(self):
+    def create_teacher(self):
         self.is_teacher = True
         self.save()
         teacher = Techer.objects.create(user=self, id=self.id)
