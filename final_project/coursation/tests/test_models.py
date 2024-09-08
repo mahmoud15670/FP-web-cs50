@@ -134,10 +134,14 @@ class CourseTestCase(TestCase):
             question="jkh?",
             answer="sfsfs",
         )
-        lesson = Lesson.objects.create(unit=unit)
-        lesson.exam.add(exam)
-        lesson.save()
+        lesson1 = Lesson.objects.create(unit=unit)
+        lesson2 = Lesson.objects.create(unit=unit)
+        lesson1.exam.add(exam)
+        lesson1.save()
         self.assertEqual(course.exam_count(), 1)
+        lesson2.exam.add(exam)
+        lesson2.save()
+        self.assertEqual(course.exam_count(), 2)
 class UnitTestCase(TestCase):
     def setUp(self) -> None:
         Course.objects.create(
