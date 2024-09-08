@@ -23,7 +23,7 @@ class User_Form(forms.ModelForm):
         ]
         widgets = {
             "password": forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-            "age":forms.NumberInput( attrs={"max": 80, "min": 7})
+            "age": forms.NumberInput(attrs={"max": 80, "min": 7}),
         }
 
     def clean(self):
@@ -49,16 +49,17 @@ class User_Student_Form(forms.ModelForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"})
     )
     age = forms.IntegerField(
-        widget = forms.NumberInput( attrs={"max": 80, "min": 7}),
-        help_text='age 7 to 80 years'
+        widget=forms.NumberInput(attrs={"max": 80, "min": 7}),
+        help_text="age 7 to 80 years",
     )
+
     class Meta:
         model = User
         fields = ["username", "password", "confirm_password", "email", "phone", "age"]
         widgets = {
             "password": forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         }
-        
+
     def clean_age(self):
         age = self.cleaned_data.get("age")
         if age not in range(7, 81):

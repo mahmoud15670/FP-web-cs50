@@ -1,6 +1,6 @@
-from django.test import TestCase
+from coursation.forms import *
 from django.core.files.uploadedfile import SimpleUploadedFile
-
+from django.test import TestCase
 from coursation.forms import *
 
 
