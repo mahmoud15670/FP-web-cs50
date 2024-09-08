@@ -73,4 +73,7 @@ class IndexViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('courses', response.context)
         self.assertIn('stage_list', response.context)
+        self.assertIn('sections', response.context)
+        self.assertIn('skills', response.context)
+        self.assertNotIn()
 
