@@ -16,11 +16,9 @@ class UserLoginViewTestCase(TestCase):
 
         user = User.objects.create(username= "foo")
         user.set_password('123')
-        # user.create_teacher()
         user.save()
         response = self.client.post('/login', {'username':'foo', 'password':'123'}, follow=True)
         self.assertEqual(response.status_code, 200)
-        # self.assertRedirects(response, '/')
-        print(response.redirect_chain)
+        self.assertRedirects(response, '/')
         self.assertIn('index.html', [template.name for template in response.templates])
         
