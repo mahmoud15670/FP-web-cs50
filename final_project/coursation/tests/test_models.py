@@ -141,8 +141,9 @@ class CourseTestCase(TestCase):
 class UnitTestCase(TestCase):
     def setUp(self) -> None:
         Unit.objects.create()
-        Lesson.objects.create()
+        Lesson.objects.create(unit=Unit.objects.get(pk=1))
         return super().setUp()
 
     def test_get_video_count(self):
-        ...
+        lesson = Lesson.objects.get(pk=1)
+        
