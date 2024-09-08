@@ -143,3 +143,6 @@ class UnitTestCase(TestCase):
         Unit.objects.create()
         Lesson.objects.create()
         return super().setUp()
+
+    def test_get_video_count(self):
+        ...
