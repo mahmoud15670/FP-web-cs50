@@ -139,4 +139,7 @@ class CourseTestCase(TestCase):
         lesson.save()
         self.assertEqual(course.exam_count(), 1)
 class UnitTestCase(TestCase):
-    ...
+    def setUp(self) -> None:
+        Unit.objects.create()
+        Lesson.objects.create()
+        return super().setUp()
