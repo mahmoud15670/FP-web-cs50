@@ -117,3 +117,5 @@ class CourseTestCase(TestCase):
         course.start_date = datetime.datetime.date(datetime.datetime.now() - datetime.timedelta(days=2))
         course.save()
         self.assertTrue(course.is_started())
+
+    
