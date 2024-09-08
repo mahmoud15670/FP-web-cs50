@@ -124,7 +124,7 @@ class Stage(models.Model):
 
     def age(self):
         if self.age_isvalid()[0]:
-            return {"start": self.age_start, "end": self.age_end}
+            return [True, {"start": self.age_start, "end": self.age_end}]
         return self.age_isvalid()[1]
 
     def __str__(self) -> str:
