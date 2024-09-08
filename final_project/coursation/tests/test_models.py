@@ -121,15 +121,8 @@ class CourseTestCase(TestCase):
     def test_exam_count(self):
         course = Course.objects.get(pk=1)
         unit = Unit.objects.create(name='foo', course=course)
-        exam=Exam.objects.create(
-            date=datetime.datetime.date(datetime.datetime.now()),
-            total=1,
-            degree=100,
-            duration=datetime.datetime.now(),
-            question='jkh?',
-            answer='sfsfs'
-        )
+        exam=Exam.objects.create()
         lesson = Lesson.objects.create(unit=unit)
         lesson.exam.add(exam)
         lesson.save()
-        
+        self.assertEqual(course.exam_count(), 1)
