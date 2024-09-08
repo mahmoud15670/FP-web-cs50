@@ -81,6 +81,6 @@ class IndexViewTestCase(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertEqual(response.wsgi_request.user.)
+        self.assertTrue(response.wsgi_request.user.is_teacher)
         self.assertIn('teacher', response.context)
 
