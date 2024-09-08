@@ -40,7 +40,7 @@ def age_choises():
 
 class User(AbstractUser):
     phone = models.CharField(verbose_name="phone", max_length=11)
-    age = models.PositiveSmallIntegerField(choices=age_choises(),null=True)
+    age = models.PositiveSmallIntegerField(choices=age_choises(),null=True, help_text='age 7 to 80 years')
     stage = models.ForeignKey(
         to="Stage",
         on_delete=models.PROTECT,
