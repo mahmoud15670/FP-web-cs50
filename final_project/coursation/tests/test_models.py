@@ -72,6 +72,6 @@ class UserTestCase(TestCase):
 
 
 class StageTestCase(TestCase):
-    def setUp(self) -> None:
-        stage = Stage.objects.create(s)
-        return super().setUp()
+    def test_age_valid(self):
+        stage = Stage.objects.create(age_start=7, age_end=10, name='foo')
+        self.assertTrue(stage.age_isvalid())
