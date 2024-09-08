@@ -72,4 +72,5 @@ class IndexViewTestCase(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn('courses', response.context)
+        self.assertIn('stage_list', response.context)
 
