@@ -1,3 +1,5 @@
+from contextlib import AbstractContextManager
+from typing import Any
 from django.test import TestCase
 
 from coursation.views import *
@@ -54,3 +56,15 @@ class LogoutViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
         self.assertFalse(response.wsgi_request.user.is_authenticated)
+
+class IndexViewTestCase(TestCase):
+    def setUp(self) -> None:
+        teacher = User.objects.create(username='foo')
+        teacher.set_password('123')
+        teacher.create_teacher()
+        teacher.save()
+        student = User.objects.create(username='bar')
+        student.set_password('123')
+        student.create_student()
+        student.save()
+        return super().setUp()
