@@ -60,6 +60,7 @@ class TeacherDeatilFormTestCase(TestCase):
 
     def test_clean_cv(self):
         cv_file = SimpleUploadedFile('foo.pdf', b'df','application/pdf')
+        invalid_cv_file = SimpleUploadedFile('foo.txt', b'df','text/plain')
         demo_file = SimpleUploadedFile('foo.mp4', b'gf', 'video/mp4')
         data = {
             'first_name':'foo',
@@ -67,3 +68,5 @@ class TeacherDeatilFormTestCase(TestCase):
         }
         form = Teacher_form(data=data, files={'cv':cv_file,'demo': demo_file})
         self.assertTrue(form.is_valid())
+        form2 = Teacher_form(data=data, files={'cv':invalid_cv_file,'demo': demo_file})
+        self.assertFalse(form2.is_valid())
