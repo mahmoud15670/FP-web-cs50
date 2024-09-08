@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.db.
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from coursation.forms import *
 
@@ -59,4 +59,4 @@ class TeacherDeatilFormTestCase(TestCase):
         self.assertEqual(form.fields['demo'].help_text, 'upload a short video in mp4 format to intrduse your self and of your shar7')
 
     def test_clean_cv(self):
-        ...
+        cv_file = SimpleUploadedFile('foo.pdf', content_type='')
