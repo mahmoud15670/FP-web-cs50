@@ -12,10 +12,10 @@ class UserFormTestCase(TestCase):
 
     def test_clean_age(self):
         form1 = User_Form({'age':7})
-        self.assertTrue(form1.clean_age())
+        self.assertTrue(form1.is_valid())
         form2 = User_Form({'age':80})
-        self.assertTrue(form2.clean_age())
+        self.assertTrue(form2.is_valid())
         form3 = User_Form({'age':5})
-        self.assertRaisesMessage(form3.clean_age(),"age must in 7 to 80 years")
+        self.assertRaisesMessage(form3.is_valid(),"age must in 7 to 80 years")
         form4 = User_Form({'age':81})
-        self.assertRaisesMessage(form4.clean_age(),"age must in 7 to 80 years")
+        self.assertRaisesMessage(form4.is_valid(),"age must in 7 to 80 years")
