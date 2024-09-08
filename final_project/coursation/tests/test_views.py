@@ -21,5 +21,6 @@ class UserLoginViewTestCase(TestCase):
         response = self.client.post('/login', {'username':'foo', 'password':'123'})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/')
+        print(response.wsgi_request.user.is_teacher)
         # self.assertIn('index.html', [template.name for template in response.templates])
         
