@@ -101,7 +101,8 @@ class CourseTestCase(TestCase):
     def setUp(self) -> None:
         course = Course.objects.create(
             name='foo',
-            start_date=datetime.timedelta
+            start_date=datetime.timedelta(days=2)
+
         )
         
         return super().setUp()
