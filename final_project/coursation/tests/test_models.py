@@ -89,4 +89,5 @@ class StageTestCase(TestCase):
     def test_stage_creat(self):
         age_start = 7
         age_end = 10
-        self.
+        stage = Stage.objects.create(age_start=7, age_end=10, name='foo')
+        stage.
