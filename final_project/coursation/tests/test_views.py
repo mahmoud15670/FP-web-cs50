@@ -9,5 +9,5 @@ class UserLoginViewTestCase(TestCase):
         self.assertIn('signin.html', [template.name for template in response.templates])
     def test_login_user(self):
         User.objects.create(username='foo', password='123')
-        response = self.client.login(username='foo', password='123')
-        self.assertEqual(response.s)
+        user = self.client.login(username='foo', password='123')
+        self.assertTrue(user)
