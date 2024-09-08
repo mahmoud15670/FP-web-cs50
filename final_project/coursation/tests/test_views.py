@@ -41,6 +41,7 @@ class UserLoginViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "signin.html")
 
+
 class LogoutViewTestCase(TestCase):
     def setUp(self) -> None:
         user = User.objects.create(username='foo')
@@ -48,6 +49,7 @@ class LogoutViewTestCase(TestCase):
         user.save()
         self.client.login(username='foo', password='123')
         return super().setUp()
+
     def test_logout_url(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -56,6 +58,7 @@ class LogoutViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
         self.assertFalse(response.wsgi_request.user.is_authenticated)
+
 
 class IndexViewTestCase(TestCase):
     def setUp(self) -> None:
@@ -69,6 +72,7 @@ class IndexViewTestCase(TestCase):
         student.save()
         admin = User.objects.create_superuser(username='baz', password='123')
         return super().setUp()
+
     def test_none_user_index(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -77,6 +81,7 @@ class IndexViewTestCase(TestCase):
         self.assertIn('sections', response.context)
         self.assertIn('skills', response.context)
         self.assertTemplateUsed(response, 'index.html')
+
     def test_teacher_index(self):
         self.client.login(username='foo', password='123')
         response = self.client.get('/')
@@ -86,6 +91,7 @@ class IndexViewTestCase(TestCase):
         self.assertIn('teacher', response.context)
         self.assertNotIn('courses', response.context)
         self.assertTemplateUsed(response, 'teacher.html')
+
     def test_student_index(self):
         self.client.login(username='bar', password='123')
         response = self.client.get('/')
@@ -95,10 +101,12 @@ class IndexViewTestCase(TestCase):
         self.assertIn('student', response.context)
         self.assertIn('courses', response.context)
         self.assertTemplateUsed(response, 'student.html')
+
     def test_admin_index(self):
         self.client.login(username='baz', password='123')
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertNotIn('courses', response.context)
         self.assertTemplateUsed(response, 'index.html')
-
+class StageListViewTestCase(TestCase):
+    
