@@ -30,7 +30,7 @@ class User_Form(forms.ModelForm):
         age = self.data["age"]
         print(age)
         if age not in range(7, 81):
-            raise Exception("age must in 7 to 80 years")
+            return ValidationError(_("Invalid value"), code="invalid")
         return age
         
 
