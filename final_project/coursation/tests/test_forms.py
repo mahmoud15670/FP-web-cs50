@@ -71,3 +71,4 @@ class TeacherDeatilFormTestCase(TestCase):
         form2 = Teacher_form(data=data, files={'cv':invalid_cv_file,'demo': demo_file})
         self.assertFalse(form2.is_valid())
         self.assertIn('cv', form2.errors)
+        self.assertEqual(form2.errors['cv'][0], "please upload a pdf file")
