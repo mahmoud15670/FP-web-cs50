@@ -14,7 +14,6 @@ class UserLoginViewTestCase(TestCase):
         section = Section.objects.create(name="foo")
 
         user = User.objects.create(username= "foo",
-            password= "123",
             phone= "1234567890",
             age= 7,
             stage= stage,
