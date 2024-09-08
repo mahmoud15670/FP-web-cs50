@@ -72,3 +72,17 @@ class TeacherDeatilFormTestCase(TestCase):
         self.assertFalse(form2.is_valid())
         self.assertIn('cv', form2.errors)
         self.assertEqual(form2.errors['cv'][0], "please upload a pdf file")
+    def test_clean_demo(self):
+        cv_file = SimpleUploadedFile('foo.pdf', b'df','application/pdf')
+        invalid_demo_file = SimpleUploadedFile('foo.txt', b'df','text/plain')
+        demo_file = SimpleUploadedFile('foo.mp4', b'gf', 'video/mp4')
+        data = {
+            'first_name':'foo',
+            'last_name':'bar',
+        }
+        form = Teacher_form(data=data, files={'cv':cv_file,'demo': demo_file})
+        self.assertTrue(form.is_valid())
+        form2 = Teacher_form(data=data, files={'cv':cv_file,'demo': invalid_demo_file})
+        self.assertFalse(form2.is_valid())
+        self.assertIn('demo', form2.errors)
+        self.assertEqual(form2.errors['demo'][0], "please upload a pdf file")
