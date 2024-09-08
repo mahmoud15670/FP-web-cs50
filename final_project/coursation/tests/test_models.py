@@ -139,8 +139,20 @@ class CourseTestCase(TestCase):
         lesson.save()
         self.assertEqual(course.exam_count(), 1)
 class UnitTestCase(TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        Course.objects.create(
+            name="foo",
+            start_date=datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=2)
+            ),
+            stage=Stage.objects.create(age_start=7, age_end=10, name="foo"),
+            duration="foo",
+            about="fgsdfjgd",
+        )
+        return super().setUpClass()
+        
     def setUp(self) -> None:
-        Course.objects.create()
         Unit.objects.create(course=Course.objects.get(pk=1))
         Lesson.objects.create(unit=Unit.objects.get(pk=1))
         return super().setUp()
