@@ -125,6 +125,9 @@ class CourseTestCase(TestCase):
             date=datetime.datetime.date(datetime.datetime.now()),
             total=1,
             degree=100,
-            
+            duration=datetime.datetime.now(),
+            question='jkh?',
+            answer='sfsfs'
         )
-        lesson = Lesson.objects.create(unit=unit, )
+        lesson = Lesson.objects.create(unit=unit)
+        lesson.
