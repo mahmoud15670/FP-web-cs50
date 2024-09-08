@@ -67,6 +67,7 @@ class IndexViewTestCase(TestCase):
         student.set_password('123')
         student.create_student()
         student.save()
+        admin = User.objects.create_superuser(username='baz', password='123')
         return super().setUp()
     def test_none_user_index(self):
         response = self.client.get('/')
@@ -94,4 +95,9 @@ class IndexViewTestCase(TestCase):
         self.assertIn('student', response.context)
         self.assertIn('courses', response.context)
         self.assertTemplateUsed(response, 'student.html')
+    def test_admin_index(self):
+        self.client.login(username='baz', password='123')
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
 
