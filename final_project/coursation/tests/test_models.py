@@ -1,10 +1,11 @@
 from django.test import TestCase
 from coursation.models import *
 
+
 class UserTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        User.objects.create(username='foo', password=123, email='mgh@mgh.com')
+        User.objects.create(username="foo", password=123, email="mgh@mgh.com")
         return super().setUpTestData()
 
     def setUp(self) -> None:
@@ -12,13 +13,12 @@ class UserTestCase(TestCase):
         return super().setUp()
 
     def test_phone_max_length(self):
-        phone_max_length =self.user._meta.get_field('phone').max_length
+        phone_max_length = self.user._meta.get_field("phone").max_length
         self.assertEqual(phone_max_length, 11)
 
     def test_is_teacher(self):
         self.user.is_teacher = True
         self.assertTrue(self.user.is_teacher)
-
 
     def test_user_create_teacher(self):
         self.user.create_tracher()
@@ -35,42 +35,40 @@ class UserTestCase(TestCase):
         self.assertFalse(student.user.is_teacher)
 
     def test_user_set_stage1(self):
-        test_stage1 = Stage.objects.create(age_start=7, age_end=10, name='foo')
+        test_stage1 = Stage.objects.create(age_start=7, age_end=10, name="foo")
         self.user.age = 9
         self.user.save()
         self.user.set_student_stage()
         self.assertEqual(self.user.stage, test_stage1)
 
     def test_user_set_stage2(self):
-        Stage.objects.create(age_start=5, age_end=7, name='foo')
+        Stage.objects.create(age_start=5, age_end=7, name="foo")
         self.user.age = 9
         self.user.save()
         self.user.set_student_stage()
         self.assertIsNone(self.user.stage)
 
     def test_user_set_stage3(self):
-        Stage.objects.create(age_start=10, age_end=12, name='foo')
+        Stage.objects.create(age_start=10, age_end=12, name="foo")
         self.user.age = 9
         self.user.save()
         self.user.set_student_stage()
         self.assertIsNone(self.user.stage)
 
-
     def test_stage(self):
-        stage = Stage.objects.create(age_start=9, age_end=12, name='youth')
+        stage = Stage.objects.create(age_start=9, age_end=12, name="youth")
         self.assertIsNone(self.user.stage)
         self.user.stage = stage
         self.user.save()
-        self.assertEqual(self.user.stage.name, 'youth')
+        self.assertEqual(self.user.stage.name, "youth")
         self.assertEqual(self.user.stage.age_start, 9)
 
     def test_section(self):
-        section = Section.objects.create(name='programming')
+        section = Section.objects.create(name="programming")
         self.assertIsNone(self.user.section)
         self.user.section = section
         self.user.save()
-        self.assertEqual(self.user.section.name, 'programming')
+        self.assertEqual(self.user.section.name, "programming")
 
 
-class StageTestCase():
-    ...
+class StageTestCase: ...
