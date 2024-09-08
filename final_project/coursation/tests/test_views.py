@@ -76,4 +76,11 @@ class IndexViewTestCase(TestCase):
         self.assertIn('sections', response.context)
         self.assertIn('skills', response.context)
         self.assertTemplateUsed(response, 'index.html')
+    def test_teacher_index(self):
+        self.client.login(username='foo', password='123')
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertEqual(response.wsgi_request.user.is_teacher)
+        self.assertIn('teacher', response.context)
 
