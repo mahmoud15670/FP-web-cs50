@@ -101,6 +101,6 @@ class CourseTestCase(TestCase):
     def setUp(self) -> None:
         course = Course.objects.create(
             name='foo'
-            
+            start_date=
         )
         return super().setUp()
