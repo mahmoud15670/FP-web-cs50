@@ -23,7 +23,7 @@ class User_Form(forms.ModelForm):
         ]
         widgets = {
             "password": forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-            # "age":forms.NumberInput( attrs={"max": 80, "min": 7})
+            "age":forms.NumberInput( attrs={"max": 80, "min": 7})
         }
 
     def clean(self):
