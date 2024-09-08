@@ -151,11 +151,15 @@ class UnitTestCase(TestCase):
         )
         Unit.objects.create(course=Course.objects.get(pk=1))
         Lesson.objects.create(unit=Unit.objects.get(pk=1))
+        Lesson.objects.create(unit=Unit.objects.get(pk=1))
         return super().setUp()
 
     def test_get_video_count(self):
-        lesson = Lesson.objects.get(pk=1)
-        lesson.video='dfdfdf'
-        lesson.save()
+        lesson1 = Lesson.objects.get(pk=1)
+        lesson2 = Lesson.objects.get(pk=2)
+        lesson1.video='dfdfdf'
+        lesson1.save()
+        lesson2.video='dfdfdf'
+        lesson2.save()
         unit=Unit.objects.get(pk=1)
-        self.assertEqual(unit.get_video_count(), 1)
+        self.assertEqual(unit.get_video_count(), 2)
