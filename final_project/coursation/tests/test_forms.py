@@ -12,3 +12,4 @@ class UserFormTestCase(TestCase):
 
     def test_clean_age(self):
         form = User_Form(age=5)
+        self.assertFalse(form.is_valid())
