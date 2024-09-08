@@ -59,8 +59,8 @@ class TeacherDeatilFormTestCase(TestCase):
         self.assertEqual(form.fields['demo'].help_text, 'upload a short video in mp4 format to intrduse your self and of your shar7')
 
     def test_clean_cv(self):
-        cv_file = SimpleUploadedFile('foo.pdf', 'df','application/pdf')
-        demo_file = SimpleUploadedFile('foo.mp4', 'gf', 'video/mp4')
+        cv_file = SimpleUploadedFile('foo.pdf', b'df','application/pdf')
+        demo_file = SimpleUploadedFile('foo.mp4', b'gf', 'video/mp4')
         data = {
             'first_name':'foo',
             'last_name':'bar',
