@@ -1,0 +1,16 @@
+name: Django CI
+on: push
+
+jobs:
+   test_project:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install django
+    - name: Run Tests
+      run: |
+        python final_project/manage.py test
