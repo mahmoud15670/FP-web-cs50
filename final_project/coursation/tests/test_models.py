@@ -99,10 +99,15 @@ class StageTestCase(TestCase):
 
 class CourseTestCase(TestCase):
     def setUp(self) -> None:
-        course = Course.objects.create(
+        Course.objects.create(
             name='foo',
-            start_date=datetime.timedelta(days=2)
-
+            start_date=datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=2)),
+            stage=Stage.objects.create(age_start=7, age_end=10, name="foo"),
+            duration='foo',
+            about='fgsdfjgd'
         )
-        
         return super().setUp()
+
+    def test_course_is_started(self):
+        course = Course.objects.get(pk=1)
+        self.assertFalse(course.is_started())
