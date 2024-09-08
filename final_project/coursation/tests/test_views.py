@@ -19,7 +19,8 @@ class UserLoginViewTestCase(TestCase):
         user.save()
         response = self.client.post('/login', {'username':'foo', 'password':'123'}, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.ass
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertEqual(response.wsgi_request.user.username, 'foo')
         self.assertRedirects(response, '/')
         self.assertIn('index.html', [template.name for template in response.templates])
         self.assertIn('user', response.context)
