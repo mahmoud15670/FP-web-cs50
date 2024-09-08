@@ -13,6 +13,7 @@ class TeacherFormTestCase(TestCase):
 class StudentFormTestCase(TestCase):
     def test_fields(self):
         form = User_Student_Form()
+        self.assertEqual(form.fields['age'].help_text, 'age 7 to 80 years')
 
     def test_clean_age(self):
         stage = Stage.objects.create(age_start=7, age_end=10, name="foo")
