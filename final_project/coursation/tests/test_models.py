@@ -155,3 +155,7 @@ class UnitTestCase(TestCase):
 
     def test_get_video_count(self):
         lesson = Lesson.objects.get(pk=1)
+        lesson.video='dfdfdf'
+        lesson.save()
+        unit=Unit.objects.get(pk=1)
+        self.assertEqual(unit.get_video_count(), 1)
