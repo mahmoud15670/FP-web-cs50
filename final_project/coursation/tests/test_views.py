@@ -99,5 +99,6 @@ class IndexViewTestCase(TestCase):
         self.client.login(username='baz', password='123')
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+        self.assertNotIn(')
         self.assertTemplateUsed(response, 'index.html')
 
