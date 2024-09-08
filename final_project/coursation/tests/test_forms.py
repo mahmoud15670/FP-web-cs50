@@ -50,3 +50,6 @@ class StudentFormTestCase(TestCase):
         self.assertFalse(form4.is_valid())
         self.assertIn('age',form4.errors)
         self.assertEqual(form4.errors['age'][0], "Age must be between 7 and 80 years.")
+class TeacherDeatilFormTestCase(TestCase):
+    def test_fields(self):
+        form = Teacher_form()        
