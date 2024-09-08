@@ -89,8 +89,8 @@ class StageTestCase(TestCase):
 
     def test_stage_creat(self):
         stage = Stage.objects.create(age_start=7, age_end=10, name='foo')
-        self.assertEqual(stage.age()['start'], 7)
-        self.assertEqual(stage.age()['end'], 10)
+        self.assertEqual(stage.age()[1]['start'], 7)
+        self.assertEqual(stage.age()[1]['end'], 10)
     
     def test_stage_invaild_create(self):
         stage1 = Stage.objects.create(age_start=2, age_end=5, name='foo')
