@@ -47,5 +47,6 @@ class LogoutViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         return super().setUp()
     def test_logout_url(self):
+        
         response = self.client.get('/logout')
         self.assertEqual(response.status_code, 200)
