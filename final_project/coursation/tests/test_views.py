@@ -13,5 +13,5 @@ class UserLoginViewTestCase(TestCase):
         User.objects.create(username='foo', password='123')
         response = self.client.post('/login', {'username':'foo', 'password':'123'})
         self.assertEqual(response.status_code, 200)
-        print(response.redirect_chain)
+        self.assertIn('signin.html', [template.name for template in response.templates])
         
