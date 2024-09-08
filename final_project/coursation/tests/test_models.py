@@ -100,7 +100,8 @@ class StageTestCase(TestCase):
 class CourseTestCase(TestCase):
     def setUp(self) -> None:
         course = Course.objects.create(
-            name='foo'
-            start_date=
+            name='foo',
+            start_date=datetime.timedelta
         )
+        
         return super().setUp()
