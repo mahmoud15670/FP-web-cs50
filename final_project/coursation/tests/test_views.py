@@ -75,5 +75,5 @@ class IndexViewTestCase(TestCase):
         self.assertIn('stage_list', response.context)
         self.assertIn('sections', response.context)
         self.assertIn('skills', response.context)
-        self.assertNotIn()
+        self.assertTemplateUsed(response, 'index.html')
 
