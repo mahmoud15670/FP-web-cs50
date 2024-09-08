@@ -73,9 +73,11 @@ class User(AbstractUser):
 
     def set_student_stage(self):
         for stage in Stage.objects.all():
-            if stage.age()['start'] <= self.age and self.age <= stage.age()['end']:
-                self.stage = stage
-                self.save()
+            if stage.age() != 'age must in 7 to 80 years':
+                if stage.age()['start'] <= self.age and self.age <= stage.age()['end']:
+                    self.stage = stage
+                    self.save()
+                
 
 
 
@@ -115,15 +117,15 @@ class Stage(models.Model):
 
     def age_isvalid(self):
         if self.age_start in range(7, 81) and self.age_end in range(7, 81):
-            return True
-        return False
+            if self.age_start >= self.age_end:
+                return [False,f"age must in range of {self.age_start} and {self.age_end}"]
+            return [True]
+        return [False,"age must in 7 to 80 years"]
 
     def age(self):
-        if self.age_isvalid():
-            if self.age_start >= self.age_end:
-                return f"age must in range of {self.age_start} and {self.age_end}"
+        if self.age_isvalid()[0]:
             return {"start": self.age_start, "end": self.age_end}
-        return "age must in 7 to 80 years"
+        return self.age_isvalid()[1]
 
     def __str__(self) -> str:
         return self.name
