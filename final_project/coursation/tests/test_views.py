@@ -19,7 +19,6 @@ class UserLoginViewTestCase(TestCase):
         self.assertTemplateUsed(response, "signin.html")
 
     def test_login_user(self):
-
         response = self.client.post(
             "/login", {"username": "foo", "password": "123"}, follow=True
         )
@@ -39,3 +38,5 @@ class UserLoginViewTestCase(TestCase):
             response.context["massage"], "the user name or  password is incorrect"
         )
         self.assertTemplateUsed(response, "signin.html")
+
+
