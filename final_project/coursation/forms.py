@@ -47,13 +47,15 @@ class User_Student_Form(forms.ModelForm):
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"})
     )
-
+    age = forms.IntegerField(
+        widget = forms.NumberInput( attrs={"max": 80, "min": 7}),
+        help_text='age 7 to 80 years'
+    )
     class Meta:
         model = User
         fields = ["username", "password", "confirm_password", "email", "phone", "age"]
         widgets = {
             "password": forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-            "age": forms.in.NumberInput( attrs={"max": 80, "min": 7}),
         }
         
     def clean_age(self):
