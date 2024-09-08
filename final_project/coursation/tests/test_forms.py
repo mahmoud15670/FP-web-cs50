@@ -6,6 +6,7 @@ class TeacherFormTestCase(TestCase):
     def test_fields(self):
         form = User_Form()
         self.assertTrue(form.fields['confirm_password'].label is None or form.fields['confirm_password'].label == 'confirm password')
+        self.assertEqual(form.fields['age'].help_text, "")
         self.assertEqual(form.fields['stage'].help_text, "choose the stage you want to learn thim")
         self.assertEqual(form.fields['section'].help_text, "choose your subject")
 
