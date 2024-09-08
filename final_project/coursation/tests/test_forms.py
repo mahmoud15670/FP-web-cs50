@@ -53,4 +53,6 @@ class StudentFormTestCase(TestCase):
 class TeacherDeatilFormTestCase(TestCase):
     def test_fields(self):
         form = Teacher_form() 
-        self.assertTrue(form.fields['first_name'].label is None or form.fields['first_name'].label == 'first name')       
+        self.assertTrue(form.fields['first_name'].label is None or form.fields['first_name'].label == 'first name')  
+        self.assertEqual(form.fields['cv'].help_text, 'upload a cv in pdf format')     
+        self.assertEqual(form.fields['demo'].help_text, 'upload a short video in mp4 format to intrduse your self and of your shar7')     
