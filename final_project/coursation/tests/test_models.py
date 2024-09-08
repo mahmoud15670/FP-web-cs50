@@ -85,3 +85,8 @@ class StageTestCase(TestCase):
         self.assertFalse(stage2.age_isvalid())
         self.assertFalse(stage3.age_isvalid())
         self.assertFalse(stage4.age_isvalid())
+
+    def test_stage_creat(self):
+        age_start = 7
+        age_end = 10
+        self.
