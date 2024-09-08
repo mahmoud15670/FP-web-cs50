@@ -26,5 +26,6 @@ class UserLoginViewTestCase(TestCase):
         user.save()
         response = self.client.post('/login', {'username':'foo', 'password':'1235'}, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('')
+        self.assertIn('massage', response.context)
+        self.assertIn('signin.html', [template.name for template in response.templates])
         
