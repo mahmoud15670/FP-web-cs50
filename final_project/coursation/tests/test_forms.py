@@ -13,7 +13,7 @@ class UserFormTestCase(TestCase):
     def test_clean_age(self):
         data={
             'uaername':'foo', 
-            'password':123, 
+            'password':'123', 
             'phone':'123', 
             'age': 7,
             'stage':Stage.objects.create(age_start=7, age_end=10, name="foo"),
