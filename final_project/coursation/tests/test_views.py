@@ -21,4 +21,5 @@ class UserLoginViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
         self.assertIn('index.html', [template.name for template in response.templates])
+        self.assertIn('user', response.context)
         
