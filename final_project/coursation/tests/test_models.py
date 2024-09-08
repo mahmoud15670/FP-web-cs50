@@ -84,10 +84,10 @@ class StageTestCase(TestCase):
         stage4 = Stage.objects.create(age_start=8, age_end=82, name='foo')
         stage5 = Stage.objects.create(age_start=18, age_end=8, name='foo')
         self.assertFalse(stage1.age_isvalid()[0])
-        self.assertEqual(stage1.age_isvalid()[1], "age must in 7 to 80 years")
         self.assertFalse(stage2.age_isvalid()[0])
         self.assertFalse(stage3.age_isvalid()[0])
         self.assertFalse(stage4.age_isvalid()[0])
+        self.assertEqual(stage4.age_isvalid()[1], "age must in 7 to 80 years")
         self.assertFalse(stage5.age_isvalid()[0])
         self.assertEqual(stage5.age_isvalid()[1], f"age must in range of {stage5.age_start} and {stage5.age_end}")
 
