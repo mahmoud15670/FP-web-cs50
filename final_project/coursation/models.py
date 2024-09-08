@@ -114,10 +114,10 @@ class Stage(models.Model):
     name = models.CharField(max_length=20)
 
     def age_isvalid(self):
-        if self.age_start not in age_choises() or self.age_end not in age_choises():
+        if self.age_start not in range(7, 81) or self.age_end not in range(7, 81):
             return False
         return True
-        
+
     def age(self):
         if self.age_isvalid:
             if self.age_start >= self.age_end:
