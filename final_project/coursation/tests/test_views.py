@@ -39,4 +39,7 @@ class UserLoginViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "signin.html")
 
-
+class LogoutViewTestCase(TestCase):
+    def setUp(self) -> None:
+        user
+        return super().setUp()
