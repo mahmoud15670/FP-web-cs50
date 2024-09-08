@@ -1,5 +1,7 @@
 import datetime
+
 from django.test import TestCase
+
 from coursation.models import *
 
 
