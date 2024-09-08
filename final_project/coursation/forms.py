@@ -29,7 +29,8 @@ class User_Form(forms.ModelForm):
     def clean_age(self):
         age = self.changed_data["age"]
         if age not in range(7, 81):
-            raise ValidationError()
+            raise ValidationError("age must in 7 to 80 years")
+        return age
         
 
     def save(self, commit=True):
