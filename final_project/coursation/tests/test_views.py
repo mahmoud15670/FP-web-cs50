@@ -49,7 +49,8 @@ class LogoutViewTestCase(TestCase):
     def test_logout_url(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.wsgi_request.user.username, 'foo')
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
         response = self.client.get('/logout', follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, )
+        self.assertTemplateUsed(response, 'index.html')
+        self.assertFalse(response.wsgi_request.user.is_authenticated)
