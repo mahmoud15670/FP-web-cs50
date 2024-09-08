@@ -119,13 +119,8 @@ class Stage(models.Model):
         if self.age_start in range(7, 81) and self.age_end in range(7, 81):
             if self.age_start >= self.age_end:
                 return [False,f"age must in range of {self.age_start} and {self.age_end}"]
-            return [True]
-        return [False,"age must in 7 to 80 years"]
-
-    def age(self):
-        if self.age_isvalid()[0]:
             return [True, {"start": self.age_start, "end": self.age_end}]
-        return [False, self.age_isvalid()[1]]
+        return [False,"age must in 7 to 80 years"]
 
     def __str__(self) -> str:
         return self.name
