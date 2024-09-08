@@ -119,7 +119,7 @@ class Stage(models.Model):
         return False
 
     def age(self):
-        if self.age_isvalid:
+        if self.age_isvalid():
             if self.age_start >= self.age_end:
                 return f"age must in range of {self.age_start} and {self.age_end}"
             return {"start": self.age_start, "end": self.age_end}
