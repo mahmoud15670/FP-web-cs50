@@ -27,7 +27,9 @@ class User_Form(forms.ModelForm):
         }
 
     def save(self, commit=True):
+        age = self.changed_data["age"]
         user = super().save(commit=False)
+        user.v
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
