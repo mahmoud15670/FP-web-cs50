@@ -447,4 +447,6 @@ class CourseDeleteViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         response = self.client.get('/course/1/delete', follow=True)
         self.assertEqual(response.status_code, 200)
-        
+        self.assertRedirects(response, '/teacher/1/detsil/entry')
+        self.assertIn('form', response.context)
+        self.assertIsInstance(response.context['form'], Teacher_form)
