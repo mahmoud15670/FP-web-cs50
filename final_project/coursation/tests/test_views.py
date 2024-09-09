@@ -299,6 +299,14 @@ class TeacherEntryViewTestCase(TestCase):
         self.client.login(username='bar', password='123')
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
         self.assertEqual(response.status_code, 200)
+        self.client.login(username='bar', password='123')
+        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+    def test_same_teacher_post(self):
+        self.client.login(username='foo', password='123')
+        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.assertEqual(response.status_code, 200)
+        
 
