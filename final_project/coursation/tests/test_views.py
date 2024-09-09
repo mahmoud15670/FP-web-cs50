@@ -114,4 +114,6 @@ class StageListViewTestCase(TestCase):
         for i in range(5):
             Stage.objects.create(name=f'stage{i}')
         return super().setUpTestData()
-    def test_get_list
+    def test_get_list(self):
+        response = self.client.get('/stage/list')
+        self.assertEqual(response.status_code, )
