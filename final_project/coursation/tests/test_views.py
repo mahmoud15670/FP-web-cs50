@@ -249,3 +249,5 @@ class StudentRegisterViewTestCase(TestCase):
             "Age must be between 7 and 80 years.",
         )
         self.assertTemplateUsed(response, "student_register.html")
+class TeacherEntryViewTestCase(TestCase):
+    ...
