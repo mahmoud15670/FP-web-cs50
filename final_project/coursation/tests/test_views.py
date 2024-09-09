@@ -350,7 +350,7 @@ class TeacherEntryViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 
-        
+
 class CourseCreateViewtestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -359,56 +359,68 @@ class CourseCreateViewtestCase(TestCase):
         teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
+
     def setUp(self) -> None:
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
-        skill = Skills.objects.create(name='foo')
+        skill = Skills.objects.create(name="foo")
         self.data = {
-            'name':'foo',
-            'start_date':datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=5)),
-            'stage':stage.id,
-            'skill':skill.id,
-            'duration':'15w',
-            'about':'sjahkld'
+            "name": "foo",
+            "start_date": datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=5)
+            ),
+            "stage": stage.id,
+            "skill": skill.id,
+            "duration": "15w",
+            "about": "sjahkld",
         }
         return super().setUp()
+
     def test_no_user_get(self):
-        response = self.client.get('/course/create', follow=True)
+        response = self.client.get("/course/create", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/login')
+        self.assertRedirects(response, "/login")
         self.assertTemplateUsed(response, "signin.html")
+
     def test_not_teacher_user_get(self):
         self.client.login(username="baz", password="123")
-        response = self.client.get('/course/create', follow=True)
+        response = self.client.get("/course/create", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertRedirects(response, "/")
+        self.assertTemplateUsed(response, "index.html")
+
     def test_not_accepted_teacher_get(self):
         self.client.login(username="foo", password="123")
-        response = self.client.get('/course/create', follow=True)
+        response = self.client.get("/course/create", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, f'/teacher/{(response.wsgi_request.user.id)}/detsil/entry')
-        self.assertIn('form', response.context)
-        self.assertIsInstance(response.context['form'], Teacher_form)
+        self.assertRedirects(
+            response, f"/teacher/{(response.wsgi_request.user.id)}/detsil/entry"
+        )
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
     def test_accepted_teacher_get(self):
         teacher = Techer.objects.get(pk=1)
         teacher.acceptation = True
         teacher.activation = True
         teacher.save()
         self.client.login(username="foo", password="123")
-        response = self.client.get('/course/create', follow=True)
+        response = self.client.get("/course/create", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertIsInstance(response.context['form'], Course_Form)
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], Course_Form)
         self.assertTemplateUsed(response, "course_create.html")
-    def test_course_post(self):        
+
+    def test_course_post(self):
         teacher = Techer.objects.get(pk=1)
         teacher.acceptation = True
         teacher.activation = True
         teacher.save()
         self.client.login(username="foo", password="123")
-        response = self.client.post('/course/create', data=self.data, follow=True)
+        response = self.client.post("/course/create", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
-        self.assertIn(Course.objects.get(pk=1), response.wsgi_request.user.techer.course_set.all())
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertRedirects(response, "/")
+        self.assertIn(
+            Course.objects.get(pk=1), response.wsgi_request.user.techer.course_set.all()
+        )
+        self.assertTemplateUsed(response, "index.html")
