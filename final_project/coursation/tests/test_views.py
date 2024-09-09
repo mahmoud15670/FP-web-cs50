@@ -359,8 +359,7 @@ class CourseCreateViewtestCase(TestCase):
         teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
-    def setUp(self) -> None:
-        return super().setUp()
+    
     def test_no_user_get(self):
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
@@ -381,5 +380,14 @@ class CourseCreateViewtestCase(TestCase):
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
     def test_accepted_teacher_get(self):
-        ...
+        teacher = Techer.objects.get(pk=1)
+        teacher.acceptation = True
+        teacher.activation = True
+        teacher.save()
+        self.client.login(username="foo", password="123")
+        response = self.client.get('/course/create', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertIsInstance(response.context['form'], Course_Form)
+        self.assertTemplateUsed(response, "course_create.html")
         
