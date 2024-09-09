@@ -276,6 +276,6 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].fields, Teacher_form.fields)
+        self.assertEqual(response.context['form']['fields'], Teacher_form.fields)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 
