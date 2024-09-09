@@ -350,7 +350,23 @@ class TeacherEntryViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 class CourseCreateViewtestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        teacher = User.objects.create(username="foo")
+        teacher.set_password("123")
+        teacher.create_teacher()
+        teacher = User.objects.create(username="bar")
+        teacher.set_password("123")
+        teacher.create_teacher()
+        User.objects.create_superuser(username="baz", password="123")
+        return super().setUpTestData()
     def test_no_user_get(self):
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '')
+        self.assertRedirects(response, '/login')
+        self.assertTemplateUsed(response, "signin.html")
+    def test_not_teacher_user_get(self):
+        self.client.login(username="baz", password="123")
+        response = self.client.get('/course/create', follow=True)
+        self.assertEqual(response.status_code, 200)
+        
