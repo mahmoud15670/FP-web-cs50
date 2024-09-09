@@ -471,4 +471,6 @@ class CourseDeleteViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         response = self.client.post('/course/1/delete', follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(resp)
+        self.assertRedirects(response, '/')
+        self.assertEqual(Course.objects.count(), 0)
+        self.assertTemplateUsed(response, 'index.html')
