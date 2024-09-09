@@ -152,7 +152,6 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "teacher_register.html")
 
     def test_teacher_register_post(self):
-
         response = self.client.post("/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, "/")
@@ -183,9 +182,32 @@ class TeacherRegisterViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "teacher_register.html")
 class StudentRegisterViewTestCase(TestCase):
-    def test_student_register(self):
+    def setUp(self) -> None:
+        stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
+        section = Section.objects.create(name="foo")
+        self.data = {
+            "username": "foo",
+            "password": "12345678",
+            "confirm_password": "12345678",
+            "phone": "1234567890",
+            "age": 7,
+            "stage": stage.id,
+            "exams": "dfdfd",
+            "section": section.id,
+            "rating": "2",
+        }
+
+        return super().setUp()
+    def test_student_register_get(self):
         response = self.client.get('/student/register')
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertEqual(response.context['form'], User_Student_Form)
         self.assertTemplateUsed(response, 'student_register.html')
+    def test_student_register_valid(self):
+        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '/')
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertTrue(response.wsgi_request.user.is_student)
+        self.assertTemplateUsed(response, 'index.html')
