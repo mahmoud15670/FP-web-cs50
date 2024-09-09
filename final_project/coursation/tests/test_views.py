@@ -508,4 +508,6 @@ class CourseListViewTestCase(TestCase):
 
         return super().setUpTestData()
     def test_pagination(self):
-        response = self.client.get(reverse())
+        response = self.client.get(reverse('course_list'))
+        self.assertEqual(response.status_code, 200)
+        
