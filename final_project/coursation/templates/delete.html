@@ -1,10 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <form enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            are you surely want to delete {{delete_object.name}}!
-                    {{ form.as_p }}
-                            <input type="submit" value="yes sure ">
-                                </form>
-                                {% endblock %}
+<form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        are you surely want to delete {{delete_object.name}}!
+        <input type="submit" value="yes sure ">
+</form>
+{% endblock %}
