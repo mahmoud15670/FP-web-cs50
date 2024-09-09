@@ -109,4 +109,9 @@ class IndexViewTestCase(TestCase):
         self.assertNotIn('courses', response.context)
         self.assertTemplateUsed(response, 'index.html')
 class StageListViewTestCase(TestCase):
-    
+    @classmethod
+    def setUpTestData(cls) -> None:
+        for i in range(5):
+            Stage.objects.create(name=f'stage{i}')
+        return super().setUpTestData()
+    def test_get_list
