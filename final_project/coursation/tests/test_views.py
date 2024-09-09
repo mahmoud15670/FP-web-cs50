@@ -151,4 +151,5 @@ class TeacherRegisterViewTestCase(TestCase):
         response = self.client.post('/teacher/register',data=data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
+        self.assertTrue(response.wsgi_request.user.is_teacher)
 
