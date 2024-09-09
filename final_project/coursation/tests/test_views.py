@@ -355,9 +355,6 @@ class CourseCreateViewtestCase(TestCase):
         teacher = User.objects.create(username="foo")
         teacher.set_password("123")
         teacher.create_teacher()
-        teacher = User.objects.create(username="bar")
-        teacher.set_password("123")
-        teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
     def test_no_user_get(self):
@@ -371,10 +368,8 @@ class CourseCreateViewtestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
         self.assertTemplateUsed(response, 'index.html')
-    def test_other_teacher_get(self):
-        self.client.login(username="bar", password="123")
+    def test_teacher_get(self):
+        self.client.login(username="foo", password="123")
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
-        self.assertTemplateUsed(response, 'index.html')
         
