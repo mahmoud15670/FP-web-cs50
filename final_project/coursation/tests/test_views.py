@@ -152,4 +152,6 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
         self.assertTrue(response.wsgi_request.user.is_teacher)
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+        self.assertTemplateUsed(response, 'index.html')
 
