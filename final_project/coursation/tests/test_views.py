@@ -70,7 +70,7 @@ class IndexViewTestCase(TestCase):
         student.set_password("123")
         student.create_student()
         student.save()
-        admin = User.objects.create_superuser(username="baz", password="123")
+        User.objects.create_superuser(username="baz", password="123")
         return super().setUp()
 
     def test_none_user_index(self):
@@ -256,9 +256,15 @@ class TeacherEntryViewTestCase(TestCase):
         teacher.set_password("123")
         teacher.create_teacher()
         teacher.save()
+        User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
     def test_none_user_get(self):
         response = self.client.get('/teacher/1/detsil/entry', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/login')
         self.assertTemplateUsed(response, "signin.html")
+    def test_user_get(self):
+        self.client.login(username="baz", password="123")
+        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        self.assertEqual(response.status_code, 200)
+        
