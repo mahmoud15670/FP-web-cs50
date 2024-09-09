@@ -65,11 +65,9 @@ class IndexViewTestCase(TestCase):
         teacher = User.objects.create(username="foo")
         teacher.set_password("123")
         teacher.create_teacher()
-        teacher.save()
         student = User.objects.create(username="bar")
         student.set_password("123")
         student.create_student()
-        student.save()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUp()
 
