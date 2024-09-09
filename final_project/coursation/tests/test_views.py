@@ -258,6 +258,11 @@ class TeacherEntryViewTestCase(TestCase):
         teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
+    def setUp(self) -> None:
+        self.data={
+            
+        }
+        return super().setUp()
     def test_none_user_get(self):
         response = self.client.get('/teacher/1/detsil/entry', follow=True)
         self.assertEqual(response.status_code, 200)
@@ -285,4 +290,7 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
-    def test_
+    def test_other_teacher_post(self):
+        self.client.login(username='bar', password='123')
+        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+
