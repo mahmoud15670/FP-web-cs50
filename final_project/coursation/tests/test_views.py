@@ -161,18 +161,24 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "index.html")
 
     def test_teacher_register_invslid_username(self):
-        self.data['username'] = '****'
+        self.data["username"] = "****"
         response = self.client.post("/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors['username'][0], 'Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.')
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["username"][0],
+            "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
+        )
         self.assertTemplateUsed(response, "teacher_register.html")
+
     def test_teacher_register_invslid_paswords(self):
-        self.data['password'] = '123'
-        self.data['confirm_password'] = '1235'
+        self.data["password"] = "123"
+        self.data["confirm_password"] = "1235"
         response = self.client.post("/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors['confirm_password'][0], "Passwords do not match.")
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["confirm_password"][0],
+            "Passwords do not match.",
+        )
         self.assertTemplateUsed(response, "teacher_register.html")
-    
