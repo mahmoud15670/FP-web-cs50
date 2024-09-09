@@ -349,3 +349,5 @@ class TeacherEntryViewTestCase(TestCase):
             response.context["form"].errors["demo"][0], "please upload a mp4 video"
         )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+class CourseCreateViewtestCase(TestCase):
+    ...
