@@ -220,4 +220,5 @@ class StudentRegisterViewTestCase(TestCase):
             "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
         )
         self.assertTemplateUsed(response, 'student_register.html')
-    def test_student_register_invalid_pass
+    def test_student_register_invalid_passwords(self):
+        self.data
