@@ -492,4 +492,9 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertRedirects(response, '/')
         self.assertEqual(Course.objects.count(), 0)
         self.assertTemplateUsed(response, 'index.html')
-class CourseListViewTestCase(TestCase)
+class CourseListViewTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        for i in range(7):
+            Course
+        return super().setUpTestData()
