@@ -410,4 +410,5 @@ class CourseCreateViewtestCase(TestCase):
         self.client.login(username="foo", password="123")
         response = self.client.post('/course/create', data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.
+        self.assertRedirects(response, '/')
+        self.assertEqual(response.wsgi_request.user)
