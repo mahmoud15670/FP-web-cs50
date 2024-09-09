@@ -1,6 +1,5 @@
-from contextlib import AbstractContextManager
-from typing import Any
 from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from coursation.views import *
 
@@ -259,8 +258,12 @@ class TeacherEntryViewTestCase(TestCase):
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
     def setUp(self) -> None:
+        
         self.data={
-            
+            'first_name':'foo',
+            'last_name':'bar',
+            'cv':cv.id,
+            'demo':demo.id
         }
         return super().setUp()
     def test_none_user_get(self):
