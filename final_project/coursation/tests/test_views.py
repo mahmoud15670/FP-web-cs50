@@ -320,4 +320,12 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertEqual(response.context['form'].errors['cv'][0], "please upload a pdf file")
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
-
+    def test_demo_invalid(self):
+        self.client.login(username='foo', password='123')
+        invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
+        self.data['demo'] = invalid_cv_file
+        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'].errors['demo'][0], "please upload a mp4 video")
+        self.assertTemplateUsed(response, "teacher_detsil_entry.html")
