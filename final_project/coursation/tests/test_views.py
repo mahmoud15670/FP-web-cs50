@@ -469,4 +469,4 @@ class CourseDeleteViewTestCase(TestCase):
         teacher.activation = True
         teacher.save()
         self.client.login(username='foo', password='123')
-        response = self.client.post
+        response = self.client.post('')
