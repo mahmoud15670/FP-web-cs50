@@ -128,4 +128,14 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertEqual(response.context['form'], User_Form)
         self.assertTemplateUsed(response, 'teacher_register.html')
+    def test_teacher_register_post(self):
+        data = {"username": "foo",
+                    "password": "12345678",
+                                "confirm_password": "12345678",
+                                            "phone": "1234567890",
+                                                        "age": 7,
+                                                                    "stage": stage.id,
+                                                                                "exams": "dfdfd",
+                                                                                            "section": section.id,
+                                                                                                        "rating": "2",}
 
