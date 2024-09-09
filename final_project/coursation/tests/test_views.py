@@ -231,3 +231,9 @@ class StudentRegisterViewTestCase(TestCase):
             "Passwords do not match.",
         )
         self.assertTemplateUsed(response, 'student_register.html')
+    def test_student_register_invalid_age(self):
+        self.data['age'] = 5
+        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context['form'].errors['age'][0], )
