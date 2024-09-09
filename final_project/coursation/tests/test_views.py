@@ -274,4 +274,5 @@ class TeacherEntryViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         response = self.client.get('/teacher/1/detsil/entry', follow=True)
         self.assertEqual(response.status_code, 200)
-        
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'], )
