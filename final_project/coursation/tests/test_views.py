@@ -349,6 +349,8 @@ class TeacherEntryViewTestCase(TestCase):
             response.context["form"].errors["demo"][0], "please upload a mp4 video"
         )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
+        
 class CourseCreateViewtestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -367,6 +369,7 @@ class CourseCreateViewtestCase(TestCase):
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
+        self.assertEqual(response.resolver_match.func.view_class, Course_create_view)
         self.assertTemplateUsed(response, 'index.html')
     def test_teacher_get(self):
         self.client.login(username="foo", password="123")
