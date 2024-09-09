@@ -181,6 +181,8 @@ class TeacherRegisterViewTestCase(TestCase):
             "Passwords do not match.",
         )
         self.assertTemplateUsed(response, "teacher_register.html")
+
+
 class StudentRegisterViewTestCase(TestCase):
     def setUp(self) -> None:
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
@@ -198,43 +200,52 @@ class StudentRegisterViewTestCase(TestCase):
         }
 
         return super().setUp()
+
     def test_student_register_get(self):
-        response = self.client.get('/student/register')
+        response = self.client.get("/student/register")
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'], User_Student_Form)
-        self.assertTemplateUsed(response, 'student_register.html')
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], User_Student_Form)
+        self.assertTemplateUsed(response, "student_register.html")
+
     def test_student_register_valid(self):
-        response = self.client.post('/student/register', data=self.data, follow=True)
+        response = self.client.post("/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_student)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, "index.html")
+
     def test_student_register_invalid_username(self):
-        self.data['username'] = '***'
-        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.data["username"] = "***"
+        response = self.client.post("/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors["username"][0],
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["username"][0],
             "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
         )
-        self.assertTemplateUsed(response, 'student_register.html')
+        self.assertTemplateUsed(response, "student_register.html")
+
     def test_student_register_invalid_passwords(self):
         self.data["password"] = "123"
         self.data["confirm_password"] = "1235"
-        response = self.client.post('/student/register', data=self.data, follow=True)
+        response = self.client.post("/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
             response.context["form"].errors["confirm_password"][0],
             "Passwords do not match.",
         )
-        self.assertTemplateUsed(response, 'student_register.html')
+        self.assertTemplateUsed(response, "student_register.html")
+
     def test_student_register_invalid_age(self):
-        self.data['age'] = 5
-        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.data["age"] = 5
+        response = self.client.post("/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
-        self.assertEqual(response.context['form'].errors['age'][0], "Age must be between 7 and 80 years.")
-        self.assertTemplateUsed(response, 'student_register.html')
+        self.assertEqual(
+            response.context["form"].errors["age"][0],
+            "Age must be between 7 and 80 years.",
+        )
+        self.assertTemplateUsed(response, "student_register.html")
