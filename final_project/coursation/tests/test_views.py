@@ -361,12 +361,13 @@ class CourseCreateViewtestCase(TestCase):
         return super().setUpTestData()
     def setUp(self) -> None:
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
-        skill = Skills.objects.create(name='foo')
+        skill1 = Skills.objects.create(name='foo')
+        skill2 = Skills.objects.create(name='foo')
         self.data = {
             'name':'foo',
             'start_date':datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=5)),
             'stage':stage.id,
-            'skill':skill.id,
+            'skill':[skill1.id, skill2.id],
             'duration':'15w',
             'about':'sjahkld'
         }
@@ -401,4 +402,12 @@ class CourseCreateViewtestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Course_Form)
         self.assertTemplateUsed(response, "course_create.html")
-        
+    def test_course_post(self):        
+        teacher = Techer.objects.get(pk=1)
+        teacher.acceptation = True
+        teacher.activation = True
+        teacher.save()
+        self.client.login(username="foo", password="123")
+        response = self.client.post('/course/create', data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.
