@@ -308,5 +308,5 @@ class TeacherEntryViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
         self.assertEqual(response.status_code, 200)
-        
+        self.assertRedirects(response, '/')
 
