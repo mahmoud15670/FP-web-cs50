@@ -438,7 +438,7 @@ class CourseDeleteViewTestCase(TestCase):
                 datetime.datetime.now() + datetime.timedelta(days=5)
             ),
             stage=stage,
-            skill=skill,
+            skill=skill.set(),
             duration='15',
             about='sjahkld'
         )
