@@ -376,7 +376,6 @@ class CourseCreateViewtestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, f'teacher/{response.wsgi_request.user.id}/detsil/entry')
         self.assertIn('form', response.context)
-        self.assertEqual(response.resolver_match.func.view_class, Course_create_view)
-        # self.assertIsInstance(response.context['form'], Course_Form)
-        self.assertTemplateUsed(response, "course_create.html")
+        self.assertIsInstance(response.context['form'], Teacher_form)
+        self.assertTemplateUsed(response, "teacher_detsil_entry.html")
         
