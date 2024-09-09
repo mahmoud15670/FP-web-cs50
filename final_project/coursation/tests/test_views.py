@@ -496,5 +496,5 @@ class CourseListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(7):
-            Course
+            Course.objects.create()
         return super().setUpTestData()
