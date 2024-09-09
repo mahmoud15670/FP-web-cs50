@@ -492,21 +492,25 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertRedirects(response, '/')
         self.assertEqual(Course.objects.count(), 0)
         self.assertTemplateUsed(response, 'index.html')
+
+
 class CourseListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(7):
             Course.objects.create(
-                            name='foo',
-                                        start_date=datetime.datetime.date(
-                                                        datetime.datetime.now() + datetime.timedelta(days=5)
-                                                                    ),
-                                                                                stage=Stage.objects.create(age_start=7, age_end=12, name="foo"),
-                                                                                            duration='15',
-                                                                                                        about='sjahkld'
-                                                                                                                )
+                name='foo',
+                start_date=datetime.datetime.date(
+                    datetime.datetime.now() + datetime.timedelta(days=5)
+                ),
+                stage=Stage.objects.create(
+                    age_start=7, age_end=12, name="foo"),
+                duration='15',
+                about='sjahkld'
+            )
 
         return super().setUpTestData()
+
     def test_pagination(self):
         response = self.client.get(reverse('course_list'))
         self.assertEqual(response.status_code, 200)
@@ -514,7 +518,8 @@ class CourseListViewTestCase(TestCase):
         self.assertIn('courses', response.context)
         self.assertEqual(len(response.context['courses']), 5)
         self.assertTemplateUsed(response, 'index.html')
-    def test_other_page(self):
+
+    def test_other_pages(self):
         response = self.client.get(reverse('course_list')+'?page=2')
         self.assertEqual(response.status_code, 200)
         self.assertIn('courses', response.context)
