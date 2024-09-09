@@ -94,8 +94,8 @@ def teacher_register(request):
 def student_register(request):
     if request.method != "POST":
         return render(request, "student_register.html", {"form": User_Student_Form})
-    user_form = User_Student_Form(request.POST)
 
+    user_form = User_Student_Form(request.POST)
     if user_form.is_valid():
         user = user_form.save()
         user.create_student()
