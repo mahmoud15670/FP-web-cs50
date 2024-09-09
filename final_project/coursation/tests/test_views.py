@@ -258,12 +258,14 @@ class TeacherEntryViewTestCase(TestCase):
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
     def setUp(self) -> None:
-        
+        cv_file = SimpleUploadedFile("foo.pdf", b"df", "application/pdf")
+        invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
+        demo_file = SimpleUploadedFile("foo.mp4", b"gf", "video/mp4")
         self.data={
             'first_name':'foo',
             'last_name':'bar',
-            'cv':cv.id,
-            'demo':demo.id
+            'cv':cv_file.id,
+            'demo':demo_file.id
         }
         return super().setUp()
     def test_none_user_get(self):
@@ -296,4 +298,5 @@ class TeacherEntryViewTestCase(TestCase):
     def test_other_teacher_post(self):
         self.client.login(username='bar', password='123')
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.assertEqual(response.status_code, 200)
 
