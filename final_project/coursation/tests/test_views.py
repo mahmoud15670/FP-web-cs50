@@ -119,7 +119,8 @@ class StageListViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("stage_list", response.context)
         self.assertEqual(response.context["stage_list"].count(), 5)
-        self.assertEqual(response.context["stage_list"][0], Stage.objects.get(pk=1))
+        self.assertEqual(
+            response.context["stage_list"][0], Stage.objects.get(pk=1))
         self.assertTemplateUsed(response, "index.html")
 
 
@@ -149,7 +150,8 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "teacher_register.html")
 
     def test_teacher_register_post(self):
-        response = self.client.post("/teacher/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_teacher)
@@ -158,7 +160,8 @@ class TeacherRegisterViewTestCase(TestCase):
 
     def test_teacher_register_invslid_username(self):
         self.data["username"] = "****"
-        response = self.client.post("/teacher/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
@@ -170,7 +173,8 @@ class TeacherRegisterViewTestCase(TestCase):
     def test_teacher_register_invslid_paswords(self):
         self.data["password"] = "123"
         self.data["confirm_password"] = "1235"
-        response = self.client.post("/teacher/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
@@ -206,7 +210,8 @@ class StudentRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "student_register.html")
 
     def test_student_register_valid(self):
-        response = self.client.post("/student/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_authenticated)
@@ -215,7 +220,8 @@ class StudentRegisterViewTestCase(TestCase):
 
     def test_student_register_invalid_username(self):
         self.data["username"] = "***"
-        response = self.client.post("/student/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
@@ -227,7 +233,8 @@ class StudentRegisterViewTestCase(TestCase):
     def test_student_register_invalid_passwords(self):
         self.data["password"] = "123"
         self.data["confirm_password"] = "1235"
-        response = self.client.post("/student/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
@@ -238,7 +245,8 @@ class StudentRegisterViewTestCase(TestCase):
 
     def test_student_register_invalid_age(self):
         self.data["age"] = 5
-        response = self.client.post("/student/register", data=self.data, follow=True)
+        response = self.client.post(
+            "/student/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
         self.assertEqual(
@@ -319,7 +327,8 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.techer.activation)
-        self.assertEqual(response.wsgi_request.user.techer, Techer.objects.get(pk=1))
+        self.assertEqual(response.wsgi_request.user.techer,
+                         Techer.objects.get(pk=1))
         self.assertTemplateUsed(response, "index.html")
 
     def test_cv_invalid(self):
@@ -393,7 +402,8 @@ class CourseCreateViewTestCase(TestCase):
         response = self.client.get("/course/create", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(
-            response, f"/teacher/{(response.wsgi_request.user.id)}/detsil/entry"
+            response, f"/teacher/{(response.wsgi_request.user.id)
+                                  }/detsil/entry"
         )
         self.assertIn("form", response.context)
         self.assertIsInstance(response.context["form"], Teacher_form)
@@ -417,13 +427,17 @@ class CourseCreateViewTestCase(TestCase):
         teacher.activation = True
         teacher.save()
         self.client.login(username="foo", password="123")
-        response = self.client.post("/course/create", data=self.data, follow=True)
+        response = self.client.post(
+            "/course/create", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, "/")
         self.assertIn(
-            Course.objects.get(pk=1), response.wsgi_request.user.techer.course_set.all()
+            Course.objects.get(
+                pk=1), response.wsgi_request.user.techer.course_set.all()
         )
         self.assertTemplateUsed(response, "index.html")
+
+
 class CourseDeleteViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -444,6 +458,7 @@ class CourseDeleteViewTestCase(TestCase):
         course.skill.add(skill)
         course.save()
         return super().setUpTestData()
+
     def test_unaccepted_teacher_get(self):
         self.client.login(username='foo', password='123')
         response = self.client.get('/course/1/delete', follow=True)
@@ -452,6 +467,7 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
     def test_accepted_teacher_get(self):
         teacher = Techer.objects.get(pk=1)
         teacher.acceptation = True
@@ -461,8 +477,10 @@ class CourseDeleteViewTestCase(TestCase):
         response = self.client.get('/course/1/delete', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('delete_object', response.context)
-        self.assertEqual(response.context['delete_object'], Course.objects.get(pk=1))
+        self.assertEqual(
+            response.context['delete_object'], Course.objects.get(pk=1))
         self.assertTemplateUsed(response, 'delete.html')
+
     def test_accepted_teacher_post(self):
         teacher = Techer.objects.get(pk=1)
         teacher.acceptation = True
@@ -474,3 +492,4 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertRedirects(response, '/')
         self.assertEqual(Course.objects.count(), 0)
         self.assertTemplateUsed(response, 'index.html')
+class CourseListViewTestCase(TestCase)
