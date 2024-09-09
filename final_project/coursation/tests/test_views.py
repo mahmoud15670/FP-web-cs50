@@ -374,7 +374,7 @@ class CourseCreateViewtestCase(TestCase):
         self.client.login(username="foo", password="123")
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, f'teacher/{response.wsgi_request.user.id}/detsil/entry')
+        self.assertRedirects(response, f'/teacher/{(response.wsgi_request.user.id)}/detsil/entry')
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
