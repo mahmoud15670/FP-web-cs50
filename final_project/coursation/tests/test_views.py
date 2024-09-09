@@ -183,4 +183,5 @@ class TeacherRegisterViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "teacher_register.html")
 class StudentRegisterViewTestCase(TestCase):
-    def test
+    def test_student_register(self):
+        response = self.client.get('')
