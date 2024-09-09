@@ -361,13 +361,12 @@ class CourseCreateViewtestCase(TestCase):
         return super().setUpTestData()
     def setUp(self) -> None:
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
-        skill1 = Skills.objects.create(name='foo')
-        skill2 = Skills.objects.create(name='foo')
+        skill = Skills.objects.create(name='foo')
         self.data = {
             'name':'foo',
             'start_date':datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=5)),
             'stage':stage.id,
-            'skill':[skill1.id, skill2.id],
+            'skill':skill.id,
             'duration':'15w',
             'about':'sjahkld'
         }
