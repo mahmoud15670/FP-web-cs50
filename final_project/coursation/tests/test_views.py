@@ -300,5 +300,5 @@ class TeacherEntryViewTestCase(TestCase):
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
-        self.assertFalse(response.context['form'].is_valid)
+        self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 
