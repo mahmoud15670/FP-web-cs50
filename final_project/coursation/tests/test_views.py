@@ -127,5 +127,5 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertEqual(response.context['form'], User_Form)
-        self.assertTemplateUsed(response, )
+        self.assertTemplateUsed(response, 'teacher_register.html')
 
