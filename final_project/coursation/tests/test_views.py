@@ -351,7 +351,7 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 
 
-class CourseCreateViewtestCase(TestCase):
+class CourseCreateViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         teacher = User.objects.create(username="foo")
@@ -424,3 +424,13 @@ class CourseCreateViewtestCase(TestCase):
             Course.objects.get(pk=1), response.wsgi_request.user.techer.course_set.all()
         )
         self.assertTemplateUsed(response, "index.html")
+class CourseDeleteViewTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        teacher = User.objects.create(username="foo")
+        teacher.set_password("123")
+        teacher.create_teacher()
+        return super().setUpTestData()
+    def test_unaccepted_teacher_get(self):
+        self.client.login(username='foo', password='123')
+        response = self.client.get('', follow=True)
