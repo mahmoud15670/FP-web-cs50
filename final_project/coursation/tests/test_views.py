@@ -373,7 +373,7 @@ class CourseCreateViewtestCase(TestCase):
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
-        self.assertEqual(response.resolver_match.func, Course_create_view)
+        self.assertEqual(response.resolver_match., Course_create_view)
         # self.assertIsInstance(response.context['form'], Course_Form)
         self.assertTemplateUsed(response, "course_create.html")
         
