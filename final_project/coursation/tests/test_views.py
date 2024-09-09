@@ -312,6 +312,7 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertEqual(response.wsgi_request.user.techer, Techer.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
     def test_cv_invalid(self):
+        self.client.login(username='foo', password='123')
         invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
         self.data['cv'] = invalid_cv_file
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
