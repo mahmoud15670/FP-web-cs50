@@ -362,7 +362,6 @@ class CourseCreateViewtestCase(TestCase):
     def setUp(self) -> None:
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
         skill = Skills.objects.create(name='foo')
-        photo = SimpleUploadedFile('foo.jpg', b'dfdjf', '')
         self.data = {
             'name':'foo',
             'start_date':datetime.datetime.date(datetime.datetime.now() + datetime.timedelta(days=5)),
