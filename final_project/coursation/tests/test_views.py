@@ -112,11 +112,12 @@ class StageListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(5):
-            Stage.objects.create(name=f'stage{i}', )
+            Stage.objects.create(name=f'stage{i}', age_start=8, age_end=18)
         return super().setUpTestData()
     def test_get_list(self):
         response = self.client.get('/stage/list')
         self.assertEqual(response.status_code, 200)
         self.assertIn('stage_list', response.context)
+        self.assertEqual(response.context['stage_list'].count(), 5)
         self.assertEqual(response.context['stage_list'][0], Stage.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
