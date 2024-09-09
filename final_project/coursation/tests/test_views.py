@@ -259,7 +259,6 @@ class TeacherEntryViewTestCase(TestCase):
         return super().setUpTestData()
     def setUp(self) -> None:
         cv_file = SimpleUploadedFile("foo.pdf", b"df", "application/pdf")
-        invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
         demo_file = SimpleUploadedFile("foo.mp4", b"gf", "video/mp4")
         self.data={
             'first_name':'foo',
@@ -312,4 +311,12 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.techer.activation)
         self.assertEqual(response.wsgi_request.user.techer, Techer.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
+    def test_cv_invalid(self):
+        invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
+        self.data['cv'] = invalid_cv_file
+        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'].errors['cv'][0], "please upload a pdf file")
+        self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 
