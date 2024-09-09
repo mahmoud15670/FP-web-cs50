@@ -82,10 +82,10 @@ def teacher_register(request):
     if request.method != "POST":
         return render(request, "teacher_register.html", {"form": User_Form})
     user_form = User_Form(request.POST)
-    
+
     if user_form.is_valid():
         user = user_form.save()
-        user.create_tracher()
+        user.create_teacher()
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "teacher_register.html", {"form": user_form})
@@ -95,7 +95,7 @@ def student_register(request):
     if request.method != "POST":
         return render(request, "student_register.html", {"form": User_Student_Form})
     user_form = User_Student_Form(request.POST)
-    
+
     if user_form.is_valid():
         user = user_form.save()
         user.create_student()
