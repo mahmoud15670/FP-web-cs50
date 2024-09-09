@@ -513,3 +513,8 @@ class CourseListViewTestCase(TestCase):
         self.assertIn('is_paginated', response.context)
         self.assertIn('courses', response.context)
         self.assertEqual(len(response.context['courses']), 5)
+    def test_other_page(self):
+        response = self.client.get(reverse('course_list')+'?page=2')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('courses', response.context)
+        self.assertEqual(len(response.context['courses']), 2)
