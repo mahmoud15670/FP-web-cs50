@@ -285,4 +285,4 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
-
+    def test_
