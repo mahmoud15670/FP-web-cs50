@@ -501,7 +501,7 @@ class CourseListViewTestCase(TestCase):
                                         start_date=datetime.datetime.date(
                                                         datetime.datetime.now() + datetime.timedelta(days=5)
                                                                     ),
-                                                                                stage=stage,
+                                                                                stage=Stage.objects.create(age_start=7, age_end=12, name="foo"),
                                                                                             duration='15',
                                                                                                         about='sjahkld'
                                                                                                                 )
