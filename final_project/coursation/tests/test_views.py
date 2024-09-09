@@ -250,4 +250,12 @@ class StudentRegisterViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "student_register.html")
 class TeacherEntryViewTestCase(TestCase):
-    ...
+    @classmethod
+    def setUpTestData(cls) -> None:
+        teacher = User.objects.create(username="foo")
+        teacher.set_password("123")
+        teacher.create_teacher()
+        teacher.save()
+        return super().setUpTestData()
+    def test_none_user_get(self):
+        response = self.client.get()
