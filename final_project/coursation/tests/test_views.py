@@ -221,4 +221,13 @@ class StudentRegisterViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, 'student_register.html')
     def test_student_register_invalid_passwords(self):
-        self.data
+        self.data["password"] = "123"
+        self.data["confirm_password"] = "1235"
+        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["confirm_password"][0],
+            "Passwords do not match.",
+        )
+        self.assertTemplateUsed(response, 'student_register.html')
