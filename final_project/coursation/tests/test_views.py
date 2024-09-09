@@ -261,4 +261,4 @@ class TeacherEntryViewTestCase(TestCase):
         response = self.client.get('/teacher/1/detsil/entry', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/login')
-        
+        self.assertTemplateUsed(response, "signin.html")
