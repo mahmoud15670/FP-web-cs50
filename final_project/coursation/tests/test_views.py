@@ -445,4 +445,6 @@ class CourseDeleteViewTestCase(TestCase):
         return super().setUpTestData()
     def test_unaccepted_teacher_get(self):
         self.client.login(username='foo', password='123')
-        response = self.client.get('course/1/delete', follow=True)
+        response = self.client.get('/course/1/delete', follow=True)
+        self.assertEqual(response.status_code, 200)
+        
