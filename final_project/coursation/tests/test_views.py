@@ -310,5 +310,6 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
         self.assertTrue(response.wsgi_request.user.techer.activation)
-        self.ass
+        self.assertEqual(response.wsgi_request.user.techer.last_name, 'bar')
+        self
 
