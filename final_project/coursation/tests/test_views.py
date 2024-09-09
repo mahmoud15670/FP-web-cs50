@@ -256,6 +256,10 @@ class TeacherEntryViewTestCase(TestCase):
         teacher.set_password("123")
         teacher.create_teacher()
         teacher.save()
+        teacher = User.objects.create(username="bar")
+        teacher.set_password("123")
+        teacher.create_teacher()
+        teacher.save()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
     def test_none_user_get(self):
@@ -270,6 +274,13 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertRedirects(response, '/')
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTemplateUsed(response, 'index.html')
+    def test_other_teacher_get(self):
+        self.client.login(username='bar', password='123')
+        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '/')
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
+
     def test_teacher_get(self):
         self.client.login(username='foo', password='123')
         response = self.client.get('/teacher/1/detsil/entry', follow=True)
