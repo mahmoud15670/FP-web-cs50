@@ -236,4 +236,5 @@ class StudentRegisterViewTestCase(TestCase):
         response = self.client.post('/student/register', data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn("form", response.context)
-        self.assertEqual(response.context['form'].errors['age'][0], )
+        self.assertEqual(response.context['form'].errors['age'][0], "Age must be between 7 and 80 years.")
+        self.assertTemplateUsed(response, 'student_register.html')
