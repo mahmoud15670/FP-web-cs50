@@ -154,4 +154,6 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.is_teacher)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTemplateUsed(response, 'index.html')
+    def test_teacher_register_invslid(self):
+        ...
 
