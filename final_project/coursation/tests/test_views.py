@@ -165,5 +165,5 @@ class TeacherRegisterViewTestCase(TestCase):
         response = self.client.post("/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors['username'], 'Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.')
+        self.assertEqual(response.context['form'].errors['username'][0], 'Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.')
 
