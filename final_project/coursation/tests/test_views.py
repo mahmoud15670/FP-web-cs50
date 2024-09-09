@@ -121,3 +121,8 @@ class StageListViewTestCase(TestCase):
         self.assertEqual(response.context['stage_list'].count(), 5)
         self.assertEqual(response.context['stage_list'][0], Stage.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
+class TeacherRegisterViewTestCase(TestCase):
+    def test_teacher_register_get(self):
+        response = self.client.get('/teacher/register')
+        self.assertEqual(response.status_code, 200)
+        
