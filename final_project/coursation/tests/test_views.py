@@ -118,5 +118,5 @@ class StageListViewTestCase(TestCase):
         response = self.client.get('/stage/list')
         self.assertEqual(response.status_code, 200)
         self.assertIn('stage_list', response.context)
-        self.assertEqual(r)
+        self.assertEqual(response.context['stage_list'][0], Stage.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
