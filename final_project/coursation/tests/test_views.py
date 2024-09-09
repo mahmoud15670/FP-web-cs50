@@ -161,4 +161,8 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "index.html")
 
     def test_teacher_register_invslid(self):
-        self.data['username'] = ''
+        self.data['username'] = '****'
+        response = self.client.post("/teacher/register", data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.
+
