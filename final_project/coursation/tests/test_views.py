@@ -505,5 +505,5 @@ class CourseListViewTestCase(TestCase):
                                                                                             duration='15',
                                                                                                         about='sjahkld'
                                                                                                                 )
-            )
+            
         return super().setUpTestData()
