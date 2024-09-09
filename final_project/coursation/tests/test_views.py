@@ -351,4 +351,6 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 class CourseCreateViewtestCase(TestCase):
     def test_no_user_get(self):
-        response = self.client.get('')
+        response = self.client.get('/course/create', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '')
