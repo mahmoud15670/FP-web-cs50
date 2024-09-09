@@ -370,10 +370,11 @@ class CourseCreateViewtestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
         self.assertTemplateUsed(response, 'index.html')
-    def test_teacher_get(self):
+    def test_not_accepted_teacher_get(self):
         self.client.login(username="foo", password="123")
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '')
         self.assertIn('form', response.context)
         self.assertEqual(response.resolver_match.func.view_class, Course_create_view)
         # self.assertIsInstance(response.context['form'], Course_Form)
