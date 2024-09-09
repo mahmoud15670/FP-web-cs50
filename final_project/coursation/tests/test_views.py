@@ -246,6 +246,8 @@ class StudentRegisterViewTestCase(TestCase):
             "Age must be between 7 and 80 years.",
         )
         self.assertTemplateUsed(response, "student_register.html")
+
+
 class TeacherEntryViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -257,75 +259,93 @@ class TeacherEntryViewTestCase(TestCase):
         teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
+
     def setUp(self) -> None:
         cv_file = SimpleUploadedFile("foo.pdf", b"df", "application/pdf")
         demo_file = SimpleUploadedFile("foo.mp4", b"gf", "video/mp4")
-        self.data={
-            'first_name':'foo',
-            'last_name':'bar',
-            'cv':cv_file,
-            'demo':demo_file
+        self.data = {
+            "first_name": "foo",
+            "last_name": "bar",
+            "cv": cv_file,
+            "demo": demo_file,
         }
         return super().setUp()
+
     def test_none_user_get(self):
-        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        response = self.client.get("/teacher/1/detsil/entry", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/login')
+        self.assertRedirects(response, "/login")
         self.assertTemplateUsed(response, "signin.html")
+
     def test_user_not_teacher_get(self):
         self.client.login(username="baz", password="123")
-        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        response = self.client.get("/teacher/1/detsil/entry", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, "index.html")
+
     def test_other_teacher_get(self):
-        self.client.login(username='bar', password='123')
-        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        self.client.login(username="bar", password="123")
+        response = self.client.get("/teacher/1/detsil/entry", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, "index.html")
+
     def test_same_teacher_get(self):
-        self.client.login(username='foo', password='123')
-        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        self.client.login(username="foo", password="123")
+        response = self.client.get("/teacher/1/detsil/entry", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertIn('form', response.context)
-        self.assertIsInstance(response.context['form'], Teacher_form)
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
     def test_other_teacher_post(self):
-        self.client.login(username='bar', password='123')
-        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.client.login(username="bar", password="123")
+        response = self.client.post(
+            "/teacher/1/detsil/entry", data=self.data, follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        self.client.login(username='bar', password='123')
-        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
+        self.assertIn("form", response.context)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
     def test_same_teacher_post(self):
-        self.client.login(username='foo', password='123')
-        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.client.login(username="foo", password="123")
+        response = self.client.post(
+            "/teacher/1/detsil/entry", data=self.data, follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.techer.activation)
         self.assertEqual(response.wsgi_request.user.techer, Techer.objects.get(pk=1))
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, "index.html")
+
     def test_cv_invalid(self):
-        self.client.login(username='foo', password='123')
+        self.client.login(username="foo", password="123")
         invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
-        self.data['cv'] = invalid_cv_file
-        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.data["cv"] = invalid_cv_file
+        response = self.client.post(
+            "/teacher/1/detsil/entry", data=self.data, follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors['cv'][0], "please upload a pdf file")
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["cv"][0], "please upload a pdf file"
+        )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+
     def test_demo_invalid(self):
-        self.client.login(username='foo', password='123')
+        self.client.login(username="foo", password="123")
         invalid_cv_file = SimpleUploadedFile("foo.txt", b"df", "text/plain")
-        self.data['demo'] = invalid_cv_file
-        response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
+        self.data["demo"] = invalid_cv_file
+        response = self.client.post(
+            "/teacher/1/detsil/entry", data=self.data, follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'].errors['demo'][0], "please upload a mp4 video")
+        self.assertIn("form", response.context)
+        self.assertEqual(
+            response.context["form"].errors["demo"][0], "please upload a mp4 video"
+        )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
