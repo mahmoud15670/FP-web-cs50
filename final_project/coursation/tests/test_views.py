@@ -125,4 +125,7 @@ class TeacherRegisterViewTestCase(TestCase):
     def test_teacher_register_get(self):
         response = self.client.get('/teacher/register')
         self.assertEqual(response.status_code, 200)
-        
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'], User_Form)
+        self.assertTemplateUsed(response, )
+
