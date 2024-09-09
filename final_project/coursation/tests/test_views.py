@@ -452,3 +452,10 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
+    def test_accepted_teacher_get(self):
+        teacher = Techer.objects.get(pk=1)
+        teacher.acceptation = True
+        teacher.activation = True
+        teacher.save()
+        response = self.client.get('/course/1/delete', follow=True)
+        self.assertEqual(response.status_code, 200)
