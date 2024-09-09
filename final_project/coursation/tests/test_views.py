@@ -350,4 +350,5 @@ class TeacherEntryViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, "teacher_detsil_entry.html")
 class CourseCreateViewtestCase(TestCase):
-    ...
+    def test_no_user_get(self):
+        
