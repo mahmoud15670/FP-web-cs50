@@ -459,6 +459,7 @@ class CourseDeleteViewTestCase(TestCase):
         teacher.save()
         response = self.client.get('/course/1/delete', follow=True)
         self.assertEqual(response.status_code, 200)
+        print(response.content)
         self.assertIn('delete_object', response.context)
         self.assertEqual(response.context['delete_object'], Course.objects.get(pk=1))
         self.assertTemplateUsed(response, 'delete.html')
