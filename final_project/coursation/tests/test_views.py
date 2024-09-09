@@ -359,6 +359,8 @@ class CourseCreateViewtestCase(TestCase):
         teacher.create_teacher()
         User.objects.create_superuser(username="baz", password="123")
         return super().setUpTestData()
+    def setUp(self) -> None:
+        return super().setUp()
     def test_no_user_get(self):
         response = self.client.get('/course/create', follow=True)
         self.assertEqual(response.status_code, 200)
