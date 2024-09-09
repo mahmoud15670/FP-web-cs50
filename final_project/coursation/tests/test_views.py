@@ -108,19 +108,25 @@ class IndexViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertNotIn('courses', response.context)
         self.assertTemplateUsed(response, 'index.html')
+
+
 class StageListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(5):
             Stage.objects.create(name=f'stage{i}', age_start=8, age_end=18)
         return super().setUpTestData()
+
     def test_get_list(self):
         response = self.client.get('/stage/list')
         self.assertEqual(response.status_code, 200)
         self.assertIn('stage_list', response.context)
         self.assertEqual(response.context['stage_list'].count(), 5)
-        self.assertEqual(response.context['stage_list'][0], Stage.objects.get(pk=1))
+        self.assertEqual(
+            response.context['stage_list'][0], Stage.objects.get(pk=1))
         self.assertTemplateUsed(response, 'index.html')
+
+
 class TeacherRegisterViewTestCase(TestCase):
     def test_teacher_register_get(self):
         response = self.client.get('/teacher/register')
@@ -128,14 +134,21 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertEqual(response.context['form'], User_Form)
         self.assertTemplateUsed(response, 'teacher_register.html')
+
     def test_teacher_register_post(self):
+        stage = Stage.objects.create(age_start=7, age_end=12, name='foo')
+        section = Section.objects.create(name='foo')
         data = {"username": "foo",
-                    "password": "12345678",
-                                "confirm_password": "12345678",
-                                            "phone": "1234567890",
-                                                        "age": 7,
-                                                                    "stage": stage.id,
-                                                                                "exams": "dfdfd",
-                                                                                            "section": section.id,
-                                                                                                        "rating": "2",}
+                "password": "12345678",
+                "confirm_password": "12345678",
+                "phone": "1234567890",
+                "age": 7,
+                "stage": stage.id,
+                "exams": "dfdfd",
+                "section": section.id,
+                "rating": "2",
+                }
+        response = self.client.post(data=data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '/')
 
