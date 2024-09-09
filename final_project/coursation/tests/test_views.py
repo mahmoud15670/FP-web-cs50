@@ -430,6 +430,7 @@ class CourseDeleteViewTestCase(TestCase):
         teacher = User.objects.create(username="foo")
         teacher.set_password("123")
         teacher.create_teacher()
+        Course.objects.create()
         return super().setUpTestData()
     def test_unaccepted_teacher_get(self):
         self.client.login(username='foo', password='123')
