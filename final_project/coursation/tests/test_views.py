@@ -411,4 +411,5 @@ class CourseCreateViewtestCase(TestCase):
         response = self.client.post('/course/create', data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
-        self.assertEqual(response.wsgi_request.user)
+        self.assertIn(Course.objects.get(pk=1), response.wsgi_request.user.techer.course_set.all())
+        self.assertTemplateUsed(response, 'index.html')
