@@ -432,7 +432,7 @@ class CourseDeleteViewTestCase(TestCase):
         teacher.create_teacher()
         stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
         skill = Skills.objects.create(name="foo")
-        Course.objects.create(
+        course = Course.objects.create(
             name='foo',
             start_date=datetime.datetime.date(
                 datetime.datetime.now() + datetime.timedelta(days=5)
@@ -441,6 +441,8 @@ class CourseDeleteViewTestCase(TestCase):
             duration='15',
             about='sjahkld'
         )
+        course.skill.add(skill)
+        course.save()
         return super().setUpTestData()
     def test_unaccepted_teacher_get(self):
         self.client.login(username='foo', password='123')
