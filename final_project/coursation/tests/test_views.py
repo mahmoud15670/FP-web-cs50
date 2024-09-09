@@ -211,3 +211,12 @@ class StudentRegisterViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_student)
         self.assertTemplateUsed(response, 'index.html')
+    def test_student_register_valid_username(self):
+        self.data['username'] = '***'
+        response = self.client.post('/student/register', data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'].errors["username"][0],
+            "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters.",
+        )
+        self.assertTemplateUsed(response, 'student_register.html')
