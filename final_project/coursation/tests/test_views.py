@@ -264,8 +264,8 @@ class TeacherEntryViewTestCase(TestCase):
         self.data={
             'first_name':'foo',
             'last_name':'bar',
-            'cv':cv_file.id,
-            'demo':demo_file.id
+            'cv':cv_file,
+            'demo':demo_file
         }
         return super().setUp()
     def test_none_user_get(self):
@@ -299,4 +299,6 @@ class TeacherEntryViewTestCase(TestCase):
         self.client.login(username='bar', password='123')
         response = self.client.post('/teacher/1/detsil/entry', data=self.data,follow=True)
         self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertFalse(response.context['form'].is_valid)
 
