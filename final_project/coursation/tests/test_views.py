@@ -374,5 +374,5 @@ class CourseCreateViewtestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Course_Form)
-        self.assertTemplateUsed(response, )
+        self.assertTemplateUsed(response, "course_create.html")
         
