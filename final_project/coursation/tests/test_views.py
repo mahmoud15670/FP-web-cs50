@@ -371,7 +371,7 @@ class CourseCreateViewtestCase(TestCase):
     def test_teacher_get(self):
         self.client.login(username="foo", password="123")
         response = self.client.get('/course/create', follow=True)
-        print(response.context)
+        print(response.context['form'])
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertEqual(response.resolver_match.func.view_class, Course_create_view)
