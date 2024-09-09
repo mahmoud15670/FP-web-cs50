@@ -258,4 +258,7 @@ class TeacherEntryViewTestCase(TestCase):
         teacher.save()
         return super().setUpTestData()
     def test_none_user_get(self):
-        response = self.client.get('teacher/1/detsil/entry', follow=True)
+        response = self.client.get('/teacher/1/detsil/entry', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '/login')
+        
