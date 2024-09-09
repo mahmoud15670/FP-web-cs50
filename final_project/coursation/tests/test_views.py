@@ -505,5 +505,7 @@ class CourseListViewTestCase(TestCase):
                                                                                             duration='15',
                                                                                                         about='sjahkld'
                                                                                                                 )
-            
+
         return super().setUpTestData()
+    def test_pagination(self):
+        response = self.client.get(reverse())
