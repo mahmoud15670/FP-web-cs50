@@ -184,4 +184,8 @@ class TeacherRegisterViewTestCase(TestCase):
         self.assertTemplateUsed(response, "teacher_register.html")
 class StudentRegisterViewTestCase(TestCase):
     def test_student_register(self):
-        response = self.client.get('')
+        response = self.client.get('/student/register')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertEqual(response.context['form'], User_Student_Form)
+        self.assertTemplateUsed(response, 'student_register.html')
