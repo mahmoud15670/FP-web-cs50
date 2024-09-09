@@ -148,7 +148,7 @@ class TeacherRegisterViewTestCase(TestCase):
                 "section": section.id,
                 "rating": "2",
                 }
-        response = self.client.post(',data=data, follow=True)
+        response = self.client.post('/teacher/register',data=data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, '/')
 
