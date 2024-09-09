@@ -182,3 +182,5 @@ class TeacherRegisterViewTestCase(TestCase):
             "Passwords do not match.",
         )
         self.assertTemplateUsed(response, "teacher_register.html")
+class StudentRegisterViewTestCase(TestCase):
+    def test
