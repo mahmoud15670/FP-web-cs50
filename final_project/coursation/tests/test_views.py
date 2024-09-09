@@ -450,3 +450,4 @@ class CourseDeleteViewTestCase(TestCase):
         self.assertRedirects(response, '/teacher/1/detsil/entry')
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Teacher_form)
+        self.assertTemplateUsed(response, )
