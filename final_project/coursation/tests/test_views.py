@@ -116,4 +116,7 @@ class StageListViewTestCase(TestCase):
         return super().setUpTestData()
     def test_get_list(self):
         response = self.client.get('/stage/list')
-        self.assertEqual(response.status_code, )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('stage_list', response.context)
+        self.assertEqual(r)
+        self.assertTemplateUsed(response, 'index.html')
