@@ -44,116 +44,121 @@ class UserLoginViewTestCase(TestCase):
 
 class LogoutViewTestCase(TestCase):
     def setUp(self) -> None:
-        user = User.objects.create(username='foo')
-        user.set_password('123')
+        user = User.objects.create(username="foo")
+        user.set_password("123")
         user.save()
-        self.client.login(username='foo', password='123')
+        self.client.login(username="foo", password="123")
         return super().setUp()
 
     def test_logout_url(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        response = self.client.get('/logout', follow=True)
+        response = self.client.get("/logout", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, "index.html")
         self.assertFalse(response.wsgi_request.user.is_authenticated)
 
 
 class IndexViewTestCase(TestCase):
     def setUp(self) -> None:
-        teacher = User.objects.create(username='foo')
-        teacher.set_password('123')
+        teacher = User.objects.create(username="foo")
+        teacher.set_password("123")
         teacher.create_teacher()
         teacher.save()
-        student = User.objects.create(username='bar')
-        student.set_password('123')
+        student = User.objects.create(username="bar")
+        student.set_password("123")
         student.create_student()
         student.save()
-        admin = User.objects.create_superuser(username='baz', password='123')
+        admin = User.objects.create_superuser(username="baz", password="123")
         return super().setUp()
 
     def test_none_user_index(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn('courses', response.context)
-        self.assertIn('stage_list', response.context)
-        self.assertIn('sections', response.context)
-        self.assertIn('skills', response.context)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertIn("courses", response.context)
+        self.assertIn("stage_list", response.context)
+        self.assertIn("sections", response.context)
+        self.assertIn("skills", response.context)
+        self.assertTemplateUsed(response, "index.html")
 
     def test_teacher_index(self):
-        self.client.login(username='foo', password='123')
-        response = self.client.get('/')
+        self.client.login(username="foo", password="123")
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_teacher)
-        self.assertIn('teacher', response.context)
-        self.assertNotIn('courses', response.context)
-        self.assertTemplateUsed(response, 'teacher.html')
+        self.assertIn("teacher", response.context)
+        self.assertNotIn("courses", response.context)
+        self.assertTemplateUsed(response, "teacher.html")
 
     def test_student_index(self):
-        self.client.login(username='bar', password='123')
-        response = self.client.get('/')
+        self.client.login(username="bar", password="123")
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTrue(response.wsgi_request.user.is_student)
-        self.assertIn('student', response.context)
-        self.assertIn('courses', response.context)
-        self.assertTemplateUsed(response, 'student.html')
+        self.assertIn("student", response.context)
+        self.assertIn("courses", response.context)
+        self.assertTemplateUsed(response, "student.html")
 
     def test_admin_index(self):
-        self.client.login(username='baz', password='123')
-        response = self.client.get('/')
+        self.client.login(username="baz", password="123")
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertNotIn('courses', response.context)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertNotIn("courses", response.context)
+        self.assertTemplateUsed(response, "index.html")
 
 
 class StageListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(5):
-            Stage.objects.create(name=f'stage{i}', age_start=8, age_end=18)
+            Stage.objects.create(name=f"stage{i}", age_start=8, age_end=18)
         return super().setUpTestData()
 
     def test_get_list(self):
-        response = self.client.get('/stage/list')
+        response = self.client.get("/stage/list")
         self.assertEqual(response.status_code, 200)
-        self.assertIn('stage_list', response.context)
-        self.assertEqual(response.context['stage_list'].count(), 5)
-        self.assertEqual(
-            response.context['stage_list'][0], Stage.objects.get(pk=1))
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertIn("stage_list", response.context)
+        self.assertEqual(response.context["stage_list"].count(), 5)
+        self.assertEqual(response.context["stage_list"][0], Stage.objects.get(pk=1))
+        self.assertTemplateUsed(response, "index.html")
 
 
 class TeacherRegisterViewTestCase(TestCase):
+    def setUp(self) -> None:
+        stage = Stage.objects.create(age_start=7, age_end=12, name="foo")
+        section = Section.objects.create(name="foo")
+        self.data = {
+            "username": "foo",
+            "password": "12345678",
+            "confirm_password": "12345678",
+            "phone": "1234567890",
+            "age": 7,
+            "stage": stage.id,
+            "exams": "dfdfd",
+            "section": section.id,
+            "rating": "2",
+        }
+
+        return super().setUp()
+
     def test_teacher_register_get(self):
-        response = self.client.get('/teacher/register')
+        response = self.client.get("/teacher/register")
         self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertEqual(response.context['form'], User_Form)
-        self.assertTemplateUsed(response, 'teacher_register.html')
+        self.assertIn("form", response.context)
+        self.assertEqual(response.context["form"], User_Form)
+        self.assertTemplateUsed(response, "teacher_register.html")
 
     def test_teacher_register_post(self):
-        stage = Stage.objects.create(age_start=7, age_end=12, name='foo')
-        section = Section.objects.create(name='foo')
-        data = {"username": "foo",
-                "password": "12345678",
-                "confirm_password": "12345678",
-                "phone": "1234567890",
-                "age": 7,
-                "stage": stage.id,
-                "exams": "dfdfd",
-                "section": section.id,
-                "rating": "2",
-                }
-        response = self.client.post('/teacher/register',data=data, follow=True)
+
+        response = self.client.post("/teacher/register", data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, "/")
         self.assertTrue(response.wsgi_request.user.is_teacher)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertTemplateUsed(response, 'index.html')
-    def test_teacher_register_invslid(self):
-        ...
+        self.assertTemplateUsed(response, "index.html")
 
+    def test_teacher_register_invslid(self):
+        self.data['username'] = ''
