@@ -510,5 +510,6 @@ class CourseListViewTestCase(TestCase):
     def test_pagination(self):
         response = self.client.get(reverse('course_list'))
         self.assertEqual(response.status_code, 200)
+        self.assertIn('is_paginated', response.context)
         self.assertIn('courses', response.context)
-        self.assertEqual(response.context['courses'].count, 5)
+        self.assertEqual(len(response.context['courses']), 5)
