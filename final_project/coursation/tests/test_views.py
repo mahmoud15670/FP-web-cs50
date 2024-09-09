@@ -271,4 +271,4 @@ class TeacherEntryViewTestCase(TestCase):
         self.assertTrue(response.wsgi_request.user.is_authenticated)
         self.assertTemplateUsed(response, 'index.html')
     def test_teacher_get(self):
-        self.
+        self.client
