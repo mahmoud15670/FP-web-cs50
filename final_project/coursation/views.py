@@ -206,7 +206,7 @@ class Section_details_view(generic.DetailView):
 @course_select()
 def unit_create(request, course_id):
     if request.method != "POST":
-        return render(request, "unit_create.html", {"form": Unit_Form})
+        return render(request, "unit_create.html", {"form": Unit_Form()})
     form = Unit_Form(request.POST)
     course = get_object_or_404(Course, pk=course_id)
     if form.is_valid:
