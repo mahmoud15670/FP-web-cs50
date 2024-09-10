@@ -643,6 +643,8 @@ class UnitCreateViewTestCase(TestCase):
         teacher1 = User.objects.create(username='foo')
         teacher1.set_password('123')
         teacher1.create_teacher()
+        teacher1 = Techer.objects.get(pk=1)
+    
         teacher2 = User.objects.create(username='bar')
         teacher2.set_password('123')
         teacher2.create_teacher()
