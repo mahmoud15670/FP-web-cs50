@@ -695,3 +695,4 @@ class UnitCreateViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertIn('name', response.context['form'].errors)
+        self.assertEqual(response.context['form'].errors['name'][0], 'max length is 20')
