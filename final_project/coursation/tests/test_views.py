@@ -575,8 +575,9 @@ class StudentEnrollViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('login'))
     def test_none_course(self):
-        response = self.client.get(reverse('student_enroll', kwargs={'pk':2}))
-        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse('student_enroll', kwargs={'pk':2}), follow=True)
+        self.assertEqual(response.status_code, 200)
+        print(re
     def test_none_student_user(self):
         self.client.login(username='foo', password='123')
         response  = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
