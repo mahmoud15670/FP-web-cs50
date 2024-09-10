@@ -637,4 +637,5 @@ class SectionDetailViewTestCase(TestCase):
         self.assertEqual(
             response.context['section'], Section.objects.get(pk=1))
         self.assertTemplateUsed(response, 'section_details.html')
-class 
+class UnitCreateViewTestCase(TestCase):
+    @classmethod
