@@ -540,4 +540,8 @@ class CourseDetailViewTestCase(TestCase):
         )
         return super().setUpTestData()
     def test_get_course(self):
-        response = self.client.get(reverse())
+        response = self.client.get(reverse('course_detail', args={'pk':1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('course', response.context)
+        self.assertEqual(response.context['course'], Course.objects.get(pk=1))
+        self.assertTemplateUsed(response, )
