@@ -661,4 +661,5 @@ class UnitCreateViewTestCase(TestCase):
         course.save()
         return super().setUpTestData()
     def test_course_teacher(self):
-        self.client.login(u)
+        self.client.login(username='bar', password='123')
+        response = self.client.get(reverse())
