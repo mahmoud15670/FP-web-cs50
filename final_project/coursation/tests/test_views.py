@@ -600,12 +600,15 @@ class StudentEnrollViewTestCase(TestCase):
         self.assertRedirects(response, reverse('index'))
         self.assertIn(response.wsgi_request.user.student,
                       Course.objects.get(pk=1).student.all())
+
+
 class SectionListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(5):
             Section.objects.create(name=f'{i}')
         return super().setUpTestData()
+
     def test_list(self):
         response = self.client.get(reverse('section_list'))
         self.assertEqual(response.status_code, 200)
@@ -613,17 +616,25 @@ class SectionListViewTestCase(TestCase):
         self.assertEqual(len(response.context['sections']), 5)
         self.assertIsInstance(response.context['sections'][0], Section)
         self.assertTemplateUsed(response, 'index.html')
+
+
 class SectionDetailViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         Section.objects.create(name='foo')
         return super().setUpTestData()
+
     def test_get_none_section(self):
-        response = self.client.get(reverse('section_details', kwargs={'pk':3}))
+        response = self.client.get(
+            reverse('section_details', kwargs={'pk': 3}))
         self.assertEqual(response.status_code, 404)
+
     def test_get_section(self):
-        response = self.client.get(reverse('section_details', kwargs={'pk':1}))
+        response = self.client.get(
+            reverse('section_details', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 200)
         self.assertIn('section', response.context)
-        self.assertEqual(response.context['section'], Section.objects.get(pk=1))
+        self.assertEqual(
+            response.context['section'], Section.objects.get(pk=1))
         self.assertTemplateUsed(response, 'section_details.html')
+class 
