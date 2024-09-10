@@ -682,10 +682,16 @@ class UnitCreateViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Unit_Form)
         self.assertTemplateUsed(response, 'unit_create.html')
-    def test_unit_create(self):
+    def test_valid_unit_create(self):
         self.client.login(username='foo', password='123')
         response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
         self.assertEqual(Unit.objects.get(pk=1).course, Course.objects.get(pk=1))
-
+    def test_invalid_unit_create(self):
+        self.client.login(username='foo', password='123')
+        self.data['name'] = 'fjrut2i2titi2toti1tiyowttigiorudurueydkegfjdjtsjoeyhfuueuetgdirueudhdhdj'
+        response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertIn('name', response.context['form'].errors)
