@@ -643,5 +643,15 @@ class UnitCreateViewTestCase(TestCase):
         teacher = User.objects.create(username='foo')
         teacher.set_password('123')
         teacher.create_teacher()
-
+        Course.objects.create(
+            name='foo',
+                        start_date=datetime.datetime.date(
+                                        datetime.datetime.now() + datetime.timedelta(days=5)
+                                                    ),
+                                                                stage=Stage.objects.create(
+                                                                                age_start=7, age_end=12, name="foo"),
+                                                                                            duration='15',
+                                                                                                        about='sjahkld'
+        )
         return super().setUpTestData()
+    def test_
