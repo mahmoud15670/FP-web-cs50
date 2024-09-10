@@ -545,3 +545,6 @@ class CourseDetailViewTestCase(TestCase):
         self.assertIn('course', response.context)
         self.assertEqual(response.context['course'], Course.objects.get(pk=1))
         self.assertTemplateUsed(response, 'course_detail.html')
+    def test_get_non_course(self):
+        response = self.client.get(reverse('course_detail', kwargs={'pk':2}))
+        self.assertEqual(response.status_code, 404)
