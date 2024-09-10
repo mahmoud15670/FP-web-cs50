@@ -601,4 +601,8 @@ class StudentEnrollViewTestCase(TestCase):
         self.assertIn(response.wsgi_request.user.student,
                       Course.objects.get(pk=1).student.all())
 class SectionListViewTestCase(TestCase):
-    
+    @classmethod
+    def setUpTestData(cls) -> None:
+        for i in range(5):
+            Section.objects.create(name=)
+        return super().setUpTestData()
