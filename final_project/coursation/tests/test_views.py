@@ -403,7 +403,7 @@ class CourseCreateViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(
             response, f"/teacher/{(response.wsgi_request.user.id)
-                                  }/detsil/entry"
+        }/detsil/entry"
         )
         self.assertIn("form", response.context)
         self.assertIsInstance(response.context["form"], Teacher_form)
