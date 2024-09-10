@@ -639,3 +639,9 @@ class SectionDetailViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'section_details.html')
 class UnitCreateViewTestCase(TestCase):
     @classmethod
+    def setUpTestData(cls) -> None:
+        teacher = User.objects.create(username='foo')
+        teacher.set_password('123')
+        teacher.create_teacher()
+        
+        return super().setUpTestData()
