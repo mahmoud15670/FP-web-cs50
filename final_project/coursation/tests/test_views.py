@@ -686,4 +686,4 @@ class UnitCreateViewTestCase(TestCase):
         self.client.login(username='foo', password='123')
         response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        
+        self.redi
