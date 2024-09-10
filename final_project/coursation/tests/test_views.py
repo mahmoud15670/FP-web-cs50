@@ -606,3 +606,5 @@ class SectionListViewTestCase(TestCase):
         for i in range(5):
             Section.objects.create(name=f'{i}')
         return super().setUpTestData()
+    def test_list(self):
+        response = self.client.get(reverse())
