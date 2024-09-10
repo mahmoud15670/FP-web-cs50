@@ -643,9 +643,11 @@ class UnitCreateViewTestCase(TestCase):
         teacher1 = User.objects.create(username='foo')
         teacher1.set_password('123')
         teacher1.create_teacher()
-        teacher2 = ursr
+        teacher2 = User.objects.create(username='bar')
+        teacher2.set_password('123')
+        teacher2.create_teacher()
     def setUp(self) -> None:
-        Course.objects.create(
+        course = Course.objects.create(
             name='foo',
                         start_date=datetime.datetime.date(
                                         datetime.datetime.now() + datetime.timedelta(days=5)
@@ -655,5 +657,8 @@ class UnitCreateViewTestCase(TestCase):
                                                                                             duration='15',
                                                                                                         about='sjahkld'
         )
+        course.teacher = Techer.objects.get(pk=1)
+        course.save()
         return super().setUpTestData()
     def test_course_teacher(self):
+        self.client.login(u)
