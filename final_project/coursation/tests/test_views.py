@@ -600,4 +600,5 @@ class StudentEnrollViewTestCase(TestCase):
         self.assertRedirects(response, reverse('index'))
         self.assertIn(response.wsgi_request.user.student,
                       Course.objects.get(pk=1).student.all())
-class Section
+class SectionListViewTestCase(TestCase):
+    
