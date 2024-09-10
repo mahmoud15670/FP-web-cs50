@@ -553,5 +553,24 @@ class CourseDetailViewTestCase(TestCase):
         response = self.client.get(reverse('course_detail', kwargs={'pk': 2}))
         self.assertEqual(response.status_code, 404)
 class StudentEnrollViewTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        Course.objects.create(
+            name='foo',
+                            start_date=datetime.datetime.date(
+                                                datetime.datetime.now() + datetime.timedelta(days=5)
+                                                                ),
+                                                                                stage=Stage.objects.create(
+                                                                                                    age_start=7, age_end=12, name="foo"),
+                                                                                                                    duration='15',
+                                                                                                                                    about='sjahkld'
+        )
+        User.
+        return super().setUpTestData()
     def test_none_user(self):
-        response = self.client.get()
+        response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, reverse('login'))
+    def test_none_course(self):
+        response = self.client.get(reverse('student_enroll', kwargs={'pk':2}))
+        self.assertEqual(response.status_code, 404)
