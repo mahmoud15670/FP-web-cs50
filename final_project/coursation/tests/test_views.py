@@ -567,7 +567,8 @@ class StudentEnrollViewTestCase(TestCase):
         )
         User.objects.create_superuser(username='foo', password='123')
         student = User.objects.create(username='bar')
-        student.set_password
+        student.set_password('123')
+        student.create_student()
         return super().setUpTestData()
     def test_none_user(self):
         response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
