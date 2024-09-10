@@ -663,3 +663,4 @@ class UnitCreateViewTestCase(TestCase):
     def test_course_teacher(self):
         self.client.login(username='bar', password='123')
         response = self.client.get(reverse('unit_create', kwargs={'course_id':1}))
+        self.assertEqual(response
