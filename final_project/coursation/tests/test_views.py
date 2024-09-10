@@ -667,7 +667,7 @@ class UnitCreateViewTestCase(TestCase):
         )
         course.teacher = Techer.objects.get(pk=1)
         course.save()
-        
+        self.data = {'name':'foo', 'goal':'foo'}
         return super().setUpTestData()
     def test_not_course_teacher(self):
         self.client.login(username='bar', password='123')
