@@ -607,4 +607,16 @@ class SectionListViewTestCase(TestCase):
             Section.objects.create(name=f'{i}')
         return super().setUpTestData()
     def test_list(self):
+        response = self.client.get(reverse('section_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('sections', response.context)
+        self.assertEqual(len(response.context['sections']), 5)
+        self.assertIsInstance(response.context['sections'][0], Section)
+        self.assertTemplateUsed(response, 'index.html')
+class SectionDetailViewTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        Section.objects.create(name='foo')
+        return super().setUpTestData()
+    def test_get_section(self):
         response = self.client.get(reverse())
