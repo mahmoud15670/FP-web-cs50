@@ -525,26 +525,32 @@ class CourseListViewTestCase(TestCase):
         self.assertIn('courses', response.context)
         self.assertEqual(len(response.context['courses']), 2)
         self.assertTemplateUsed(response, 'index.html')
+
+
 class CourseDetailViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         Course.objects.create(
             name='foo',
-                            start_date=datetime.datetime.date(
-                                                datetime.datetime.now() + datetime.timedelta(days=5)
-                                                                ),
-                                                                                stage=Stage.objects.create(
-                                                                                                    age_start=7, age_end=12, name="foo"),
-                                                                                                                    duration='15',
-                                                                                                                                    about='sjahkld'
+            start_date=datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=5)
+            ),
+            stage=Stage.objects.create(
+                age_start=7, age_end=12, name="foo"),
+            duration='15',
+            about='sjahkld'
         )
         return super().setUpTestData()
+
     def test_get_course(self):
-        response = self.client.get(reverse('course_detail', kwargs={'pk':1}))
+        response = self.client.get(reverse('course_detail', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 200)
         self.assertIn('course', response.context)
         self.assertEqual(response.context['course'], Course.objects.get(pk=1))
         self.assertTemplateUsed(response, 'course_detail.html')
+
     def test_get_non_course(self):
-        response = self.client.get(reverse('course_detail', kwargs={'pk':2}))
+        response = self.client.get(reverse('course_detail', kwargs={'pk': 2}))
         self.assertEqual(response.status_code, 404)
+class StudentEnrollViewTestCase(TestCase):
+    
