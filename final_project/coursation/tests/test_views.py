@@ -673,4 +673,4 @@ class UnitCreateViewTestCase(TestCase):
         response = self.client.get(reverse('unit_create', kwargs={'course_id':1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
-        self.assertTemplateUsed(response, 'course_details.html')
+        self.assertTemplateUsed(response, 'course_detail.html')
