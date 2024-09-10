@@ -566,7 +566,7 @@ class StudentEnrollViewTestCase(TestCase):
                                                                                                                                     about='sjahkld'
         )
         User.objects.create_superuser(username='foo', password='123')
-        student = User.objects.create(username='bar')
+        student = User.objects.create(username='bar', age=8)
         student.set_password('123')
         student.create_student()
         return super().setUpTestData()
