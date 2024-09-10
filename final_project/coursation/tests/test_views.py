@@ -640,9 +640,11 @@ class SectionDetailViewTestCase(TestCase):
 class UnitCreateViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        teacher = User.objects.create(username='foo')
-        teacher.set_password('123')
-        teacher.create_teacher()
+        teacher1 = User.objects.create(username='foo')
+        teacher1.set_password('123')
+        teacher1.create_teacher()
+        teacher2 = ursr
+    def setUp(self) -> None:
         Course.objects.create(
             name='foo',
                         start_date=datetime.datetime.date(
@@ -654,4 +656,4 @@ class UnitCreateViewTestCase(TestCase):
                                                                                                         about='sjahkld'
         )
         return super().setUpTestData()
-    def test_
+    def test_course_teacher(self):
