@@ -528,5 +528,15 @@ class CourseListViewTestCase(TestCase):
 class CourseDetailViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        
+        Course.objects.create(
+            name='foo',
+                            start_date=datetime.datetime.date(
+                                                datetime.datetime.now() + datetime.timedelta(days=5)
+                                                                ),
+                                                                                stage=Stage.objects.create(
+                                                                                                    age_start=7, age_end=12, name="foo"),
+                                                                                                                    duration='15',
+                                                                                                                                    about='sjahkld'
+        )
         return super().setUpTestData()
+    def test_get_course()
