@@ -619,4 +619,8 @@ class SectionDetailViewTestCase(TestCase):
         Section.objects.create(name='foo')
         return super().setUpTestData()
     def test_get_section(self):
-        response = self.client.get(reverse())
+        response = self.client.get(reverse('section_details', kwargs={'pk':1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('section', response.context)
+        self.assertEqual(response.context['section'], Section.objects.get(pk=1))
+        self.assertTemplateUsed(response, 'index.html')
