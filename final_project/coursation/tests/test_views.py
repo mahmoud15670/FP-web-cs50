@@ -687,4 +687,5 @@ class UnitCreateViewTestCase(TestCase):
         response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
-        
+        self.assertEqual(Unit.objects.get(pk=1).course, Course.objects.get(pk=1))
+
