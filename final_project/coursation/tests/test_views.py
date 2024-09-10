@@ -552,41 +552,52 @@ class CourseDetailViewTestCase(TestCase):
     def test_get_non_course(self):
         response = self.client.get(reverse('course_detail', kwargs={'pk': 2}))
         self.assertEqual(response.status_code, 404)
+
+
 class StudentEnrollViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         Course.objects.create(
             name='foo',
-                            start_date=datetime.datetime.date(
-                                                datetime.datetime.now() + datetime.timedelta(days=5)
-                                                                ),
-                                                                                stage=Stage.objects.create(
-                                                                                                    age_start=7, age_end=12, name="foo"),
-                                                                                                                    duration='15',
-                                                                                                                                    about='sjahkld'
+            start_date=datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=5)
+            ),
+            stage=Stage.objects.create(
+                age_start=7, age_end=12, name="foo"),
+            duration='15',
+            about='sjahkld'
         )
         User.objects.create_superuser(username='foo', password='123')
         student = User.objects.create(username='bar', age=8)
         student.set_password('123')
         student.create_student()
         return super().setUpTestData()
+
     def test_none_user(self):
-        response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        response = self.client.get(
+            reverse('student_enroll', kwargs={'pk': 1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('login'))
+
     def test_none_course(self):
         self.client.login(username='bar', password='123')
-        response = self.client.get(reverse('student_enroll', kwargs={'pk':2}), follow=True)
+        response = self.client.get(
+            reverse('student_enroll', kwargs={'pk': 2}), follow=True)
         self.assertEqual(response.status_code, 404)
 
     def test_none_student_user(self):
         self.client.login(username='foo', password='123')
-        response  = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        response = self.client.get(
+            reverse('student_enroll', kwargs={'pk': 1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('index'))
+
     def test_student_user(self):
         self.client.login(username='bar', password='123')
-        response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        response = self.client.get(
+            reverse('student_enroll', kwargs={'pk': 1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('index'))
-        self.assertIn(response.wsgi_request.user.student, Course.objects.get(pk=1).student.all())
+        self.assertIn(response.wsgi_request.user.student,
+                      Course.objects.get(pk=1).student.all())
+class Section
