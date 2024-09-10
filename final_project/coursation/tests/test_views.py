@@ -682,3 +682,8 @@ class UnitCreateViewTestCase(TestCase):
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Unit_Form)
         self.assertTemplateUsed(response, 'unit_create.html')
+    def test_unit_create(self):
+        self.client.login(username='foo', password='123')
+        response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        
