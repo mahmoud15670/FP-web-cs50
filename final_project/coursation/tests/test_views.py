@@ -553,4 +553,4 @@ class CourseDetailViewTestCase(TestCase):
         response = self.client.get(reverse('course_detail', kwargs={'pk': 2}))
         self.assertEqual(response.status_code, 404)
 class StudentEnrollViewTestCase(TestCase):
-    def test_
+    def test_none
