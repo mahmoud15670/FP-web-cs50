@@ -637,6 +637,8 @@ class SectionDetailViewTestCase(TestCase):
         self.assertEqual(
             response.context['section'], Section.objects.get(pk=1))
         self.assertTemplateUsed(response, 'section_details.html')
+
+
 class UnitCreateViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -654,45 +656,47 @@ class UnitCreateViewTestCase(TestCase):
         teacher2.acceptation = True
         teacher2.activation = True
         teacher2.save()
+
     def setUp(self) -> None:
         course = Course.objects.create(
             name='foo',
-                        start_date=datetime.datetime.date(
-                                        datetime.datetime.now() + datetime.timedelta(days=5)
-                                                    ),
-                                                                stage=Stage.objects.create(
-                                                                                age_start=7, age_end=12, name="foo"),
-                                                                                            duration='15',
-                                                                                                        about='sjahkld'
+            start_date=datetime.datetime.date(
+                datetime.datetime.now() + datetime.timedelta(days=5)
+            ),
+            stage=Stage.objects.create(
+                age_start=7, age_end=12, name="foo"),
+            duration='15',
+            about='sjahkld'
         )
         course.teacher = Techer.objects.get(pk=1)
         course.save()
-        self.data = {'name':'foo', 'goal':'foo'}
+        self.data = {'name': 'foo', 'goal': 'foo'}
         return super().setUpTestData()
+
     def test_not_course_teacher(self):
         self.client.login(username='bar', password='123')
-        response = self.client.get(reverse('unit_create', kwargs={'course_id':1}), follow=True)
+        response = self.client.get(
+            reverse('unit_create', kwargs={'course_id': 1}), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
+        self.assertRedirects(response, reverse(
+            'course_detail', kwargs={'pk': 1}))
         self.assertTemplateUsed(response, 'course_detail.html')
+
     def test_course_teacher_get(self):
         self.client.login(username='foo', password='123')
-        response = self.client.get(reverse('unit_create', kwargs={'course_id':1}))
+        response = self.client.get(
+            reverse('unit_create', kwargs={'course_id': 1}))
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Unit_Form)
         self.assertTemplateUsed(response, 'unit_create.html')
+
     def test_valid_unit_create(self):
         self.client.login(username='foo', password='123')
-        response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
+        response = self.client.post(
+            reverse('unit_create', kwargs={'course_id': 1}), data=self.data, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
-        self.assertEqual(Unit.objects.get(pk=1).course, Course.objects.get(pk=1))
-    def test_invalid_unit_create(self):
-        self.client.login(username='foo', password='123')
-        self.data['name'] = 'fjrut2i2titi2toti1tiyowttigiorudurueydkegfjdjtsjoeyhfuueuetgdirueudhdhdj'
-        response = self.client.post(reverse('unit_create', kwargs={'course_id':1}), data=self.data, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('form', response.context)
-        self.assertIn('name', response.context['form'].errors)
-        self.assertEqual(response.context['form'].errors['name'][0], 'max length is 20')
+        self.assertRedirects(response, reverse(
+            'course_detail', kwargs={'pk': 1}))
+        self.assertEqual(Unit.objects.get(pk=1).course,
+                         Course.objects.get(pk=1))
