@@ -584,4 +584,7 @@ class StudentEnrollViewTestCase(TestCase):
         self.assertRedirects(response, reverse('index'))
     def test_student_user(self):
         self.client.login(username='bar', password='123')
-        response = self.client.get(reverse('student_enroll', kwargs={'pk':1}))
+        response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, reverse('index'))
+        self.assertIn(response.wsgi_request.u)
