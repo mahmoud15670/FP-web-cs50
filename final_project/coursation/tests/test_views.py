@@ -539,4 +539,5 @@ class CourseDetailViewTestCase(TestCase):
                                                                                                                                     about='sjahkld'
         )
         return super().setUpTestData()
-    def test_get_course()
+    def test_get_course(self):
+        response = self.client.get(reverse())
