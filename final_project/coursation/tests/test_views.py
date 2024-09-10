@@ -525,3 +525,8 @@ class CourseListViewTestCase(TestCase):
         self.assertIn('courses', response.context)
         self.assertEqual(len(response.context['courses']), 2)
         self.assertTemplateUsed(response, 'index.html')
+class CourseDetailViewTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls) -> None:
+        
+        return super().setUpTestData()
