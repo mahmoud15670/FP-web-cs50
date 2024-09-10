@@ -604,5 +604,5 @@ class SectionListViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         for i in range(5):
-            Section.objects.create(name=)
+            Section.objects.create(name=f'{i}')
         return super().setUpTestData()
