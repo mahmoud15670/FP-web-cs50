@@ -644,10 +644,16 @@ class UnitCreateViewTestCase(TestCase):
         teacher1.set_password('123')
         teacher1.create_teacher()
         teacher1 = Techer.objects.get(pk=1)
-    
+        teacher1.acceptation = True
+        teacher1.activation = True
+        teacher1.save()
         teacher2 = User.objects.create(username='bar')
         teacher2.set_password('123')
         teacher2.create_teacher()
+        teacher2 = Techer.objects.get(pk=2)
+        teacher2.acceptation = True
+        teacher2.activation = True
+        teacher2.save()
     def setUp(self) -> None:
         course = Course.objects.create(
             name='foo',
