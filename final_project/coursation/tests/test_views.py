@@ -587,4 +587,4 @@ class StudentEnrollViewTestCase(TestCase):
         response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('index'))
-        self.assertIn(response.wsgi_request.user, Course.objects.get(pk=1).student.all())
+        self.assertIn(response.wsgi_request.user.student, Course.objects.get(pk=1).student.all())
