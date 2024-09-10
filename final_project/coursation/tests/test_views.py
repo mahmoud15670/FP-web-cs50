@@ -674,3 +674,10 @@ class UnitCreateViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
         self.assertTemplateUsed(response, 'course_detail.html')
+    def test_course_teacher_get(self):
+        self.client.login(username='foo', password='123')
+        response = self.client.get(reverse('unit_create', kwargs={'course_id':1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertIsInstance(response.context['form'], Unit_Form)
+        self.assertTemplateUsed(response, )
