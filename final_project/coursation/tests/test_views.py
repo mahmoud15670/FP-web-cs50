@@ -623,4 +623,4 @@ class SectionDetailViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('section', response.context)
         self.assertEqual(response.context['section'], Section.objects.get(pk=1))
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'section_details.html')
