@@ -565,7 +565,9 @@ class StudentEnrollViewTestCase(TestCase):
                                                                                                                     duration='15',
                                                                                                                                     about='sjahkld'
         )
-        User.
+        User.objects.create_superuser(username='foo', password='123')
+        student = User.objects.create(username='bar')
+        student.set_password
         return super().setUpTestData()
     def test_none_user(self):
         response = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
@@ -574,3 +576,10 @@ class StudentEnrollViewTestCase(TestCase):
     def test_none_course(self):
         response = self.client.get(reverse('student_enroll', kwargs={'pk':2}))
         self.assertEqual(response.status_code, 404)
+    def test_none_student_user(self):
+        self.client.login(username='foo', password='123')
+        response  = self.client.get(reverse('student_enroll', kwargs={'pk':1}), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, reverse('index'))
+    def test_student_user(self):
+        self.client.login(username='bar', password='123')
