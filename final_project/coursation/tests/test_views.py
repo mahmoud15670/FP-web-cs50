@@ -660,9 +660,9 @@ class UnitCreateViewTestCase(TestCase):
         course.teacher = Techer.objects.get(pk=1)
         course.save()
         return super().setUpTestData()
-    def test_course_teacher(self):
+    def test_not_course_teacher(self):
         self.client.login(username='bar', password='123')
-        response = self.client.get(reverse('unit_create', kwargs={'course_id':1}))
+        response = self.client.get(reverse('unit_create', kwargs={'course_id':1}), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('course_detail', kwargs={'pk':1}))
-        self.
+        self.assertTemplateUsed(response, 'course_details.html')
