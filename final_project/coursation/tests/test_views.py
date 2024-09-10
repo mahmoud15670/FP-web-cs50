@@ -680,4 +680,4 @@ class UnitCreateViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], Unit_Form)
-        self.assertTemplateUsed(response, )
+        self.assertTemplateUsed(response, 'unit_create.html')
