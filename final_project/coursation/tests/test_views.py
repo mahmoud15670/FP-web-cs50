@@ -643,5 +643,5 @@ class UnitCreateViewTestCase(TestCase):
         teacher = User.objects.create(username='foo')
         teacher.set_password('123')
         teacher.create_teacher()
-        
+
         return super().setUpTestData()
