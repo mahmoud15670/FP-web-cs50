@@ -618,6 +618,7 @@ class SectionDetailViewTestCase(TestCase):
     def setUpTestData(cls) -> None:
         Section.objects.create(name='foo')
         return super().setUpTestData()
+    def
     def test_get_section(self):
         response = self.client.get(reverse('section_details', kwargs={'pk':1}))
         self.assertEqual(response.status_code, 200)
